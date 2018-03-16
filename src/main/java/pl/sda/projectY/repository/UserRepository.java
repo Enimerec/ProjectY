@@ -23,8 +23,8 @@ public interface UserRepository extends JpaRepository<User,Integer> {
 
     User findUserByByRoleID(String roleId);
 
-    @Query("SELECT User.roleId FROM User WHERE User.id = ?1")
-    String findRoleIdById(Integer id);
+    /*@Query("SELECT User.roleId FROM User WHERE User.id = ?1")
+    String findRoleIdById(Integer id);*/
 
     List<User> findAll();
 }
