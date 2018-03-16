@@ -1,5 +1,10 @@
 package pl.sda.projectY.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
@@ -9,8 +14,12 @@ import java.sql.Time;
  * Mateusz
  * Marczak
  **/
-
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Table(name = "Lesson")
 public class Lesson {
 
     @ManyToOne

@@ -1,7 +1,6 @@
 package pl.sda.projectY.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,9 +10,11 @@ import javax.persistence.*;
  * Marczak
  **/
 
-@Getter
-@Setter
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "Instructor")
 
 public class Instructor extends User{

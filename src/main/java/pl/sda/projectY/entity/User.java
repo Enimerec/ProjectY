@@ -1,7 +1,6 @@
 package pl.sda.projectY.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -10,9 +9,11 @@ import javax.persistence.*;
  * Mateusz
  * Marczak
  **/
-@Getter
-@Setter
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "User")
 public class User {
 

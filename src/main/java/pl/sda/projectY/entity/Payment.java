@@ -1,5 +1,10 @@
 package pl.sda.projectY.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -10,6 +15,11 @@ import java.sql.Date;
  * Marczak
  **/
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Table(name = "Payment")
 public class Payment {
     @Id
     @GeneratedValue

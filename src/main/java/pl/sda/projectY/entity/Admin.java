@@ -1,7 +1,6 @@
 package pl.sda.projectY.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.omg.CORBA.PRIVATE_MEMBER;
 
 import javax.persistence.*;
@@ -11,9 +10,11 @@ import javax.persistence.*;
  * Mateusz
  * Marczak
  **/
-@Getter
 @Entity
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "Admin")
 public class Admin extends User {
 
