@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.omg.CORBA.PRIVATE_MEMBER;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * author:
@@ -21,7 +18,8 @@ import javax.persistence.Table;
 public class Admin extends User {
 
     @Column(name = "USER_ID")
-    private int userID;
+    @OneToOne
+    private Integer userID;
 
     private String name;
     private String surname;

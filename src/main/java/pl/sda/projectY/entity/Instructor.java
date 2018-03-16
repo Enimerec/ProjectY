@@ -3,24 +3,24 @@ package pl.sda.projectY.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * author:
  * Mateusz
  * Marczak
  **/
+
 @Getter
 @Setter
 @Entity
 @Table(name = "Instructor")
 
-public class Instructor {
+public class Instructor extends User{
 
     @Column(name = "User_ID")
-    private int userId;
+    @OneToOne
+    private Integer userId;
 
     private String name;
     private String surname;
@@ -31,5 +31,7 @@ public class Instructor {
 
     private String pesel;
     private String address;
+
+    @Id
     private String ID;
 }

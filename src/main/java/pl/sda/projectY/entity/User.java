@@ -18,12 +18,13 @@ public class User {
 
     @Id
     @GeneratedValue
-    private int id;
+    @OneToOne
+    private Integer id;
 
     private String login;
     private String password;
 
     @Column(name = "ROLE_ID")
-    private String roleID;
+    private String roleId;
 
 }
