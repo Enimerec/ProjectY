@@ -30,8 +30,10 @@ public class Instructor extends User{
     private String eMail;
 
     private String pesel;
-    private String address;
 
     @Id
-    private String ID;
+    @Column(name = "Instructor")
+    @OneToMany
+    private String instNumber;
+
 }
