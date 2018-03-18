@@ -1,9 +1,9 @@
 package pl.sda.projectY.entity;
 
-import lombok.*;
-import org.omg.CORBA.PRIVATE_MEMBER;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 /**
  * author:
@@ -11,22 +11,15 @@ import javax.persistence.*;
  * Marczak
  **/
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@Table(name = "Admin")
+@Table(name = "admins")
+@PrimaryKeyJoinColumn(name = "ADMIN_ID", referencedColumnName = "USER_ID")
 public class Admin extends User {
-
-    @Column(name = "USER_ID")
-    @OneToOne
-    private Integer userID;
 
     private String name;
     private String surname;
     private String telephone;
 
-    @Column(name = "e-mail")
+    @Column(name = "e_mail")
     private String eMail;
 
 }

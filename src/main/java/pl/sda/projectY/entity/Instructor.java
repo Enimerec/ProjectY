@@ -1,8 +1,8 @@
 package pl.sda.projectY.entity;
 
-import lombok.*;
-
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 /**
  * author:
@@ -11,30 +11,34 @@ import javax.persistence.*;
  **/
 
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@Table(name = "Instructor")
-
-public class Instructor extends User{
-
-    @Column(name = "User_ID")
-    @OneToOne
-    private Integer userId;
+@Table(name = "instructors")
+@PrimaryKeyJoinColumn(name = "INSTRUCTOR_ID", referencedColumnName = "USER_ID")
+public class Instructor extends User {
 
     private String name;
     private String surname;
     private String telephone;
 
-    @Column(name = "e-mail")
+    @Column(name = "e_mail")
     private String eMail;
 
     private String pesel;
 
-    @Id
-    @Column(name = "Instructor")
-    @OneToMany
+    @Column(name = "instructor_num")
     private String instNumber;
 
+    @Column(name = "street")
+    private String street;
+
+    @Column(name = "postal_code")
+    private String postCode;
+
+    @Column(name = "city")
+    private String city;
+
+    @OneToMany(mappedBy = "instructor")
+    private Set<Lesson> lessonList;
+
+    @OneToMany(mappedBy = "mainInstructor")
+    private Set<Student> studentList;
 }

@@ -1,37 +1,33 @@
 package pl.sda.projectY.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.sql.Date;
-import java.sql.Time;
 
 /**
  * author:
  * Mateusz
  * Marczak
  **/
+
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@Table(name = "Lesson")
+@Table(name = "lessons")
 public class Lesson {
 
-    @ManyToOne
-    @Column(name = "INST_ID")
-    private String instId;
+    @Id
+    @GeneratedValue
+    @Column(name = "LESSON_ID")
+    private Integer lessonId;
 
-    @ManyToOne
-    @Column(name = "STUD_ID")
-    private String studId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "INSTRUCTOR_ID")
+    private Instructor instructor;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "STUDENT_ID")
+    private Student student;
 
     private Date date;
-    private Time from;
-    private Time to;
+    //private LocalTime from;
+    //private LocalTime to;
 
 }

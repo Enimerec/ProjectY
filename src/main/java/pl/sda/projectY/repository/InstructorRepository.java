@@ -17,7 +17,7 @@ import java.util.List;
 @Transactional
 public interface InstructorRepository extends JpaRepository<Instructor,Integer>{
 
-    Instructor findInstructorByUserId(Integer id);
+    //Instructor findInstructorByUserId(Integer id);
 
     List<Instructor> findAll();
 }

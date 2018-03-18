@@ -1,8 +1,7 @@
 package pl.sda.projectY.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 
 
 /**
@@ -10,17 +9,22 @@ import lombok.NoArgsConstructor;
  * Mateusz
  * Marczak
  **/
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 
-public class InstructorDto {
-    private int userId;
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class InstructorDto extends UserDto{
+
     private String name;
     private String surname;
     private String telephone;
     private String eMail;
     private String pesel;
-    private String address;
-    private String ID;
+    private String instNumber;
+    private String street;
+    private String postCode;
+    private String city;
+
 }

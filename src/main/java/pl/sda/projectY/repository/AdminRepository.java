@@ -17,9 +17,8 @@ import java.util.List;
 @Transactional
 public interface AdminRepository extends JpaRepository<Admin,Integer> {
 
-    Admin findAdminByUserID(Integer id);
-
-    Admin findAdminByEMail(String email);
+    //Admin findAdminByUserID(Integer id);
+    //Admin findAdminByEMail(String email);
 
     List<Admin> findAll();
 }

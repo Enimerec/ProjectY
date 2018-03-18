@@ -1,6 +1,6 @@
 package pl.sda.projectY.entity;
 
-import lombok.*;
+import lombok.Data;
 
 import javax.persistence.*;
 
@@ -9,23 +9,25 @@ import javax.persistence.*;
  * Mateusz
  * Marczak
  **/
-@Entity
+
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@Table(name = "User")
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue
-    @OneToOne
-    private Integer id;
+    @Column(name = "USER_ID")
+    private Integer userId;
 
+    @Column(name = "login")
     private String login;
+
+    @Column(name = "password")
     private String password;
 
-    @Column(name = "ROLE_ID")
+    @Column(name = "role_id")
     private String roleId;
 
 }

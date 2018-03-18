@@ -13,18 +13,20 @@ import java.util.List;
  * Mateusz
  * Marczak
  **/
+
 @Repository
 @Transactional
 public interface UserRepository extends JpaRepository<User,Integer> {
 
-    User findUserByLogin(String login);
+   User findUserByLogin(String login);
 
-    User findUserByById(Integer id);
+   //User findUserById(Integer id);
+   //User findUserByRoleID(String roleId);
 
-    User findUserByByRoleID(String roleId);
-
-    /*@Query("SELECT User.roleId FROM User WHERE User.id = ?1")
-    String findRoleIdById(Integer id);*/
+   /*@Query("SELECT User.roleId FROM User WHERE User.id = ?1")
+   String findRoleIdById(Integer id);*/
 
     List<User> findAll();
+
+
 }
