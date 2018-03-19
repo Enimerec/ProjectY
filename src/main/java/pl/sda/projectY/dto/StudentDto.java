@@ -1,6 +1,7 @@
 package pl.sda.projectY.dto;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.sda.projectY.entity.Instructor;
 import pl.sda.projectY.entity.Lesson;
 import pl.sda.projectY.entity.Payment;
@@ -26,7 +27,9 @@ public class StudentDto extends UserDto{
     private String street;
     private String postCode;
     private String city;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
     private Instructor mainInstructor;
