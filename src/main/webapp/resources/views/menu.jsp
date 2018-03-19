@@ -18,3 +18,13 @@
         <a class="dropdown-item" href="#">Dodaj kursanta</a>
     </div>
 </div>
+<div class="btn-group">
+    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Kursanci
+    </button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Lista instruktorow</a>
+        <a class="dropdown-item" href="#">Szczeguły instruktora</a>
+        <a class="dropdown-item" href="#">Dodaj instruktora</a>
+    </div>
+</div>
