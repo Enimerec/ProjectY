@@ -7,6 +7,7 @@ import pl.sda.projectY.entity.Payment;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -29,6 +30,6 @@ public class StudentDto extends UserDto{
     private Date endDate;
 
     private Instructor mainInstructor;
-    private List<Payment> paymentList;
-    private List<Lesson> lessonList;
+    private Set<Payment> paymentList;
+    private Set<Lesson> lessonList;
 }

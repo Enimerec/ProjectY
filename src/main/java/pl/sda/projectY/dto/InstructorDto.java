@@ -5,6 +5,7 @@ import pl.sda.projectY.entity.Lesson;
 import pl.sda.projectY.entity.Student;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * author:
@@ -29,6 +30,6 @@ public class InstructorDto extends UserDto{
     private String postCode;
     private String city;
 
-    private List<Lesson> lessonList;
-    private List<Student> studentList;
+    private Set<Lesson> lessonList;
+    private Set<Student> studentList;
 }

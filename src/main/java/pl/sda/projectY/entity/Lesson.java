@@ -2,6 +2,7 @@ package pl.sda.projectY.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * author:
@@ -27,7 +28,7 @@ public class Lesson {
     private Student student;
 
     private Date date;
-    //private LocalTime from;
-    //private LocalTime to;
-
+    private Integer from;
+    private Integer to;
+    
 }

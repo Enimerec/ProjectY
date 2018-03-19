@@ -1,7 +1,18 @@
 package pl.sda.projectY.type;
 
 public enum Role {
-    ROLE_ADMIN,
-    ROLE_STUDENT,
-    ROLE_INSTRUCTOR
+    ADMIN("ADMIN"),
+    STUDENT("STUDENT"),
+    INSTRUCTOR("INSTRUCTOR");
+
+    private String role;
+
+    Role(String role) {
+        this.role=role;
+    }
+
+    @Override
+    public String toString() {
+        return role;
+    }
 }

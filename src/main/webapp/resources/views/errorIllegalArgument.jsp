@@ -11,7 +11,7 @@
     <title>Error IllegalArgument</title>
 </head>
 <body>
-BLAD IllegalArgumentException
+<h1>BLAD</h1>
 ${msg}
 </body>
 </html>

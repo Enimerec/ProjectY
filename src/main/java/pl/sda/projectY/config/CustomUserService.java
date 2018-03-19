@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import pl.sda.projectY.entity.User;
 import pl.sda.projectY.repository.UserRepository;
+import pl.sda.projectY.type.Role;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class CustomUserService implements UserDetailsService
         User user = userRepository.findUserByLogin(login);
         return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(),
                         true, true, true, true,
-                        getGrantedAuthorities(user.getRoleId()));
+                        getGrantedAuthorities(user.getRole().toString()));
     }
 
     private List<GrantedAuthority> getGrantedAuthorities(String role){

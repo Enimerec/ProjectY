@@ -5,6 +5,7 @@ import pl.sda.projectY.entity.Instructor;
 import pl.sda.projectY.entity.Student;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Getter
 @Setter
@@ -15,8 +16,8 @@ public class LessonDto {
 
     private Integer lessonId;
     private Date date;
-    //private LocalTime from;
-    //private LocalTime to;
+    private Timestamp from;
+    private Timestamp to;
 
     private Instructor instructor;
     private Student student;
