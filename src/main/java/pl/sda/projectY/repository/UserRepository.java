@@ -18,7 +18,7 @@ import java.util.List;
 @Transactional
 public interface UserRepository extends JpaRepository<User,Integer> {
 
-   User findUserByLogin(String login);
+    User findUserByLogin(String login);
 
    //User findUserById(Integer id);
    //User findUserByRoleID(String roleId);
