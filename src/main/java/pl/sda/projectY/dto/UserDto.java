@@ -1,6 +1,7 @@
 package pl.sda.projectY.dto;
 
 import lombok.*;
+import pl.sda.projectY.type.Role;
 
 @Getter
 @Setter
@@ -11,5 +12,5 @@ public class UserDto {
     private Integer userId;
     private String login;
     private String password;
-    private String roleId;
+    private Role role;
 }

@@ -1,6 +1,8 @@
 package pl.sda.projectY.dto;
 
 import lombok.*;
+import pl.sda.projectY.entity.Instructor;
+import pl.sda.projectY.entity.Student;
 
 import java.sql.Date;
 
@@ -15,4 +17,7 @@ public class LessonDto {
     private Date date;
     //private LocalTime from;
     //private LocalTime to;
+
+    private Instructor instructor;
+    private Student student;
 }

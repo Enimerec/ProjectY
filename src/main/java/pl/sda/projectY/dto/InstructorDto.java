@@ -1,8 +1,10 @@
 package pl.sda.projectY.dto;
 
 import lombok.*;
+import pl.sda.projectY.entity.Lesson;
+import pl.sda.projectY.entity.Student;
 
-
+import java.util.List;
 
 /**
  * author:
@@ -27,4 +29,6 @@ public class InstructorDto extends UserDto{
     private String postCode;
     private String city;
 
+    private List<Lesson> lessonList;
+    private List<Student> studentList;
 }

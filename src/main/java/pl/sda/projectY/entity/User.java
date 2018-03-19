@@ -1,6 +1,7 @@
 package pl.sda.projectY.entity;
 
 import lombok.Data;
+import pl.sda.projectY.type.Role;
 
 import javax.persistence.*;
 
@@ -27,7 +28,8 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "role_id")
-    private String roleId;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private Role role;
 
 }

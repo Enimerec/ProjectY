@@ -1,6 +1,7 @@
 package pl.sda.projectY.dto;
 
 import lombok.*;
+import pl.sda.projectY.entity.Student;
 import pl.sda.projectY.type.PaymentType;
 
 import java.math.BigDecimal;
@@ -17,4 +18,5 @@ public class PaymentDto {
     private Date date;
     private BigDecimal amount;
     private PaymentType type;
+    private Student student;
 }
