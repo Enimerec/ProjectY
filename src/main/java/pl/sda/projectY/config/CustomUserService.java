@@ -24,19 +24,16 @@ import pl.sda.projectY.type.Role;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-/**
- * @author Tomasz Rutyna (SG0301553)
- * @since Mar 08, 2018
- */
 @Service("customUserDetailsService")
 @Transactional
 public class CustomUserService implements UserDetailsService
 {
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    public CustomUserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
 
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException
@@ -53,8 +50,4 @@ public class CustomUserService implements UserDetailsService
         return authorities;
     }
 
-    /*public void addNewUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-    }*/
 }

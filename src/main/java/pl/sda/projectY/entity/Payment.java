@@ -1,5 +1,6 @@
 package pl.sda.projectY.entity;
 
+import lombok.Data;
 import pl.sda.projectY.type.PaymentType;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.sql.Date;
  * Mateusz
  * Marczak
  **/
+@Data
 @Entity
 @Table(name = "payments")
 public class Payment {

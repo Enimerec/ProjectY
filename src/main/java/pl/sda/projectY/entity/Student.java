@@ -1,5 +1,7 @@
 package pl.sda.projectY.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.Set;
  * Marczak
  **/
 
+@Data
 @Entity
 @Table(name = "students")
 @PrimaryKeyJoinColumn(name = "STUDENT_ID", referencedColumnName = "USER_ID")

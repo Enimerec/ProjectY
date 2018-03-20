@@ -1,5 +1,7 @@
 package pl.sda.projectY.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -10,6 +12,7 @@ import java.sql.Timestamp;
  * Marczak
  **/
 
+@Data
 @Entity
 @Table(name = "lessons")
 public class Lesson {

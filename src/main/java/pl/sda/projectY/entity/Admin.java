@@ -1,5 +1,7 @@
 package pl.sda.projectY.entity;
 
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -10,6 +12,7 @@ import javax.persistence.Table;
  * Mateusz
  * Marczak
  **/
+@Data
 @Entity
 @Table(name = "admins")
 @PrimaryKeyJoinColumn(name = "ADMIN_ID", referencedColumnName = "USER_ID")

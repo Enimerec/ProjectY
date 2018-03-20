@@ -10,10 +10,9 @@
 package pl.sda.projectY.config;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
-/**
- * @author Tomasz Rutyna (SG0301553)
- * @since Mar 08, 2018
- */
+
+
 public class SpringSecurityInitializer extends AbstractSecurityWebApplicationInitializer
+
 {
 }

@@ -23,12 +23,15 @@ import pl.sda.projectY.handler.SuccessLoginHandler;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private SuccessLoginHandler successLoginHandler;
+    private final SuccessLoginHandler successLoginHandler;
+
+    private final UserDetailsService userDetailsService;
 
     @Autowired
-    @Qualifier("customUserDetailsService")
-    private UserDetailsService userDetailsService;
+    public SecurityConfiguration(SuccessLoginHandler successLoginHandler, @Qualifier("customUserDetailsService") UserDetailsService userDetailsService) {
+        this.successLoginHandler = successLoginHandler;
+        this.userDetailsService = userDetailsService;
+    }
 
 
     @Autowired
@@ -57,6 +60,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/", "/main").permitAll()
+                .antMatchers("/adminPanel/**").access("hasRole('ADMIN')")
                 .and().formLogin().loginPage("/main").
                 usernameParameter("login").
                 passwordParameter("password").
