@@ -11,6 +11,7 @@
     <title>Admin Registration Form</title>
 </head>
 <body>
+<form:form action="addNewAdmin" modelAttribute="AdminDto" method="POST">
 Login<form:input type="text" path="login"/><br>
 Hasło<form:input type="text" path="pass"/><br>
 
@@ -20,5 +21,6 @@ Telefon<form:input type="text" path="phone"/><br>
 Pesel<form:input type="text" path="pesel"/><br>
 
 <input type="submit" name="submit" value="Zarejestruj"/>
+</form:form>
 </body>
 </html>

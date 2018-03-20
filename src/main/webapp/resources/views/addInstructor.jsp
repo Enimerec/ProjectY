@@ -11,6 +11,7 @@
     <title>Instructor Registration Form</title>
 </head>
 <body>
+<form:form action="addNewInstructor" modelAttribute="InstructorDto" method="POST">
 Login<form:input type="text" path="login"/><br>
 Hasło<form:input type="text" path="pass"/><br>
 
@@ -26,6 +27,8 @@ Kod pocztowy<form:input type="text" path="postCode"/><br>
 Miasto<form:input type="text" path="city"/><br>
 
 <input type="submit" name="submit" value="Zarejestruj"/>
+
+</form:form>
 </body>
 </html>
 

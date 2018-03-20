@@ -57,7 +57,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/", "/main").permitAll()
-                .and().formLogin().successHandler(successLoginHandler)
+                .and().formLogin().loginPage("/main").
+                usernameParameter("login").
+                passwordParameter("password").
+                successHandler(successLoginHandler)
                 .and().exceptionHandling().accessDeniedPage("/error");
 
     }

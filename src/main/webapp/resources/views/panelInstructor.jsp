@@ -11,6 +11,7 @@
     <title>Panel Instruktora</title>
 </head>
 <body>
+<jsp:include page="menu.jsp" /><br>
 <h1>Witaj w panelu instruktora</h1>
 </body>
 </html>

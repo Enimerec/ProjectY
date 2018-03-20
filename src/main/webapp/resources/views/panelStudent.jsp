@@ -11,6 +11,7 @@
     <title>Panel studenta</title>
 </head>
 <body>
+<jsp:include page="menu.jsp" /><br>
 <h1>Witaj w panelu studenta!</h1>
 </body>
 </html>
