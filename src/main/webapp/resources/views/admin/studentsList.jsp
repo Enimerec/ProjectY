@@ -19,7 +19,8 @@
                 ${student.surname},
                 ${student.mainInstructor},
                 ${student.regNum},
-            <a href="${pageContext.servletContext.contextPath}/panelAdmin/student/${student.userId}">Szczegóły</a>
+            <a href="${pageContext.servletContext.contextPath}/panelAdmin/studentList/student/${student.userId}">
+                Szczegóły</a>
         </li>
     </c:forEach>
 </ul>

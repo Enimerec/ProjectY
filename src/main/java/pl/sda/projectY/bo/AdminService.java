@@ -28,6 +28,13 @@ public class AdminService {
     }
 
     public void addNewAdmin(AdminDto adminDto) {
+        Admin newAdmin = getAdmin(adminDto);
+
+        adminRepository.save(newAdmin);
+
+    }
+
+    private Admin getAdmin(AdminDto adminDto) {
         Admin newAdmin = new Admin();
 
         newAdmin.setLogin(adminDto.getLogin());
@@ -37,8 +44,6 @@ public class AdminService {
         newAdmin.setName(adminDto.getName());
         newAdmin.setSurname(adminDto.getSurname());
         newAdmin.setTelephone(adminDto.getTelephone());
-
-        adminRepository.save(newAdmin);
-
+        return newAdmin;
     }
 }

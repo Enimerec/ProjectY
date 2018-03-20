@@ -27,6 +27,12 @@ public class InstructorService {
     }
 
     public void addNewInst(InstructorDto instructorDto) {
+        Instructor newInstructor = getInstructor(instructorDto);
+
+        instructorRepository.save(newInstructor);
+    }
+
+    private Instructor getInstructor(InstructorDto instructorDto) {
         Instructor newInstructor = new Instructor();
 
         newInstructor.setLogin(instructorDto.getLogin());
@@ -41,8 +47,7 @@ public class InstructorService {
         newInstructor.setSurname(instructorDto.getSurname());
         newInstructor.setTelephone(instructorDto.getTelephone());
         newInstructor.setRole(Role.INSTRUCTOR);
-
-        instructorRepository.save(newInstructor);
+        return newInstructor;
     }
 
     public void deleteInstructorByid(int userId) {

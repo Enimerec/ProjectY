@@ -24,6 +24,12 @@ public class StudentService {
     }
 
     public void addNewStudent(StudentDto studentDto) {
+        Student newStudent = getStudent(studentDto);
+
+        studentRepository.save(newStudent);
+    }
+
+    private Student getStudent(StudentDto studentDto) {
         Student newStudent = new Student();
 
         newStudent.setLogin(studentDto.getLogin());
@@ -44,8 +50,7 @@ public class StudentService {
 
         newStudent.setMainInstructor(studentDto.getMainInstructor());
         newStudent.setStartDate(studentDto.getStartDate());
-
-        studentRepository.save(newStudent);
+        return newStudent;
     }
 
     public void deleteStudentById(int userId) {
