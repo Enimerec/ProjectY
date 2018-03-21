@@ -60,7 +60,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/", "/main").permitAll()
-                .antMatchers("/adminPanel/**").access("hasRole('ADMIN')")
+                .antMatchers("/panelAdmin/**").access("hasRole('ADMIN')")
+                .antMatchers("/panelInstructor/**").access("hasRole('INSTRUCTOR')")
+                .antMatchers("/panelStudent/**").access("hasRole('STUDENT')")
                 .and().formLogin().loginPage("/main").
                 usernameParameter("login").
                 passwordParameter("password").

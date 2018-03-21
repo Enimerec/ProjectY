@@ -44,4 +44,8 @@ public class InstructorService {
 
         instructorRepository.save(newInstructor);
     }
+
+    public void deleteInstructorByid(int userId) {
+        instructorRepository.delete(userId);
+    }
 }

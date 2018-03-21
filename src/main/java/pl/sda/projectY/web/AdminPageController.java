@@ -5,6 +5,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sda.projectY.bo.*;
@@ -41,7 +42,7 @@ public class AdminPageController {
     @PreAuthorize(value = "hasRole('ADMIN')")
     @GetMapping(value = "/panelAdmin")
     public String adminPage(){
-        return "admin/panelAdmin";
+        return "admin/adminPanel";
     }
 
 
@@ -99,8 +100,6 @@ public class AdminPageController {
         ModelAndView mav = new ModelAndView("admin/instructorsList");
         mav.addObject("instructors",instructorFinder.findAll());
         return mav;
-
-
     }
 
     @GetMapping(value = "/panelAdmin/adminList")
@@ -110,6 +109,74 @@ public class AdminPageController {
         return mav;
     }
 
+    @GetMapping(value = "/panelAdmin/studentList/student/{userId}}")
+    public ModelAndView showStudentDetails(@PathVariable (value = "userId") int userId){
+        ModelAndView mav = new ModelAndView("admin/studentDetails");
+        mav.addObject("student",studentFinder.findById(userId));
+        return mav;
+    }
+
+    @GetMapping(value = "/panelAdmin/studentList/studentE/{userId}")
+    public ModelAndView editStudentDetailsPage(@PathVariable (value = "userId")int userId){
+        ModelAndView mav = new ModelAndView("admin/editStudent");
+        mav.addObject("student",studentFinder.findById(userId));
+        return mav;
+    }
+
+    @GetMapping(value = "/panelAdmin/studentList/studentD/{userId}")
+    public String deleteStudent(@PathVariable (value = "userId")int userId){
+        studentService.deleteStudentById(userId);
+        return "redirect:../panelAdmin/studentList";
+    }
+
+    @PostMapping(value = "/panelAdmin/studentList/studentE/{userId}")
+    public String editStudentDetails(@PathVariable (value = "userId")int userId,
+                                        @ModelAttribute("student") StudentDto studentDto){
+        StudentDto student = studentFinder.findById(userId);
+        studentDto.setPassword(student.getPassword());
+
+        student = new StudentDto();
+
+        studentService.deleteStudentById(userId);
+        studentService.addNewStudent(studentDto);
+
+        return "redirect:../panelAdmin/studentList/student/{userId}}";
+    }
+
+    @GetMapping(value = "/panelAdmin/instructorList/instructor/{userId}")
+    public ModelAndView instructorDetailsPage(@PathVariable (value = "userId") int userId) {
+        ModelAndView mav = new ModelAndView("admin/instructorDetails");
+        mav.addObject("instructor", instructorFinder.findById(userId));
+        return mav;
+    }
+
+    @GetMapping(value = "/panelAdmin/instructorList/instructorE/{userId}")
+    public ModelAndView instructorEditPage(@PathVariable (value = "userId") int userId) {
+        ModelAndView mav = new ModelAndView("admin/editInstructor");
+        mav.addObject("instructor", instructorFinder.findById(userId));
+        return mav;
+    }
+
+    @PostMapping(value = "/panelAdmin/instructorList/instructorE/{userId}")
+    public String editInstructorDetails(@PathVariable (value = "userId")int userId,
+                                  @ModelAttribute("instructor") InstructorDto instructorDto){
+
+        InstructorDto instructor = instructorFinder.findById(userId);
+        instructorDto.setPassword(instructor.getPassword());
+
+        instructor = new InstructorDto();
+
+        instructorService.deleteInstructorByid(userId);
+        instructorService.addNewInst(instructor);
+
+        return "redirect:../panelAdmin/instructorList/instructor/{userId}";
+    }
+
+    @GetMapping(value = "/panelAdmin/instructorList/instructorD/{userId}")
+    public String deleteInstructor(@PathVariable (value = "userId")int userId){
+        instructorService.deleteInstructorByid(userId);
+        return "redirect:../panelAdmin/instructorList";
+    }
 
 
 

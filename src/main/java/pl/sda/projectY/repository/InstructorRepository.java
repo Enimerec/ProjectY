@@ -20,4 +20,6 @@ public interface InstructorRepository extends JpaRepository<Instructor,Integer>{
     //Instructor findInstructorByUserId(Integer id);
 
     List<Instructor> findAll();
+
+    Instructor findByLogin(String login);
 }

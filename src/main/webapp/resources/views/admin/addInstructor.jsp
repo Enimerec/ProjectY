@@ -14,14 +14,14 @@
 <body>
 <form:form action="addNewInstructor" modelAttribute="newInstructor" method="POST">
 Login<form:input type="text" path="login"/><br>
-Hasło<form:input type="text" path="pass"/><br>
+Hasło<form:input type="text" path="password"/><br>
 
 Imię<form:input type="text" path="name"/><br>
 Nazwisko<form:input type="text" path="surname"/><br>
-Telefon<form:input type="text" path="phone"/><br>
-Email<form:input type="text" path="email"/><br>
+Telefon<form:input type="text" path="telephone"/><br>
+Email<form:input type="text" path="EMail"/><br>
 Pesel<form:input type="text" path="pesel"/><br>
-Numer ewidencyjny<form:input type="text" path="regNum"/><br>
+Numer ewidencyjny<form:input type="text" path="instNumber"/><br>
 
 Ulica<form:input type="text" path="street"/><br>
 Kod pocztowy<form:input type="text" path="postCode"/><br>
