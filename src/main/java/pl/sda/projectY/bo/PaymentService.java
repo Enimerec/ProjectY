@@ -1,7 +1,8 @@
-package pl.sda.projectY.dto;
+package pl.sda.projectY.bo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.sda.projectY.dto.PaymentDto;
 import pl.sda.projectY.entity.Payment;
 import pl.sda.projectY.repository.PaymentRepository;
 

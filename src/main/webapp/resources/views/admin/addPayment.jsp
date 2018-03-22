@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<form:form action="addNewPayment" modelAttribute="newPayment" method="POST">
+<form:form action="" modelAttribute="newPayment" method="POST">
 
     Kwota: <form:input type="number" path="amount"/><br>
     Data: <form:input type="date" path="date"/><br>

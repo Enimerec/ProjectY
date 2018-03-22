@@ -47,7 +47,7 @@ public class AdminPageController {
         this.paymentService = paymentService;
     }
 
-    @PreAuthorize(value = "hasRole('ADMIN')")
+    //@PreAuthorize(value = "hasRole('ADMIN')")
     @GetMapping(value = "/panelAdmin")
     public String adminPage(){
         return "admin/adminPanel";
@@ -117,7 +117,7 @@ public class AdminPageController {
         return mav;
     }
 
-    @GetMapping(value = "/panelAdmin/studentList/student/{userId}}")
+    @GetMapping(value = "/panelAdmin/studentList/student/{userId}")
     public ModelAndView showStudentDetails(@PathVariable (value = "userId") int userId){
         ModelAndView mav = new ModelAndView("admin/studentDetails");
         mav.addObject("student",studentFinder.findById(userId));

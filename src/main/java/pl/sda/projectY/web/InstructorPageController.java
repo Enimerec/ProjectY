@@ -27,7 +27,7 @@ public class InstructorPageController {
     private InstructorService instructorService;
 
     @PreAuthorize(value = "hasRole('INSTRUCTOR')")
-    @GetMapping(value = "/instructorPanel")
+    @GetMapping(value = "/panelInstructor")
     public String getInstructorPanelPage(){
         return "instructor/instructorPanel";
     }
@@ -39,14 +39,14 @@ public class InstructorPageController {
         return mav;
     }
 
-    @GetMapping(value = "panelInstructor/MyProfile/edit")
+    @GetMapping(value = "/panelInstructor/MyProfile/edit")
     public ModelAndView editMyProfilePage(){
-        ModelAndView mav = new ModelAndView("student/editStudent");
-        mav.addObject("student",instructorFinder.getUserDetails());
+        ModelAndView mav = new ModelAndView("instructor/editInstructor");
+        mav.addObject("instructor",instructorFinder.getUserDetails());
         return mav;
     }
 
-    @PostMapping(value = "/panelStudent/MyProfile/edit")
+    @PostMapping(value = "/panelInstructor/MyProfile/edit")
     public String editInstructor(@ModelAttribute("instructor")InstructorDto instructorDto){
         int id = (instructorDto.getUserId());
         InstructorDto instructor = instructorFinder.findById(id);
@@ -55,7 +55,7 @@ public class InstructorPageController {
 
         instructorService.deleteInstructorByid(id);
         instructorService.addNewInst(instructorDto);
-        return "redirect:../studentPanel/MyProfile";
+        return "redirect:../panelInstructor/MyProfile";
     }
 
 

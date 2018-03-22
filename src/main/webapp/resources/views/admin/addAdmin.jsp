@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: Mateusz
@@ -12,15 +14,15 @@
     <title>Admin Registration Form</title>
 </head>
 <body>
-<form:form action="addNewAdmin" modelAttribute="newAdmin" method="POST">
+<form:form action="" modelAttribute="newAdmin" method="POST">
 Login<form:input type="text" path="login"/><br>
-Hasło<form:input type="text" path="pass"/><br>
+Hasło<form:input type="text" path="password"/><br>
 
 
 Imię<form:input type="text" path="name"/><br>
 Nazwisko<form:input type="text" path="surname"/><br>
-Telefon<form:input type="text" path="phone"/><br>
-Pesel<form:input type="text" path="pesel"/><br>
+Telefon<form:input type="text" path="telephone"/><br>
+E-Mail<form:input type="text" path="EMail"/><br>
 
 <input type="submit" name="submit" value="Zarejestruj"/>
 </form:form>

@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<form:form action="addNewStudent" modelAttribute="newStudent" method="POST">
+<form:form action="" modelAttribute="newStudent" method="POST">
 
 Login<form:input type="text" path="login"/><br>
 Hasło<form:input type="text" path="password"/><br>

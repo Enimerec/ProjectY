@@ -36,7 +36,7 @@ public class InstructorService {
         Instructor newInstructor = new Instructor();
 
         newInstructor.setLogin(instructorDto.getLogin());
-        newInstructor.setLogin(passwordEncoder.encode(newInstructor.getPassword()));
+        newInstructor.setPassword(passwordEncoder.encode(instructorDto.getPassword()));
         newInstructor.setCity(instructorDto.getCity());
         newInstructor.setEMail(instructorDto.getEMail());
         newInstructor.setInstNumber(instructorDto.getInstNumber());

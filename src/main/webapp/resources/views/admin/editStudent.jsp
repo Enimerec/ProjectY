@@ -12,7 +12,7 @@
     <title>Edit Student</title>
 </head>
 <body>
-<form:form action="edit" modelAttribute="student" method="POST">
+<form:form action="" modelAttribute="student" method="POST">
 
     <form:input type="hidden" path="userId"/><br>
     Login<form:input type="text" path="login"/><br>

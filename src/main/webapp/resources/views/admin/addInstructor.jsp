@@ -12,7 +12,7 @@
     <title>Instructor Registration Form</title>
 </head>
 <body>
-<form:form action="addNewInstructor" modelAttribute="newInstructor" method="POST">
+<form:form action="" modelAttribute="newInstructor" method="POST">
 Login<form:input type="text" path="login"/><br>
 Hasło<form:input type="text" path="password"/><br>
 
