@@ -14,6 +14,7 @@
 <body>
 <form:form action="edit" modelAttribute="student" method="POST">
 
+    <form:input type="hidden" path="userId"/><br>
     Login<form:input type="text" path="login"/><br>
 
     Imię<form:input type="text" path="name"/><br>

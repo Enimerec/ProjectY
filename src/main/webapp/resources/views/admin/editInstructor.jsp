@@ -13,6 +13,8 @@
 </head>
 <body>
 <form:form action="addNewInstructor" modelAttribute="instructor" method="POST">
+
+    <form:input type="hidden" path="userId"/><br>
     Login<form:input type="text" path="login"/><br>
 
     Imię<form:input type="text" path="name"/><br>

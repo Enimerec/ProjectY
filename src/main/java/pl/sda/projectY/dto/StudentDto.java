@@ -33,6 +33,6 @@ public class StudentDto extends UserDto{
     private Date endDate;
 
     private Instructor mainInstructor;
-    private Set<Payment> paymentList;
-    private Set<Lesson> lessonList;
+    private List<Payment> paymentList;
+    private List<Lesson> lessonList;
 }

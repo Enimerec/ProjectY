@@ -64,8 +64,6 @@ public class StudentFinder {
 
         newStudent.setMainInstructor(student.getMainInstructor());
         newStudent.setStartDate(student.getStartDate());
-        newStudent.setLessonList(student.getLessonList());
-        newStudent.setPaymentList(student.getPaymentList());
         return newStudent;
     }
 

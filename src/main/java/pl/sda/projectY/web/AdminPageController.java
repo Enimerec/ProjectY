@@ -9,15 +9,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sda.projectY.bo.*;
-import pl.sda.projectY.dto.AdminDto;
-import pl.sda.projectY.dto.InstructorDto;
-import pl.sda.projectY.dto.StudentDto;
+import pl.sda.projectY.dto.*;
+import pl.sda.projectY.entity.Payment;
+import pl.sda.projectY.type.PaymentType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * author:
  * Mateusz
  * Marczak
  **/
+
 @Controller
 public class AdminPageController {
 
@@ -27,16 +31,20 @@ public class AdminPageController {
     private final StudentFinder studentFinder;
     private final AdminFinder adminFinder;
     private final InstructorFinder instructorFinder;
+    private final PaymentFinder paymentFinder;
+    private final PaymentService paymentService;
 
     @Autowired
     public AdminPageController(AdminService adminService, InstructorService instructorService,
-                               StudentService studentService, StudentFinder studentFinder, AdminFinder adminFinder, InstructorFinder instructorFinder) {
+                               StudentService studentService, StudentFinder studentFinder, AdminFinder adminFinder, InstructorFinder instructorFinder, PaymentFinder paymentFinder, PaymentService paymentService) {
         this.adminService = adminService;
         this.instructorService = instructorService;
         this.studentService = studentService;
         this.studentFinder = studentFinder;
         this.adminFinder = adminFinder;
         this.instructorFinder = instructorFinder;
+        this.paymentFinder = paymentFinder;
+        this.paymentService = paymentService;
     }
 
     @PreAuthorize(value = "hasRole('ADMIN')")
@@ -135,8 +143,6 @@ public class AdminPageController {
         StudentDto student = studentFinder.findById(userId);
         studentDto.setPassword(student.getPassword());
 
-        student = new StudentDto();
-
         studentService.deleteStudentById(userId);
         studentService.addNewStudent(studentDto);
 
@@ -178,6 +184,59 @@ public class AdminPageController {
         return "redirect:../panelAdmin/instructorList";
     }
 
+    @GetMapping(value = "panelAdmin/paymentList")
+    public ModelAndView paymentListPage(){
+        ModelAndView mav = new ModelAndView("admin/paymentList");
+        List<PaymentDto> paymentSet = paymentFinder.findAllOrderByDate();
+        mav.addObject("payments",paymentSet);
+        return mav;
+    }
+
+    @GetMapping(value = "panelAdmin/addPayment")
+    public ModelAndView addPaymentPage(){
+        ModelAndView mav = new ModelAndView("admin/addPayment");
+        Payment payment = new Payment();
+        mav.addObject("newPayment",payment);
+        mav.addObject("aveOpt",getPaymentTypes());
+        return mav;
+    }
+
+    private List<PaymentType> getPaymentTypes() {
+        List<PaymentType> aveOpt = new ArrayList<>();
+        aveOpt.add(PaymentType.CASH);
+        aveOpt.add(PaymentType.CREDIT_CARD);
+        aveOpt.add(PaymentType.DEBIT_CARD);
+        aveOpt.add(PaymentType.MONEY_TRANSFER);
+        return aveOpt;
+    }
+
+    @PostMapping(value = "panelAdmin/addPayment")
+    public String addPayment(@ModelAttribute("newPayment") PaymentDto paymentDto){
+        paymentService.addNewPayment(paymentDto);
+        return "redirect:../panelAdmin/paymentList";
+    }
+
+    @GetMapping(value = "/panelAdmin/paymentList/paymentE/${paymentId}")
+    public ModelAndView paymentEditPage(@PathVariable (value = "paymentId") int paymentId) {
+        ModelAndView mav = new ModelAndView("admin/editPayment");
+        mav.addObject("payment", paymentFinder.findById(paymentId));
+        mav.addObject("aveOpt",getPaymentTypes());
+        return mav;
+    }
+
+    @PostMapping(value = "panelAdmin/paymentList/paymentD/$paymentId}")
+    public String editPaymentDetails(@PathVariable (value = "paymentId")int paymentId,
+                                        @ModelAttribute("payment") PaymentDto paymentDto){
+        paymentService.deletePaymentById(paymentId);
+        paymentService.addNewPayment(paymentDto);
+        return "redirect:../panelAdmin/instructorList/instructor/{userId}";
+    }
+
+    @GetMapping(value = "/panelAdmin/paymentList/paymentD/${paymentId}")
+    public String deletePayment(@PathVariable (value = "paymentId")int paymentId){
+        paymentService.deletePaymentById(paymentId);
+        return "redirect:../panelAdmin/instructorList";
+    }
 
 
 
