@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Mateusz
@@ -27,7 +28,7 @@ Numer ewidencyjny<form:input type="text" path="regNum"/><br>
 Numer PK<form:input type="text" path="pkNum"/><br>
 Numer dowodu<form:input type="text" path="idNumber"/><br>
 
-Data rozpoczęcia kursu<form:input type="text" path="startDate"/><br>
+Data rozpoczęcia kursu<form:input type="text" path="startDate" class= "StudentDto" name = "startDate" value="<fmt:formatDate value="${cForm.dueDate}"" pattern="YYYY-MM-DD" />"/><br>
 Data zakończenia kursu<form:input type="text" path="endDate"/> <br>
 
 Ulica<form:input type="text" path="street"/><br>

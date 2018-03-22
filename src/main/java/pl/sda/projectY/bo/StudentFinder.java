@@ -49,6 +49,7 @@ public class StudentFinder {
 
         newStudent.setUserId(student.getUserId());
         newStudent.setLogin(student.getLogin());
+        newStudent.setPassword(student.getPassword());
         newStudent.setName(student.getName());
         newStudent.setSurname(student.getSurname());
         newStudent.setTelephone(student.getTelephone());

@@ -1,18 +1,20 @@
 package pl.sda.projectY.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sda.projectY.bo.*;
 import pl.sda.projectY.dto.*;
+import pl.sda.projectY.entity.Admin;
 import pl.sda.projectY.entity.Payment;
 import pl.sda.projectY.type.PaymentType;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,6 +98,14 @@ public class AdminPageController {
         return "redirect:../panelAdmin/studentList";
     }
 
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
+        sdf.setLenient(true);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
+    }
+
+
     @GetMapping(value = "/panelAdmin/studentList")
     public ModelAndView showAllStudents(){
         ModelAndView mav = new ModelAndView("admin/studentsList");
@@ -117,6 +127,32 @@ public class AdminPageController {
         return mav;
     }
 
+    @GetMapping(value = "panelAdmin/adminList/admin/${userId}")
+    public ModelAndView showAdminDetails(@PathVariable (value = "userId") int userId){
+        ModelAndView mav = new ModelAndView("admin/adminDetails");
+        mav.addObject("admin", adminFinder.findById(userId));
+        return mav;
+    }
+
+    @GetMapping(value = "/panelAdmin/adminList/adminE/${userId}")
+    public ModelAndView editAdminDetailsPage(@PathVariable (value = "userId")int userId){
+        ModelAndView mav = new ModelAndView("admin/editAdmin");
+        mav.addObject("admin",adminFinder.findById(userId));
+        return mav;
+    }
+
+    @PostMapping(value = "/panelAdmin/adminList/adminE/${userId}")
+    public String editAdminDetails(@PathVariable (value = "userId") int userId,
+                                         @ModelAttribute("admin") AdminDto adminDto){
+        AdminDto admin = adminFinder.findById(userId);
+        admin.setPassword(adminDto.getPassword());
+
+        adminService.deleteAdminById(userId);
+        adminService.addNewAdmin(admin);
+
+        return "redirect:../panelAdmin/adminList/admin/${userId}";
+    }
+
     @GetMapping(value = "/panelAdmin/studentList/student/{userId}")
     public ModelAndView showStudentDetails(@PathVariable (value = "userId") int userId){
         ModelAndView mav = new ModelAndView("admin/studentDetails");
@@ -132,7 +168,7 @@ public class AdminPageController {
     }
 
     @GetMapping(value = "/panelAdmin/studentList/studentD/{userId}")
-    public String deleteStudent(@PathVariable (value = "userId")int userId){
+    public String deleteStudent(@PathVariable (value = "userId") int userId){
         studentService.deleteStudentById(userId);
         return "redirect:../panelAdmin/studentList";
     }

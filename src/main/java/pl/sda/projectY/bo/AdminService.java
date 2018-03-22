@@ -46,4 +46,8 @@ public class AdminService {
         newAdmin.setTelephone(adminDto.getTelephone());
         return newAdmin;
     }
+
+    public void deleteAdminById(int userId) {
+        adminRepository.delete(userId);
+    }
 }
