@@ -65,13 +65,13 @@ public class AdminPageController {
     @PostMapping(value = "/panelAdmin/addAdmin")
     public String  addNewAdmin(@ModelAttribute("newAdmin") AdminDto adminDto){
         adminService.addNewAdmin(adminDto);
-        return "admin/successReg";
+        return "redirect:../panelAdmin/adminList";
     }
 
     @PostMapping(value = "/panelAdmin/addInstructor")
     public String  addNewInst(@ModelAttribute("newInstructor") InstructorDto instructorDto){
         instructorService.addNewInst(instructorDto);
-        return "admin/successReg";
+        return "redirect:../panelAdmin/instructorList";
     }
 
     @GetMapping(value = "/panelAdmin/addInstructor")
@@ -93,7 +93,7 @@ public class AdminPageController {
     @PostMapping(value = "/panelAdmin/addStudent")
     public String addNewStudent(@ModelAttribute("newStudent") StudentDto studentDto){
         studentService.addNewStudent(studentDto);
-        return "admin/successReg";
+        return "redirect:../panelAdmin/studentList";
     }
 
     @GetMapping(value = "/panelAdmin/studentList")

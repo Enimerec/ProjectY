@@ -32,7 +32,7 @@ public class InstructorPageController {
         return "instructor/instructorPanel";
     }
 
-    @GetMapping(value = "instructor/MyProfile")
+    @GetMapping(value = "/panelInstructor/MyProfile")
     public ModelAndView myProfilePage(){
         ModelAndView mav = new ModelAndView("admin/instructorDetails");
         mav.addObject("instructor",instructorFinder.getUserDetails());
