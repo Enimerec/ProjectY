@@ -34,6 +34,6 @@ public class StudentDto extends UserDto{
     private LocalDate endDate;
 
     private Instructor mainInstructor;
-    private List<Payment> paymentList;
-    private List<Lesson> lessonList;
+    private List<PaymentDto> paymentList;
+    private List<LessonDto> lessonList;
 }

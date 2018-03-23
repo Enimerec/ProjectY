@@ -2,11 +2,8 @@ package pl.sda.projectY.bo;
 
 import org.springframework.stereotype.Service;
 import pl.sda.projectY.dto.PaymentDto;
-import pl.sda.projectY.dto.StudentDto;
 import pl.sda.projectY.entity.Payment;
-import pl.sda.projectY.entity.Student;
 import pl.sda.projectY.repository.PaymentRepository;
-import pl.sda.projectY.type.Role;
 
 import java.sql.Date;
 import java.time.LocalDate;
