@@ -46,4 +46,6 @@ public class AdminFinder {
         adminDto.setTelephone(admin.getTelephone());
         return adminDto;
     }
+
+
 }

@@ -23,22 +23,29 @@ import pl.sda.projectY.handler.SuccessLoginHandler;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private final SuccessLoginHandler successLoginHandler;
+   /* private final SuccessLoginHandler successLoginHandler;
 
-    private final UserDetailsService userDetailsService;
-
-    @Autowired
-    public SecurityConfiguration(SuccessLoginHandler successLoginHandler, @Qualifier("customUserDetailsService") UserDetailsService userDetailsService) {
-        this.successLoginHandler = successLoginHandler;
-        this.userDetailsService = userDetailsService;
-    }
-
+    private final UserDetailsService userDetailsService;*/
 
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication().withUser("tomek").password("1qaz2wsx").roles("USER");
+        auth.inMemoryAuthentication().withUser("admin").password("admin123").roles("ADMIN");
+        auth.inMemoryAuthentication().withUser("usr").password("user1").roles("ADMIN","DBA");
+    }
+
+   /* @Autowired
+    public SecurityConfiguration(SuccessLoginHandler successLoginHandler, @Qualifier("customUserDetailsService") UserDetailsService userDetailsService) {
+        this.successLoginHandler = successLoginHandler;
+        this.userDetailsService = userDetailsService;
+    }*/
+
+
+   /* @Autowired
+    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
         auth.authenticationProvider(authenticationProvider());
-    }
+    }*/
 
 
     @Bean
@@ -47,13 +54,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
 
-    @Bean
+   /* @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userDetailsService);
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
-    }
+    }*/
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
