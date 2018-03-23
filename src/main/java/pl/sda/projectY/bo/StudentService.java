@@ -26,7 +26,6 @@ public class StudentService {
 
     public void addNewStudent(StudentDto studentDto) {
         Student newStudent = getStudent(studentDto);
-
         studentRepository.save(newStudent);
     }
 
@@ -35,6 +34,7 @@ public class StudentService {
 
         newStudent.setLogin(studentDto.getLogin());
         newStudent.setPassword(passwordEncoder.encode(studentDto.getPassword()));
+        newStudent.setRole(Role.STUDENT);
 
         newStudent.setName(studentDto.getName());
         newStudent.setSurname(studentDto.getSurname());
@@ -48,8 +48,6 @@ public class StudentService {
         newStudent.setPesel(studentDto.getPesel());
         newStudent.setPkNum(studentDto.getPkNum());
         newStudent.setRegNum(studentDto.getRegNum());
-
-        newStudent.setRole(Role.STUDENT);
 
         newStudent.setMainInstructor(studentDto.getMainInstructor());
         newStudent.setStartDate(studentDto.getStartDate());
