@@ -156,7 +156,9 @@ public class AdminPageController {
     @GetMapping(value = "/panelAdmin/studentList/student/{userId}")
     public ModelAndView showStudentDetails(@PathVariable (value = "userId") int userId){
         ModelAndView mav = new ModelAndView("admin/studentDetails");
-        mav.addObject("student",studentFinder.findById(userId));
+        StudentDto studentDto = studentFinder.findById(userId);
+        studentDto.setPaymentList(paymentFinder.findAllByUserIdOrderByDate(studentFinder.findStudentByID(userId)));
+        mav.addObject("student",studentDto);
         return mav;
     }
 
@@ -273,6 +275,7 @@ public class AdminPageController {
         paymentService.deletePaymentById(paymentId);
         return "redirect:../panelAdmin/instructorList";
     }
+
 
 
 

@@ -18,5 +18,5 @@ public class PaymentDto {
     private Date date;
     private BigDecimal amount;
     private PaymentType type;
-    private Student student;
+    private StudentDto student;
 }

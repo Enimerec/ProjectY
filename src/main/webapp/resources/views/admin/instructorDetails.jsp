@@ -34,8 +34,9 @@ Lista jazd: ${instructor.lessonList}<br>--%>
 </sec:authorize>
 
 <sec:authorize access="hasRole('ADMIN')" >
+    <a href="${pageContext.servletContext.contextPath}/panelAdmin/instructorList/changePassword/${instructor.userId}">Zmień hasło</a><br>
     <a href="${pageContext.servletContext.contextPath}/panelAdmin/instructorList/instructorE/${instructor.userId}">Edytuj</a><br>
-    <a href="${pageContext.servletContext.contextPath}//panelAdmin/instructorList/instructorD/${instructor.userId}">Usuń</a><br>
+    <a href="${pageContext.servletContext.contextPath}/panelAdmin/instructorList/instructorD/${instructor.userId}">Usuń</a><br>
 </sec:authorize>
 
 </body>
