@@ -19,7 +19,7 @@ public class User {
 
     @Id
     @GeneratedValue
-    @Column(name = "USER_ID")
+    @Column(name = "USER_ID", unique = true)
     private Integer userId;
 
     @Column(name = "login",unique = true)

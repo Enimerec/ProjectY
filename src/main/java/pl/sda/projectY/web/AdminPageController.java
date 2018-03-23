@@ -66,6 +66,7 @@ public class AdminPageController {
 
     @PostMapping(value = "/panelAdmin/addAdmin")
     public String  addNewAdmin(@ModelAttribute("newAdmin") AdminDto adminDto){
+        
         adminService.addNewAdmin(adminDto);
         return "redirect:../panelAdmin/adminList";
     }

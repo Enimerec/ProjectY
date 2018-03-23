@@ -14,8 +14,8 @@
     <title>Admin Registration Form</title>
 </head>
 <body>
-<form:form action="" modelAttribute="newAdmin" method="POST">
-Login<form:input type="text" path="login"/><br>
+<form:form id="valid" action="" modelAttribute="newAdmin" method="POST" onsubmit="">
+Login<form:input type="text" path="login" /><br>
 Hasło<form:input type="text" path="password"/><br>
 
 
@@ -26,5 +26,25 @@ E-Mail<form:input type="text" path="EMail"/><br>
 
 <input type="submit" name="submit" value="Zarejestruj"/>
 </form:form>
+
+<script>
+    $("#valid").validate({
+        invalidHandler: function(event, validator) {
+            // 'this' refers to the form
+            var errors = validator.numberOfInvalids();
+            if (errors) {
+                var message = errors == 1
+                    ? 'You missed 1 field. It has been highlighted'
+                    : 'You missed ' + errors + ' fields. They have been highlighted';
+                $("div.error span").html(message);
+                $("div.error").show();
+            } else {
+                $("div.error").hide();
+            }
+        }
+    });
+
+</script>
+<script src="${pageContext.servletContext.contextPath}/resources/js/jquery-1.10.2.js"></script>
 </body>
 </html>

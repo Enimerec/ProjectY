@@ -6,6 +6,7 @@ import pl.sda.projectY.type.PaymentType;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -15,7 +16,7 @@ import java.sql.Date;
 public class PaymentDto {
 
     private Integer paymentId;
-    private Date date;
+    private LocalDate date;
     private BigDecimal amount;
     private PaymentType type;
     private StudentDto student;

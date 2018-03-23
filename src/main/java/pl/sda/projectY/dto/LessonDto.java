@@ -7,6 +7,7 @@ import pl.sda.projectY.entity.Student;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -17,7 +18,7 @@ public class LessonDto {
 
     private Integer lessonId;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date date;
+    private LocalDate date;
     private Timestamp from;
     private Timestamp to;
 
