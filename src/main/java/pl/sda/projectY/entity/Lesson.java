@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 /**
  * author:
@@ -24,13 +25,13 @@ public class Lesson {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "INSTRUCTOR_ID")
-    private Instructor instructor;
+    private Integer instructor;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "STUDENT_ID")
-    private Student student;
+    private Integer student;
 
-    private Date date;
+    private LocalDate date;
     private Integer from;
     private Integer to;
     

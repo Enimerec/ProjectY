@@ -59,13 +59,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/", "/main").permitAll()
+                .antMatchers("/", "/main**").permitAll()
                 //.antMatchers("/panelAdmin/**").access("hasRole('ADMIN')")
-                .antMatchers("/panelInstructor/**").access("hasRole('INSTRUCTOR')")
-                .antMatchers("/panelStudent/**").access("hasRole('STUDENT')")
-                .and().formLogin().loginPage("/main").usernameParameter("login")
-                .passwordParameter("password").successHandler(successLoginHandler)
-                .and().exceptionHandling().accessDeniedPage("/error");
+                //.antMatchers("/panelInstructor/**").access("hasRole('INSTRUCTOR')")
+                //.antMatchers("/panelStudent/**").access("hasRole('STUDENT')")
+                .and()
+                .formLogin()
+                .loginPage("/main")
+                .usernameParameter("login")
+                .loginProcessingUrl("/signin")
+                .passwordParameter("password")
+                .permitAll()
+                .successHandler(successLoginHandler)
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/error");
 
     }
 }
