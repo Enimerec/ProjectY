@@ -6,6 +6,7 @@ import pl.sda.projectY.type.PaymentType;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  * author:
@@ -22,7 +23,7 @@ public class Payment {
     @Column(name = "PAYMENT_ID")
     private Integer paymentId;
 
-    private Date date;
+    private LocalDate date;
 
     @Column(name = "amount")
     private BigDecimal amount;

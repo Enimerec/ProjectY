@@ -7,6 +7,7 @@ import pl.sda.projectY.entity.Lesson;
 import pl.sda.projectY.entity.Payment;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -28,9 +29,9 @@ public class StudentDto extends UserDto{
     private String postCode;
     private String city;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date startDate;
+    private LocalDate startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date endDate;
+    private LocalDate endDate;
 
     private Instructor mainInstructor;
     private List<Payment> paymentList;

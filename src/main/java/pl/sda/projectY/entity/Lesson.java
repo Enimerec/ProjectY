@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 /**
  * author:
@@ -30,7 +31,7 @@ public class Lesson {
     @JoinColumn(name = "STUDENT_ID")
     private Student student;
 
-    private Date date;
+    private LocalDate date;
     private Integer from;
     private Integer to;
     

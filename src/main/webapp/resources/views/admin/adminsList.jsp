@@ -17,7 +17,7 @@
         <li>
                   ${admin.name},
                   ${admin.surname},
-         <a href="${pageContext.servletContext.contextPath}/panelAdmin/student/${admin.userId}">Szczegóły</a>
+         <a href="${pageContext.servletContext.contextPath}/panelAdmin/admin/${admin.userId}">Szczegóły</a>
         </li>
     </c:forEach>
 </ul>
