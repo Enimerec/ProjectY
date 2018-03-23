@@ -34,6 +34,6 @@ public class Payment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "STUDENT_ID")
-    private Integer student;
+    private Student student;
 
 }
