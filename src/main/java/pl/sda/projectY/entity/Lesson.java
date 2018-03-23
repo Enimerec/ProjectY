@@ -25,11 +25,11 @@ public class Lesson {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "INSTRUCTOR_ID")
-    private Instructor instructor;
+    private Integer instructor;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "STUDENT_ID")
-    private Student student;
+    private Integer student;
 
     private LocalDate date;
     private Integer from;
