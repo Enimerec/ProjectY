@@ -51,7 +51,7 @@ public class Student extends User{
     private LocalDate endDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "main_instructor")
+    @JoinColumn(name = "INSTRUCTOR_ID")
     private Instructor mainInstructor;
 
     @OneToMany(mappedBy = "student")
