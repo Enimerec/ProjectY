@@ -32,7 +32,11 @@ public class Lesson {
     private Student student;
 
     private LocalDate date;
-    private Integer StartHour;
-    private Integer FinishHour;
+
+    @Column(name = "start_hour")
+    private Integer startHour;
+
+    @Column(name = "finish_hour")
+    private Integer finishHour;
 
 }

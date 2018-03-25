@@ -34,11 +34,8 @@ public class StudentDto extends UserDto{
     private LocalDate endDate;
 
     private Instructor mainInstructor;
+
     private Set<Payment> paymentList;
     private Set<Lesson> lessonList;
-
-    public String getName() {
-        return name;
-    }
 
 }

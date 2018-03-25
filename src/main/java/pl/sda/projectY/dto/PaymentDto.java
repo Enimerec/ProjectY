@@ -5,7 +5,6 @@ import pl.sda.projectY.entity.Student;
 import pl.sda.projectY.type.PaymentType;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.time.LocalDate;
 
 @Getter

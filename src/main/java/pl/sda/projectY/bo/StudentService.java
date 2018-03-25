@@ -26,7 +26,6 @@ public class StudentService {
 
     public void addNewStudent(StudentDto studentDto) {
         Student newStudent = getStudent(studentDto);
-
         studentRepository.save(newStudent);
     }
 

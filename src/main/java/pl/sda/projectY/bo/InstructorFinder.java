@@ -50,6 +50,7 @@ public class InstructorFinder {
         instructorDto.setName(instructor.getName());
         instructorDto.setSurname(instructor.getSurname());
         instructorDto.setLogin(instructor.getLogin());
+        instructorDto.setPassword(instructor.getPassword());
         instructorDto.setCity(instructor.getCity());
         instructorDto.setEMail(instructor.getEMail());
         instructorDto.setInstNumber(instructor.getInstNumber());
@@ -59,6 +60,7 @@ public class InstructorFinder {
 
         instructorDto.setLessonList(instructor.getLessonList());
         instructorDto.setStudentList(instructor.getStudentList());
+
         return instructorDto;
     }
 

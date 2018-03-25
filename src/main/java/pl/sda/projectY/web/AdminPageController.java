@@ -50,13 +50,6 @@ public class AdminPageController {
         return "admin/adminPanel";
     }
 
-    /* //@PreAuthorize(value = "hasRole('ADMIN')")
-    @GetMapping(value = "/panelAdmin")
-    public String adminPage(){
-        return "admin/adminPanel";
-    }*/
-
-
     @GetMapping(value = "/panelAdmin/addAdmin")
     public ModelAndView addAdminPage(){
         ModelAndView mav = new ModelAndView("admin/addAdmin");
@@ -69,13 +62,13 @@ public class AdminPageController {
     public String  addNewAdmin(@ModelAttribute("newAdmin") AdminDto adminDto){
         
         adminService.addNewAdmin(adminDto);
-        return "admin/successReg";
+        return "redirect:../panelAdmin/adminList";
     }
 
     @PostMapping(value = "/panelAdmin/addInstructor")
     public String  addNewInst(@ModelAttribute("newInstructor") InstructorDto instructorDto){
         instructorService.addNewInst(instructorDto);
-        return "admin/successReg";
+        return "redirect:../panelAdmin/instructorList";
     }
 
     @GetMapping(value = "/panelAdmin/addInstructor")
@@ -97,7 +90,7 @@ public class AdminPageController {
     @PostMapping(value = "/panelAdmin/addStudent")
     public String addNewStudent(@ModelAttribute("newStudent") StudentDto studentDto){
         studentService.addNewStudent(studentDto);
-        return "admin/successReg";
+        return "redirect:../panelAdmin/studentList";
     }
 
     @GetMapping(value = "/panelAdmin/studentList")
@@ -121,10 +114,44 @@ public class AdminPageController {
         return mav;
     }
 
+    @GetMapping(value = "/panelAdmin/adminList/admin/{userId}")
+    public ModelAndView showAdminDetail(@PathVariable(value = "userId") int userId){
+        ModelAndView mav = new ModelAndView("admin/adminDetails");
+        mav.addObject("admin",adminFinder.findById(userId));
+        return mav;
+    }
+
+    @GetMapping(value = "/panelAdmin/adminList/adminE/{userId}")
+    public ModelAndView editAdminDetailsPage(@PathVariable (value = "userId")int userId){
+        ModelAndView mav = new ModelAndView("admin/editAdmin");
+        mav.addObject("admin",adminFinder.findById(userId));
+        return mav;
+    }
+
+    @PostMapping(value = "/panelAdmin/adminList/adminE/{userId}")
+    public String editAdminDetails(@PathVariable (value = "userId")int userId,
+                                     @ModelAttribute("student") AdminDto adminDto){
+        AdminDto admin = adminFinder.findById(userId);
+        adminDto.setPassword(admin.getPassword());
+
+        adminService.deleteAdminById(userId);
+        adminService.addNewAdmin(adminDto);
+
+        return "redirect:../panelAdmin/adminList/admin/{userId}}";
+    }
+
+    @GetMapping(value = "/panelAdmin/adminList/adminD/{userId}")
+    public String deleteAdmin(@PathVariable (value = "userId")int userId){
+        adminService.deleteAdminById(userId);
+        return "redirect:../panelAdmin/adminList";
+    }
+
     @GetMapping(value = "/panelAdmin/studentList/student/{userId}")
     public ModelAndView showStudentDetails(@PathVariable (value = "userId") int userId){
         ModelAndView mav = new ModelAndView("admin/studentDetails");
-        mav.addObject("student",studentFinder.findById(userId));
+        StudentDto studentDto = studentFinder.findById(userId);
+//        studentDto.setPaymentList(paymentFinder.findAllByUserIdOrderByDate(userId));
+        mav.addObject("student",studentDto);
         return mav;
     }
 

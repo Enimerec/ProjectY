@@ -46,11 +46,16 @@ public class StudentFinder {
 
     }
 
+    public Student findStudentByID(int id){
+        return studentRepository.findOne(id);
+    }
+
     private StudentDto getStudentDto(Student student) {
         StudentDto newStudent = new StudentDto();
 
         newStudent.setUserId(student.getUserId());
         newStudent.setLogin(student.getLogin());
+        newStudent.setPassword(student.getPassword());
         newStudent.setName(student.getName());
         newStudent.setSurname(student.getSurname());
         newStudent.setTelephone(student.getTelephone());

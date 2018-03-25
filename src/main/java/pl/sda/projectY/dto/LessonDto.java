@@ -19,8 +19,8 @@ public class LessonDto {
     private Integer lessonId;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
-    private Integer StartHour;
-    private Integer FinishHour;
+    private Integer startHour;
+    private Integer finishHour;
 
     private Instructor instructor;
     private Student student;

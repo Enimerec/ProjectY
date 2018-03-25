@@ -5,10 +5,11 @@ import pl.sda.projectY.dto.PaymentDto;
 import pl.sda.projectY.entity.Payment;
 import pl.sda.projectY.repository.PaymentRepository;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * author:
@@ -27,7 +28,7 @@ public class PaymentFinder {
     public List<PaymentDto> findAllOrderByDate(){
         List<PaymentDto> paymentDto = new ArrayList<>();
         LocalDate data = LocalDate.now();
-        paymentRepository.findAllByStudent_userIdOrderByDate(data).forEach(payment ->
+        paymentRepository.findAllOrderByDate(data).forEach(payment ->
                 paymentDto.add(getPaymentDto(payment)));
         return paymentDto;
     }
@@ -46,4 +47,11 @@ public class PaymentFinder {
     public PaymentDto findById(int paymentId) {
         return getPaymentDto(paymentRepository.findByPaymentId(paymentId));
     }
+// set zamiast list
+    public Set<PaymentDto> findAllByUserIdOrderByDate(int student){
+        Set<PaymentDto> paymentDto = new HashSet<>();
+        paymentRepository.findAllByStudent_userIdOrderByDate(student).forEach(payment -> paymentDto.add(getPaymentDto(payment)));
+        return paymentDto;
+    }
+
 }
