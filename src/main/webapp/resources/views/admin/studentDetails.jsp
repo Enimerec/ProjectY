@@ -37,7 +37,7 @@
     <ul>
         <c:forEach items="${student.paymentList}" var="payment">
             <li>
-                    ${payment.student},
+                    <%--${payment.student},--%>
                     ${payment.amount},
                     ${payment.date},
                     ${payment.type},

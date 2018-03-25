@@ -48,8 +48,11 @@
     <a class="dropdown-item" href="${pageContext.servletContext.contextPath}/panelAdmin/addPayment">Dodaj wplate</a>
 </div>
 </div>
+<div class="btn-group">
+    <a class="btn btn-danger" href="${pageContext.servletContext.contextPath}/panelAdmin" role="button">Powrót</a>
+</div>
 <div  class="btn-group">
-    <a class="btn btn-danger" href="<c:url value="/logout" />" role="button">Logout</a>
+    <a class="btn btn-dark" href="<c:url value="/logout" />" role="button">Logout</a>
 </div>
 
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery.slim.js"></script>

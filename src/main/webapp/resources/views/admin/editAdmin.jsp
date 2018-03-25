@@ -14,10 +14,14 @@
 <body>
 
     <form:form action="" modelAttribute="admin" method="POST">
-    Login<form:input type="text" path="login"/><br>
-    Imię<form:input type="text" path="name"/><br>
-    Nazwisko<form:input type="text" path="surname"/><br>
-    Telefon<form:input type="text" path="telephone"/><br>
-    E-Mail<form:input type="text" path="EMail"/><br>
+        <form:input type="hidden" path="userId"/><br>
+        Login<form:input type="text" path="login"/><br>
+        Imię<form:input type="text" path="name"/><br>
+        Nazwisko<form:input type="text" path="surname"/><br>
+        Telefon<form:input type="text" path="telephone"/><br>
+        E-Mail<form:input type="text" path="EMail"/><br>
+
+        <input type="submit" name="submit" value="Zatwierdź"/>
+    </form:form>
 </body>
 </html>

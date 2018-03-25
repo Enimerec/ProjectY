@@ -12,12 +12,11 @@
     <title>Admin Details Page</title>
 </head>
 <body>
-    Id${admin.userId}<br>
-    Login${admin.login}<br>
-    Imię${admin.name}<br>
-    Nazwisko${admin.surname}<br>
-    Telefon${admin.telephone}<br>
-    E-Mail${admin.EMail}<br>
+    Login: ${admin.login}<br>
+    Imię: ${admin.name}<br>
+    Nazwisko: ${admin.surname}<br>
+    Telefon: ${admin.telephone}<br>
+    E-Mail: ${admin.EMail}<br>
 
     <a href="${pageContext.servletContext.contextPath}/panelAdmin/adminList/changePassword/${admin.userId}">Zmień hasło</a><br>
     <a href="${pageContext.servletContext.contextPath}/panelAdmin/adminList/adminE/${admin.userId}">Edytuj</a><br>

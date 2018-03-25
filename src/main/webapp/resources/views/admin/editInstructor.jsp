@@ -28,7 +28,7 @@
     Kod pocztowy<form:input type="text" path="postCode"/><br>
     Miasto<form:input type="text" path="city"/><br>
 
-    <input type="submit" name="submit" value="Zarejestruj"/>
+    <input type="submit" name="submit" value="Zatwierdź"/>
 
 </form:form>
 </body>

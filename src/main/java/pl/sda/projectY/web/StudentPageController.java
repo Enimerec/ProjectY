@@ -52,7 +52,6 @@ public class StudentPageController {
         int id = (studentDto.getUserId());
         StudentDto student = studentFinder.findById(id);
         studentDto.setPassword(student.getPassword());
-        student = new StudentDto();
 
         studentService.deleteStudentById(id);
         studentService.addNewStudent(studentDto);
