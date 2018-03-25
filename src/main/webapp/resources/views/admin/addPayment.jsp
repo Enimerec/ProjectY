@@ -19,8 +19,9 @@
     Data: <form:input type="date" path="date"/><br>
     Id studenta: <form:input type="number" path="student"/><br>
     Typ płatności: <form:select path="type">
-    <option value="0" label="Wybierz"></option>
-    <form:options items="${aveOpt}" itemValue="paymentId" itemLabel="type"/>
+
+    <%--<option value="0" label="Wybierz"></option>--%>
+    <form:options value="0" items="${aveOpt}" itemValue="paymentId" itemLabel="type"/>
     </form:select>
 
     <input type="submit" name="submit" value="Zatwierdź"/>

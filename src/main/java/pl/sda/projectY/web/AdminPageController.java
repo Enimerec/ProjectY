@@ -137,7 +137,7 @@ public class AdminPageController {
         adminService.deleteAdminById(userId);
         adminService.addNewAdmin(adminDto);
 
-        return "redirect:../panelAdmin/adminList/admin/{userId}}";
+        return "redirect:../panelAdmin/adminList/admin/{userId}";
     }
 
     @GetMapping(value = "/panelAdmin/adminList/adminD/{userId}")
@@ -201,10 +201,8 @@ public class AdminPageController {
         InstructorDto instructor = instructorFinder.findById(userId);
         instructorDto.setPassword(instructor.getPassword());
 
-        instructor = new InstructorDto();
-
         instructorService.deleteInstructorByid(userId);
-        instructorService.addNewInst(instructor);
+        instructorService.addNewInst(instructorDto);
 
         return "redirect:../panelAdmin/instructorList/instructor/{userId}";
     }
@@ -255,9 +253,10 @@ public class AdminPageController {
         return mav;
     }
 
-    @PostMapping(value = "panelAdmin/paymentList/paymentD/$paymentId}")
+    @PostMapping(value = "panelAdmin/paymentList/paymentE/$paymentId}")
     public String editPaymentDetails(@PathVariable (value = "paymentId")int paymentId,
                                         @ModelAttribute("payment") PaymentDto paymentDto){
+
         paymentService.deletePaymentById(paymentId);
         paymentService.addNewPayment(paymentDto);
         return "redirect:../panelAdmin/instructorList/instructor/{userId}";

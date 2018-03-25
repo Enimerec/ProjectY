@@ -48,7 +48,6 @@ public class InstructorPageController {
         int id = (instructorDto.getUserId());
         InstructorDto instructor = instructorFinder.findById(id);
         instructorDto.setPassword(instructor.getPassword());
-        instructor = new InstructorDto();
 
         instructorService.deleteInstructorByid(id);
         instructorService.addNewInst(instructorDto);
