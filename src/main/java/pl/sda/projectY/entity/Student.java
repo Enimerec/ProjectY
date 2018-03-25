@@ -18,7 +18,7 @@ import java.util.Set;
 @Entity
 @Table(name = "students")
 @PrimaryKeyJoinColumn(name = "STUDENT_ID", referencedColumnName = "USER_ID")
-public class Student extends User{
+public class Student extends User {
 
     private String name;
     private String surname;

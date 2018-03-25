@@ -32,7 +32,7 @@ public class Lesson {
     private Student student;
 
     private LocalDate date;
-    private Integer from;
-    private Integer to;
-    
+    private Integer StartHour;
+    private Integer FinishHour;
+
 }

@@ -32,10 +32,3 @@ Miasto<form:input type="text" path="city"/><br>
 </form:form>
 </body>
 </html>
-
-private String eMail;
-private String pesel;
-private String instNumber;
-private String street;
-private String postCode;
-private String city;

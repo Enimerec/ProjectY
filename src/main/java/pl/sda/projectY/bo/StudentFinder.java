@@ -8,6 +8,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.sda.projectY.dto.StudentDto;
+import pl.sda.projectY.entity.Lesson;
+import pl.sda.projectY.entity.Payment;
 import pl.sda.projectY.entity.Student;
 import pl.sda.projectY.repository.StudentRepository;
 
@@ -64,6 +66,8 @@ public class StudentFinder {
 
         newStudent.setMainInstructor(student.getMainInstructor());
         newStudent.setStartDate(student.getStartDate());
+        newStudent.setLessonList(student.getLessonList());
+        newStudent.setPaymentList(student.getPaymentList());
         return newStudent;
     }
 

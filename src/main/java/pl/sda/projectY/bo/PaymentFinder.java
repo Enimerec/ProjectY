@@ -26,8 +26,8 @@ public class PaymentFinder {
 
     public List<PaymentDto> findAllOrderByDate(){
         List<PaymentDto> paymentDto = new ArrayList<>();
-        Date data = Date.valueOf(LocalDate.now());
-        paymentRepository.findAllOrderByDate(data).forEach(payment ->
+        LocalDate data = LocalDate.now();
+        paymentRepository.findAllByStudent_userIdOrderByDate(data).forEach(payment ->
                 paymentDto.add(getPaymentDto(payment)));
         return paymentDto;
     }

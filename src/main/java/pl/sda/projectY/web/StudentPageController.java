@@ -3,9 +3,7 @@ package pl.sda.projectY.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sda.projectY.bo.StudentFinder;
 import pl.sda.projectY.bo.StudentService;
@@ -29,8 +27,8 @@ public class StudentPageController {
         this.studentService = studentService;
     }
 
-    @PreAuthorize(value = "hasRole('STUDENT')")
-    @GetMapping(value = "/studentPanel")
+    @PreAuthorize(value = "hasRole('ROLE_STUDENT')")
+    @RequestMapping(value = "/panelStudent", method = {RequestMethod.GET, RequestMethod.POST})
     public String getStudentPanelPage(){
         return "student/studentPanel";
     }

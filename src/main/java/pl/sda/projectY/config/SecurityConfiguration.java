@@ -36,6 +36,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
+        //auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
+       // auth.inMemoryAuthentication().withUser("kurs").password("kurs").roles("STUDENT");
+        //auth.inMemoryAuthentication().withUser("inst").password("inst").roles("INSTRUCTOR");
         auth.userDetailsService(userDetailsService);
         auth.authenticationProvider(authenticationProvider());
     }
@@ -60,9 +63,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/", "/main").permitAll()
-                //.antMatchers("/panelAdmin/**").access("hasRole('ADMIN')")
-                .antMatchers("/panelInstructor/**").access("hasRole('INSTRUCTOR')")
-                .antMatchers("/panelStudent/**").access("hasRole('STUDENT')")
+                //.antMatchers("/panelAdmin/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/panelInstructor/**").access("hasRole('_ROLE_INST')")
+                .antMatchers("/panelStudent/**").access("hasRole('ROLE_STUDENT')")
                 .and()
                 .formLogin()
                 .loginPage("/main")
@@ -72,7 +75,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .failureUrl("/main")
                 .successForwardUrl("/panelAdmin")
                 .permitAll()
-                //.successHandler(successLoginHandler)
+                .successHandler(successLoginHandler)
                 .and()
                 .exceptionHandling()
                 .accessDeniedPage("/error")

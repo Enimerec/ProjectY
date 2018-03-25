@@ -41,11 +41,11 @@ public class SuccessLoginHandler extends SimpleUrlAuthenticationSuccessHandler
                         .collect(Collectors.toList());
 
         if (authorities.contains("ROLE_STUDENT")) {
-            new DefaultRedirectStrategy().sendRedirect(request, response, "/studentPanel");
+            new DefaultRedirectStrategy().sendRedirect(request, response, "/panelStudent");
         } else if (authorities.contains("ROLE_ADMIN")) {
-            new DefaultRedirectStrategy().sendRedirect(request, response, "/adminPanel");
+            new DefaultRedirectStrategy().sendRedirect(request, response, "/panelAdmin");
         } else if (authorities.contains("ROLE_INSTRUCTOR")) {
-            new DefaultRedirectStrategy().sendRedirect(request, response, "/instructorPanel");
+            new DefaultRedirectStrategy().sendRedirect(request, response, "/panelInstructor");
         } else {
             new DefaultRedirectStrategy().sendRedirect(request, response, "/main");
         }

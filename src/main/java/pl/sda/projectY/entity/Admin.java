@@ -12,6 +12,7 @@ import javax.persistence.Table;
  * Mateusz
  * Marczak
  **/
+
 @Data
 @Entity
 @Table(name = "admins")
@@ -24,5 +25,4 @@ public class Admin extends User {
 
     @Column(name = "e_mail")
     private String eMail;
-
 }

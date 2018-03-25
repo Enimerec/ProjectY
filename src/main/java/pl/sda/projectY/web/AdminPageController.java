@@ -3,10 +3,7 @@ package pl.sda.projectY.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sda.projectY.bo.*;
 import pl.sda.projectY.dto.*;
@@ -47,11 +44,17 @@ public class AdminPageController {
         this.paymentService = paymentService;
     }
 
-    //@PreAuthorize(value = "hasRole('ADMIN')")
-    @GetMapping(value = "/panelAdmin")
+    @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
+    @RequestMapping(value = "/panelAdmin", method = {RequestMethod.GET, RequestMethod.POST})
     public String adminPage(){
         return "admin/adminPanel";
     }
+
+    /* //@PreAuthorize(value = "hasRole('ADMIN')")
+    @GetMapping(value = "/panelAdmin")
+    public String adminPage(){
+        return "admin/adminPanel";
+    }*/
 
 
     @GetMapping(value = "/panelAdmin/addAdmin")

@@ -1,9 +1,9 @@
 package pl.sda.projectY.type;
 
 public enum Role {
-    ADMIN("ADMIN"),
-    STUDENT("STUDENT"),
-    INSTRUCTOR("INSTRUCTOR");
+    ADMIN("ROLE_ADMIN"),
+    STUDENT("ROLE_STUDENT"),
+    INSTRUCTOR("ROLE_INSTRUCTOR");
 
     private String role;
 

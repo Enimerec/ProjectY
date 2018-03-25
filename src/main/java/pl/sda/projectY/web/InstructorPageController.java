@@ -3,10 +3,7 @@ package pl.sda.projectY.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sda.projectY.bo.InstructorFinder;
 import pl.sda.projectY.bo.InstructorService;
@@ -26,8 +23,8 @@ public class InstructorPageController {
     private InstructorFinder instructorFinder;
     private InstructorService instructorService;
 
-    @PreAuthorize(value = "hasRole('INSTRUCTOR')")
-    @GetMapping(value = "/panelInstructor")
+    @PreAuthorize(value = "hasRole('ROLE_INSTRUCTOR')")
+    @RequestMapping(value = "/panelInstructor", method = {RequestMethod.GET, RequestMethod.POST})
     public String getInstructorPanelPage(){
         return "instructor/instructorPanel";
     }

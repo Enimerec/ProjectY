@@ -9,8 +9,11 @@ import org.springframework.stereotype.Service;
 import pl.sda.projectY.dto.InstructorDto;
 import pl.sda.projectY.dto.StudentDto;
 import pl.sda.projectY.entity.Instructor;
+import pl.sda.projectY.entity.Lesson;
+import pl.sda.projectY.entity.Student;
 import pl.sda.projectY.repository.InstructorRepository;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,8 +57,8 @@ public class InstructorFinder {
         instructorDto.setPostCode(instructor.getPostCode());
         instructorDto.setStreet(instructor.getStreet());
 
-        instructor.setLessonList(instructor.getLessonList());
-        instructor.setStudentList(instructor.getStudentList());
+        instructorDto.setLessonList(instructor.getLessonList());
+        instructorDto.setStudentList(instructor.getStudentList());
         return instructorDto;
     }
 

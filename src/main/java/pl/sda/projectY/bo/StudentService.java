@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import pl.sda.projectY.dto.StudentDto;
 import pl.sda.projectY.entity.Student;
 import pl.sda.projectY.repository.StudentRepository;
+import pl.sda.projectY.type.Role;
 
 /**
  * author:
@@ -34,6 +35,7 @@ public class StudentService {
 
         newStudent.setLogin(studentDto.getLogin());
         newStudent.setPassword(passwordEncoder.encode(studentDto.getPassword()));
+        newStudent.setRole(Role.STUDENT);
 
         newStudent.setName(studentDto.getName());
         newStudent.setSurname(studentDto.getSurname());

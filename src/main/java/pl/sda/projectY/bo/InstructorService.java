@@ -37,6 +37,7 @@ public class InstructorService {
 
         newInstructor.setLogin(instructorDto.getLogin());
         newInstructor.setPassword(passwordEncoder.encode(instructorDto.getPassword()));
+        newInstructor.setRole(Role.INSTRUCTOR);
         newInstructor.setCity(instructorDto.getCity());
         newInstructor.setEMail(instructorDto.getEMail());
         newInstructor.setInstNumber(instructorDto.getInstNumber());
@@ -46,7 +47,6 @@ public class InstructorService {
         newInstructor.setStreet(instructorDto.getStreet());
         newInstructor.setSurname(instructorDto.getSurname());
         newInstructor.setTelephone(instructorDto.getTelephone());
-        newInstructor.setRole(Role.INSTRUCTOR);
         return newInstructor;
     }
 

@@ -3,7 +3,7 @@ package pl.sda.projectY.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -44,4 +44,5 @@ public class Instructor extends User {
 
     @OneToMany(mappedBy = "mainInstructor")
     private Set<Student> studentList;
+
 }

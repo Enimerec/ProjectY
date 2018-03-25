@@ -18,7 +18,6 @@
     </button>
     <div class="dropdown-menu">
         <a class="dropdown-item" href="${pageContext.servletContext.contextPath}/panelAdmin/adminList">Lista adminow</a>
-        <a class="dropdown-item" href="${pageContext.servletContext.contextPath}">Szczeguły admina</a>
         <a class="dropdown-item" href="${pageContext.servletContext.contextPath}/panelAdmin/addAdmin">Dodaj admina</a>
     </div>
 </div>
@@ -28,7 +27,6 @@
     </button>
     <div class="dropdown-menu">
         <a class="dropdown-item" href="${pageContext.servletContext.contextPath}/panelAdmin/studentList">Lista kursantow</a>
-        <a class="dropdown-item" href="${pageContext.servletContext.contextPath}">Szczeguły kursanta</a>
         <a class="dropdown-item" href="${pageContext.servletContext.contextPath}/panelAdmin/addStudent">Dodaj kursanta</a>
     </div>
 </div>
@@ -38,7 +36,6 @@
     </button>
     <div class="dropdown-menu">
         <a class="dropdown-item" href="${pageContext.servletContext.contextPath}/panelAdmin/instructorList">Lista instruktorow</a>
-        <a class="dropdown-item" href="${pageContext.servletContext.contextPath}">Szczeguły instruktora</a>
         <a class="dropdown-item" href="${pageContext.servletContext.contextPath}/panelAdmin/addInstructor">Dodaj instruktora</a>
     </div>
 </div>
@@ -51,6 +48,10 @@
     <a class="dropdown-item" href="${pageContext.servletContext.contextPath}/panelAdmin/addPayment">Dodaj wplate</a>
 </div>
 </div>
+<div  class="btn-group">
+    <a class="btn btn-danger" href="<c:url value="/logout" />" role="button">Logout</a>
+</div>
+
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery.slim.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/popper.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/js_bootstrap.js"></script>
