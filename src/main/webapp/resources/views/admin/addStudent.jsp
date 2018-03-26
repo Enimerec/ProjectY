@@ -28,7 +28,7 @@ Numer ewidencyjny<form:input type="text" path="regNum"/><br>
 Numer PK<form:input type="text" path="pkNum"/><br>
 Numer dowodu<form:input type="text" path="idNumber"/><br>
 
-Data rozpoczęcia kursu<form:input type="text" path="startDate" /><br>
+Data rozpoczęcia kursu<form:input type="date" path="startDate" /><br>
 
 Ulica<form:input type="text" path="street"/><br>
 Kod pocztowy<form:input type="text" path="postCode"/><br>

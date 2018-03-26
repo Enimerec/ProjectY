@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.sda.projectY.dto.PaymentDto;
 import pl.sda.projectY.entity.Payment;
 import pl.sda.projectY.repository.PaymentRepository;
+import pl.sda.projectY.repository.StudentRepository;
 
 /**
  * author:
@@ -14,10 +15,12 @@ import pl.sda.projectY.repository.PaymentRepository;
 @Service
 public class PaymentService {
     private final PaymentRepository paymentRepository;
+    private final StudentRepository studentRepository;
 
     @Autowired
-    public PaymentService(PaymentRepository paymentRepository) {
+    public PaymentService(PaymentRepository paymentRepository, StudentRepository studentRepository) {
         this.paymentRepository = paymentRepository;
+        this.studentRepository = studentRepository;
     }
 
     public void addNewPayment(PaymentDto paymentDto) {
@@ -25,7 +28,7 @@ public class PaymentService {
         payment.setAmount(paymentDto.getAmount());
         payment.setDate(paymentDto.getDate());
         payment.setPaymentId(paymentDto.getPaymentId());
-        payment.setStudent(paymentDto.getStudent());
+        payment.setStudent(studentRepository.findOne(paymentDto.getStudent()));
         payment.setType(paymentDto.getType());
 
         paymentRepository.save(payment);

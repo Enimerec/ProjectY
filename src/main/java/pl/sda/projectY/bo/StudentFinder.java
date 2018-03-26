@@ -69,14 +69,16 @@ public class StudentFinder {
         newStudent.setPkNum(student.getPkNum());
         newStudent.setRegNum(student.getRegNum());
 
-        newStudent.setMainInstructor(student.getMainInstructor());
+        if(student.getMainInstructor()!=null) {
+            newStudent.setMainInstructor(student.getMainInstructor().getUserId());
+        }
         newStudent.setStartDate(student.getStartDate());
 
-        List<Lesson> lessonList = new ArrayList<>(student.getLessonList());
+       /* List<Lesson> lessonList = new ArrayList<>(student.getLessonList());
         List<Payment> paymentList = new ArrayList<>(student.getPaymentList());
 
         newStudent.setLessonList(lessonList);
-        newStudent.setPaymentList(paymentList);
+        newStudent.setPaymentList(paymentList);*/
         return newStudent;
     }
 

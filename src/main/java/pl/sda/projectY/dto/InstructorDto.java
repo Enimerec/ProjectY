@@ -32,7 +32,7 @@ public class InstructorDto extends UserDto{
     private String postCode;
     private String city;
 
-    private List<Lesson> lessonList;
-    private List<Student> studentList;
+    private List<LessonDto> lessonList;
+    private List<StudentDto> studentList;
 
 }

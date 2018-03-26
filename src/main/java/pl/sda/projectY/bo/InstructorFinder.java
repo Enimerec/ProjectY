@@ -59,11 +59,11 @@ public class InstructorFinder {
         instructorDto.setPostCode(instructor.getPostCode());
         instructorDto.setStreet(instructor.getStreet());
 
-        List<Student> studentList = new ArrayList<>(instructor.getStudentList());
+        /*List<Student> studentList = new ArrayList<>(instructor.getStudentList());
         List<Lesson> lessonsList = new ArrayList<>(instructor.getLessonList());
 
         instructorDto.setLessonList(lessonsList);
-        instructorDto.setStudentList(studentList);
+        instructorDto.setStudentList(studentList);*/
 
         return instructorDto;
     }

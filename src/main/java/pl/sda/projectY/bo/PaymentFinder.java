@@ -38,7 +38,7 @@ public class PaymentFinder {
         paymentDto.setAmount(payment.getAmount());
         paymentDto.setDate(payment.getDate());
         paymentDto.setPaymentId(payment.getPaymentId());
-        paymentDto.setStudent(payment.getStudent());
+        paymentDto.setStudent(payment.getStudent().getUserId());
         paymentDto.setType(payment.getType());
 
         return paymentDto;

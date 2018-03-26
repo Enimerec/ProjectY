@@ -7,6 +7,7 @@ import pl.sda.projectY.entity.Lesson;
 import pl.sda.projectY.entity.Payment;
 
 import java.sql.Date;
+import java.sql.Struct;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
@@ -33,9 +34,16 @@ public class StudentDto extends UserDto{
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
-    private Instructor mainInstructor;
+    private Integer mainInstructor;
 
-    private List<Payment> paymentList;
-    private List<Lesson> lessonList;
+    private List<PaymentDto> paymentList;
+    private List<LessonDto> lessonList;
+
+    private String fullName;
+
+
+    public String getFullName(){
+        return this.regNum+": " +this.name+" "+this.surname;
+}
 
 }

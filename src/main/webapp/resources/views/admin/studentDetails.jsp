@@ -1,6 +1,7 @@
-<%@ taglib prefix="c" uri="http://www.springframework.org/security/tags" %>
+
 <%@ taglib prefix="a" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Mateusz
@@ -33,11 +34,11 @@
     Ulica: ${student.street}<br>
 
     Główny instruktor: ${student.mainInstructor}<br>
+    <br>
     Lista platności:
     <ul>
         <c:forEach items="${student.paymentList}" var="payment">
             <li>
-                    <%--${payment.student},--%>
                     ${payment.amount},
                     ${payment.date},
                     ${payment.type},
