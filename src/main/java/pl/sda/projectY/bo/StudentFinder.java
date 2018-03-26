@@ -71,8 +71,12 @@ public class StudentFinder {
 
         newStudent.setMainInstructor(student.getMainInstructor());
         newStudent.setStartDate(student.getStartDate());
-        newStudent.setLessonList(student.getLessonList());
-        newStudent.setPaymentList(student.getPaymentList());
+
+        List<Lesson> lessonList = new ArrayList<>(student.getLessonList());
+        List<Payment> paymentList = new ArrayList<>(student.getPaymentList());
+
+        newStudent.setLessonList(lessonList);
+        newStudent.setPaymentList(paymentList);
         return newStudent;
     }
 

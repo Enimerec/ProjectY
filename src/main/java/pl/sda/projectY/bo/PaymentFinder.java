@@ -47,9 +47,8 @@ public class PaymentFinder {
     public PaymentDto findById(int paymentId) {
         return getPaymentDto(paymentRepository.findByPaymentId(paymentId));
     }
-// set zamiast list
-    public Set<PaymentDto> findAllByUserIdOrderByDate(int student){
-        Set<PaymentDto> paymentDto = new HashSet<>();
+    public List<PaymentDto> findAllByStudent_userIdOrderByDate(int student){
+        List<PaymentDto> paymentDto = new ArrayList<>();
         paymentRepository.findAllByStudent_userIdOrderByDate(student).forEach(payment -> paymentDto.add(getPaymentDto(payment)));
         return paymentDto;
     }

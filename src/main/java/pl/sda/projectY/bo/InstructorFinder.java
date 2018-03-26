@@ -13,6 +13,7 @@ import pl.sda.projectY.entity.Lesson;
 import pl.sda.projectY.entity.Student;
 import pl.sda.projectY.repository.InstructorRepository;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -58,8 +59,11 @@ public class InstructorFinder {
         instructorDto.setPostCode(instructor.getPostCode());
         instructorDto.setStreet(instructor.getStreet());
 
-        instructorDto.setLessonList(instructor.getLessonList());
-        instructorDto.setStudentList(instructor.getStudentList());
+        List<Student> studentList = new ArrayList<>(instructor.getStudentList());
+        List<Lesson> lessonsList = new ArrayList<>(instructor.getLessonList());
+
+        instructorDto.setLessonList(lessonsList);
+        instructorDto.setStudentList(studentList);
 
         return instructorDto;
     }

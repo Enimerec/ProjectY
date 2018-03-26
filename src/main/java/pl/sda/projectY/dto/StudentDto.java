@@ -35,7 +35,7 @@ public class StudentDto extends UserDto{
 
     private Instructor mainInstructor;
 
-    private Set<Payment> paymentList;
-    private Set<Lesson> lessonList;
+    private List<Payment> paymentList;
+    private List<Lesson> lessonList;
 
 }
