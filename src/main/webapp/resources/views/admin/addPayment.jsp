@@ -3,7 +3,7 @@
   Created by IntelliJ IDEA.
   User: Mateusz
   Date: 2018-03-19
-  Time: 18:44
+  Time: 18:4
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -20,8 +20,8 @@
     Id studenta: <form:input type="number" path="student"/><br>
     Typ płatności: <form:select path="type">
 
-    <%--<option value="0" label="Wybierz"></option>--%>
-    <form:options value="0" items="${aveOpt}" itemValue="paymentId" itemLabel="type"/>
+    <option value="0" label="Wybierz"></option>
+    <form:options items="${aveOpt}" itemValue="type" itemLabel="type"/>
     </form:select>
 
     <input type="submit" name="submit" value="Zatwierdź"/>
