@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sda.projectY.bo.*;
 import pl.sda.projectY.dto.*;
+import pl.sda.projectY.entity.Instructor;
 import pl.sda.projectY.type.PaymentType;
 
 import java.util.ArrayList;
@@ -235,9 +236,15 @@ public class AdminPageController {
     }
 
     private List<StudentDto> getStudents() {
-        List<StudentDto> aveOpt = new ArrayList<>();
-        aveOpt.addAll(studentFinder.findAll());
-        return aveOpt;
+        List<StudentDto> sList = new ArrayList<>();
+        sList.addAll(studentFinder.findAll());
+        return sList;
+    }
+
+    private List<InstructorDto>getInstructor(){
+        List<InstructorDto>iList = new ArrayList<>();
+        iList.addAll(instructorFinder.findAll());
+        return iList;
     }
 
     private List<PaymentType> getPaymentTypes() {
@@ -283,7 +290,8 @@ public class AdminPageController {
         ModelAndView mav = new ModelAndView("admin/addLesson");
         LessonDto lessonDto = new LessonDto();
         mav.addObject("newLesson",lessonDto);
-        mav.addObject("aveOpt",getStudents());
+        mav.addObject("stuOpt",getStudents());
+        mav.addObject("insOpt",getInstructor());
         return mav;
     }
 
@@ -311,7 +319,7 @@ public class AdminPageController {
     @GetMapping(value = "/panelAdmin/lessonList/lessonE/${lessonId}")
     public String lessonDelete(@PathVariable (value = "lessonId") int lessonId){
         lessonService.deleteById(lessonId);
-        return "redirect:///panelAdmin/lessonList"; //dupa
+        return "redirect:///panelAdmin/lessonList";
     }
 
     @GetMapping(value = "/panelAdmin/adminList/lessonD/${lessonId}")
@@ -319,6 +327,8 @@ public class AdminPageController {
         LessonDto lessonDto = lessonFinder.findById(lessonId);
         ModelAndView mav = new ModelAndView("admin/editLesson");
         mav.addObject("lesson",lessonDto);
+        mav.addObject("stuOpt",getStudents());
+        mav.addObject("insOpt",getInstructor());
         return mav;
     }
 
