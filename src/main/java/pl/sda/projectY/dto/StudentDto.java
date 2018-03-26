@@ -41,7 +41,6 @@ public class StudentDto extends UserDto{
 
     private String fullName;
 
-
     public String getFullName(){
         return this.regNum+": " +this.name+" "+this.surname;
 }

@@ -20,7 +20,7 @@
   <%-- Id studenta: <form:input type="number" path="student"/><br>--%>
 
     Id studenta: <form:select path="student">
-                    <form:options label="Wybierz" items="${sList}" itemValue="userId" itemLabel="fullName"/>
+                    <form:options label="Wybierz" items="${stuOpt}" itemValue="userId" itemLabel="fullName"/>
                  </form:select><br>
 
 

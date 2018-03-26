@@ -230,14 +230,14 @@ public class AdminPageController {
         PaymentDto paymentDto = new PaymentDto();
         mav.addObject("newPayment",paymentDto);
         mav.addObject("aveOpt",getPaymentTypes());
-        mav.addObject("sList",getStudents());
+        mav.addObject("stuOpt",getStudents());
         return mav;
     }
 
     private List<StudentDto> getStudents() {
-        List<StudentDto> aveOpt = new ArrayList<>();
-        aveOpt.addAll(studentFinder.findAll());
-        return aveOpt;
+        List<StudentDto> stuOpt = new ArrayList<>();
+        stuOpt.addAll(studentFinder.findAll());
+        return stuOpt;
     }
 
     private List<PaymentType> getPaymentTypes() {
