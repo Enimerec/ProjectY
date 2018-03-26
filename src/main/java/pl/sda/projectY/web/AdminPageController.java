@@ -30,10 +30,12 @@ public class AdminPageController {
     private final InstructorFinder instructorFinder;
     private final PaymentFinder paymentFinder;
     private final PaymentService paymentService;
+    private final LessonService lessonService;
+    private final LessonFinder lessonFinder;
 
     @Autowired
     public AdminPageController(AdminService adminService, InstructorService instructorService,
-                               StudentService studentService, StudentFinder studentFinder, AdminFinder adminFinder, InstructorFinder instructorFinder, PaymentFinder paymentFinder, PaymentService paymentService) {
+                               StudentService studentService, StudentFinder studentFinder, AdminFinder adminFinder, InstructorFinder instructorFinder, PaymentFinder paymentFinder, PaymentService paymentService, LessonService lessonService, LessonFinder lessonFinder) {
         this.adminService = adminService;
         this.instructorService = instructorService;
         this.studentService = studentService;
@@ -42,6 +44,8 @@ public class AdminPageController {
         this.instructorFinder = instructorFinder;
         this.paymentFinder = paymentFinder;
         this.paymentService = paymentService;
+        this.lessonService = lessonService;
+        this.lessonFinder = lessonFinder;
     }
 
     @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
@@ -253,7 +257,7 @@ public class AdminPageController {
         return mav;
     }
 
-    @PostMapping(value = "panelAdmin/paymentList/paymentE/$paymentId}")
+    @PostMapping(value = "panelAdmin/paymentList/paymentE/${paymentId}")
     public String editPaymentDetails(@PathVariable (value = "paymentId")int paymentId,
                                         @ModelAttribute("payment") PaymentDto paymentDto){
 
@@ -267,6 +271,48 @@ public class AdminPageController {
         paymentService.deletePaymentById(paymentId);
         return "redirect:../panelAdmin/instructorList";
     }
+
+    @GetMapping(value = "panelAdmin/addLesson")
+    public ModelAndView addLessonPage(){
+        ModelAndView mav = new ModelAndView("admin/addLesson");
+        LessonDto lessonDto = new LessonDto();
+        mav.addObject("newLesson",lessonDto);
+        mav.addObject("aveOpt",getStudents());
+        return mav;
+    }
+
+    private List<StudentDto> getStudents() {
+        List<StudentDto> aveOpt = new ArrayList<>();
+        aveOpt.addAll(studentFinder.findAll());
+        return aveOpt;
+    }
+
+    @PostMapping(value = "panelAdmin/addLesson")
+    public String addNewLesson(@ModelAttribute("newLesson") LessonDto newLesson){
+        lessonService.add(newLesson);
+        return "redirect:../panelAdmin/lessonList";
+    }
+
+    @GetMapping(value = "panelAdmin/lessonList")
+    public ModelAndView lessonListPage(){
+        ModelAndView mav = new ModelAndView("admin/lessonList");
+        mav.addObject("lessons",lessonFinder.findAll());
+        return mav;
+    }
+
+    @GetMapping(value = "/panelAdmin/lessonList/lesson/{lessonId}")
+    public ModelAndView lessonDetailsPage(@PathVariable (value = "lessonId")int lessonId){
+        ModelAndView mav = new ModelAndView("admin/lessonDetails");
+        mav.addObject("lesson",lessonFinder.findById(lessonId));
+        return mav;
+    }
+
+
+
+   /* @GetMapping(value = "panelAdmin/calendar")
+    public ModelAndView calendarPage(){
+
+    }*/
 
 
 

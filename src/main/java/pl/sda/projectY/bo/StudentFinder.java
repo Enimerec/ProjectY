@@ -69,7 +69,7 @@ public class StudentFinder {
         newStudent.setPkNum(student.getPkNum());
         newStudent.setRegNum(student.getRegNum());
 
-        newStudent.setMainInstructor(student.getMainInstructor());
+        newStudent.setMainInstructor(student.getMainInstructor().getUserId());
         newStudent.setStartDate(student.getStartDate());
         newStudent.setLessonList(student.getLessonList());
         newStudent.setPaymentList(student.getPaymentList());

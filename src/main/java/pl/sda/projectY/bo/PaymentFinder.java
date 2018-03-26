@@ -1,15 +1,15 @@
 package pl.sda.projectY.bo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.projectY.dto.PaymentDto;
 import pl.sda.projectY.entity.Payment;
 import pl.sda.projectY.repository.PaymentRepository;
+import pl.sda.projectY.repository.StudentRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * author:
@@ -21,6 +21,7 @@ import java.util.Set;
 public class PaymentFinder {
     private final PaymentRepository paymentRepository;
 
+    @Autowired
     public PaymentFinder(PaymentRepository paymentRepository) {
         this.paymentRepository = paymentRepository;
     }
@@ -38,7 +39,7 @@ public class PaymentFinder {
         paymentDto.setAmount(payment.getAmount());
         paymentDto.setDate(payment.getDate());
         paymentDto.setPaymentId(payment.getPaymentId());
-        paymentDto.setStudent(payment.getStudent());
+        paymentDto.setStudent(payment.getStudent().getUserId());
         paymentDto.setType(payment.getType());
 
         return paymentDto;
@@ -47,9 +48,9 @@ public class PaymentFinder {
     public PaymentDto findById(int paymentId) {
         return getPaymentDto(paymentRepository.findByPaymentId(paymentId));
     }
-// set zamiast list
-    public Set<PaymentDto> findAllByUserIdOrderByDate(int student){
-        Set<PaymentDto> paymentDto = new HashSet<>();
+
+    public List<PaymentDto> findAllByUserIdOrderByDate(int student){
+        List<PaymentDto> paymentDto = new ArrayList<>();
         paymentRepository.findAllByStudent_userIdOrderByDate(student).forEach(payment -> paymentDto.add(getPaymentDto(payment)));
         return paymentDto;
     }

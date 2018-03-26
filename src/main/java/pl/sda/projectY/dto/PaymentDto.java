@@ -19,5 +19,6 @@ public class PaymentDto {
     private BigDecimal amount;
     private PaymentType type;
 
-    private Student student;
+    private Integer student;
+
 }

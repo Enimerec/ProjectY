@@ -33,7 +33,7 @@ public class StudentDto extends UserDto{
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
-    private Instructor mainInstructor;
+    private Integer mainInstructor;
 
     private Set<Payment> paymentList;
     private Set<Lesson> lessonList;

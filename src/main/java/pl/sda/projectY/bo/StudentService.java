@@ -5,6 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.sda.projectY.dto.StudentDto;
 import pl.sda.projectY.entity.Student;
+import pl.sda.projectY.repository.InstructorRepository;
 import pl.sda.projectY.repository.StudentRepository;
 import pl.sda.projectY.type.Role;
 
@@ -17,11 +18,13 @@ import pl.sda.projectY.type.Role;
 public class StudentService {
     private final PasswordEncoder passwordEncoder;
     private final StudentRepository studentRepository;
+    private final InstructorRepository instructorRepository;
 
     @Autowired
-    public StudentService(PasswordEncoder passwordEncoder, StudentRepository studentRepository) {
+    public StudentService(PasswordEncoder passwordEncoder, StudentRepository studentRepository, InstructorRepository instructorRepository) {
         this.passwordEncoder = passwordEncoder;
         this.studentRepository = studentRepository;
+        this.instructorRepository = instructorRepository;
     }
 
     public void addNewStudent(StudentDto studentDto) {
@@ -49,7 +52,7 @@ public class StudentService {
         newStudent.setPkNum(studentDto.getPkNum());
         newStudent.setRegNum(studentDto.getRegNum());
 
-        newStudent.setMainInstructor(studentDto.getMainInstructor());
+        newStudent.setMainInstructor(instructorRepository.findOne(studentDto.getMainInstructor()));
         newStudent.setStartDate(studentDto.getStartDate());
         return newStudent;
     }
