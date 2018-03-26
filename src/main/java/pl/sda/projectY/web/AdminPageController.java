@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sda.projectY.bo.*;
 import pl.sda.projectY.dto.*;
-import pl.sda.projectY.entity.Payment;
 import pl.sda.projectY.type.PaymentType;
 
 import java.util.ArrayList;
@@ -273,7 +272,7 @@ public class AdminPageController {
         return "redirect:../panelAdmin/instructorList/instructor/{userId}";
     }
 
-    @GetMapping(value = "/panelAdmin/paymentList/paymentD/${paymtId}en")
+    @GetMapping(value = "/panelAdmin/paymentList/paymentD/${paymentId}en")
     public String deletePayment(@PathVariable (value = "paymentId")int paymentId){
         paymentService.deletePaymentById(paymentId);
         return "redirect:../panelAdmin/instructorList";
@@ -288,11 +287,6 @@ public class AdminPageController {
         return mav;
     }
 
-    private List<StudentDto> getStudents() {
-        List<StudentDto> aveOpt = new ArrayList<>();
-        aveOpt.addAll(studentFinder.findAll());
-        return aveOpt;
-    }
 
     @PostMapping(value = "panelAdmin/addLesson")
     public String addNewLesson(@ModelAttribute("newLesson") LessonDto newLesson){
@@ -317,7 +311,7 @@ public class AdminPageController {
     @GetMapping(value = "/panelAdmin/lessonList/lessonE/${lessonId}")
     public String lessonDelete(@PathVariable (value = "lessonId") int lessonId){
         lessonService.deleteById(lessonId);
-        return "redirect:///panelAdmin/lessonList";
+        return "redirect:///panelAdmin/lessonList"; //dupa
     }
 
     @GetMapping(value = "/panelAdmin/adminList/lessonD/${lessonId}")
