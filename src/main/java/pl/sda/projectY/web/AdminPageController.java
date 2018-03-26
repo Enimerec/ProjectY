@@ -307,6 +307,20 @@ public class AdminPageController {
         return mav;
     }
 
+    @GetMapping(value = "/panelAdmin/lessonList/lessonE/${lessonId}")
+    public String lessonDelete(@PathVariable (value = "lessonId") int lessonId){
+        lessonService.deleteById(lessonId);
+        return "redirect:///panelAdmin/lessonList";
+    }
+
+    @GetMapping(value = "/panelAdmin/adminList/lessonD/${lessonId}")
+    public ModelAndView editLessonPage(@PathVariable (value = "lessonId") int lessonId){
+        LessonDto lessonDto = lessonFinder.findById(lessonId);
+        ModelAndView mav = new ModelAndView("admin/editLesson");
+        mav.addObject("lesson",lessonDto);
+        return mav;
+    }
+
 
 
    /* @GetMapping(value = "panelAdmin/calendar")

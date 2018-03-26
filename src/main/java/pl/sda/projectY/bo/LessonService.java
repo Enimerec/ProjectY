@@ -43,6 +43,7 @@ public class LessonService {
     }
 
 
-
-
+    public void deleteById(int lessonId) {
+        lessonRepository.delete(lessonId);
+    }
 }

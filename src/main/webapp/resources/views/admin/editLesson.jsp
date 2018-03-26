@@ -3,16 +3,16 @@
   Created by IntelliJ IDEA.
   User: Mateusz
   Date: 2018-03-26
-  Time: 19:01
+  Time: 20:21
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Add Lesson Page</title>
+    <title>Edit Lesson Page</title>
 </head>
 <body>
-<form:form id="valid" action="" modelAttribute="newLesson" method="POST" onsubmit="">
+<form:form id="valid" action="" modelAttribute="lesson" method="POST" onsubmit="">
     Data<form:input type="date" path="date" /><br>
     Godzina rozpoczęcia: <form:input type="number" path="startHour"/><br>
     Godzina zakończenia: <form:input type="number" path="finishHour"/><br>
