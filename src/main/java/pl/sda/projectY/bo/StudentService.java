@@ -52,8 +52,10 @@ public class StudentService {
         newStudent.setPkNum(studentDto.getPkNum());
         newStudent.setRegNum(studentDto.getRegNum());
 
-        newStudent.setMainInstructor(instructorRepository.findOne(studentDto.getMainInstructor()));
-        newStudent.setStartDate(studentDto.getStartDate());
+        if(studentDto.getMainInstructor()!=null) {
+            newStudent.setMainInstructor(instructorRepository.findOne(studentDto.getMainInstructor()));
+        }
+       newStudent.setStartDate(studentDto.getStartDate());
         return newStudent;
     }
 

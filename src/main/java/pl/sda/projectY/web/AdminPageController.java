@@ -154,7 +154,7 @@ public class AdminPageController {
     public ModelAndView showStudentDetails(@PathVariable (value = "userId") int userId){
         ModelAndView mav = new ModelAndView("admin/studentDetails");
         StudentDto studentDto = studentFinder.findById(userId);
-//        studentDto.setPaymentList(paymentFinder.findAllByUserIdOrderByDate(userId));
+        studentDto.setPaymentList(paymentFinder.findAllByStudent_userIdOrderByDate(userId));
         mav.addObject("student",studentDto);
         return mav;
     }
@@ -181,7 +181,7 @@ public class AdminPageController {
         studentService.deleteStudentById(userId);
         studentService.addNewStudent(studentDto);
 
-        return "redirect:../panelAdmin/studentList/student/{userId}}";
+        return "redirect:../panelAdmin/studentList/student/{userId}";
     }
 
     @GetMapping(value = "/panelAdmin/instructorList/instructor/{userId}")
@@ -228,10 +228,17 @@ public class AdminPageController {
     @GetMapping(value = "panelAdmin/addPayment")
     public ModelAndView addPaymentPage(){
         ModelAndView mav = new ModelAndView("admin/addPayment");
-        Payment payment = new Payment();
-        mav.addObject("newPayment",payment);
+        PaymentDto paymentDto = new PaymentDto();
+        mav.addObject("newPayment",paymentDto);
         mav.addObject("aveOpt",getPaymentTypes());
+        mav.addObject("sList",getStudents());
         return mav;
+    }
+
+    private List<StudentDto> getStudents() {
+        List<StudentDto> aveOpt = new ArrayList<>();
+        aveOpt.addAll(studentFinder.findAll());
+        return aveOpt;
     }
 
     private List<PaymentType> getPaymentTypes() {
@@ -266,7 +273,7 @@ public class AdminPageController {
         return "redirect:../panelAdmin/instructorList/instructor/{userId}";
     }
 
-    @GetMapping(value = "/panelAdmin/paymentList/paymentD/${paymentId}")
+    @GetMapping(value = "/panelAdmin/paymentList/paymentD/${paymtId}en")
     public String deletePayment(@PathVariable (value = "paymentId")int paymentId){
         paymentService.deletePaymentById(paymentId);
         return "redirect:../panelAdmin/instructorList";

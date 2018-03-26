@@ -34,6 +34,7 @@
     Ulica: ${student.street}<br>
 
     Główny instruktor: ${student.mainInstructor}<br>
+    <br>
     Lista platności:
     <ul>
         <c:forEach items="${student.paymentList}" var="payment">

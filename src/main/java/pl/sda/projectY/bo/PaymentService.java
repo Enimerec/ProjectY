@@ -28,7 +28,7 @@ public class PaymentService {
         payment.setAmount(paymentDto.getAmount());
         payment.setDate(paymentDto.getDate());
         payment.setPaymentId(paymentDto.getPaymentId());
-        payment.setStudent(studentRepository.getOne(paymentDto.getStudent()));
+        payment.setStudent(studentRepository.findOne(paymentDto.getStudent()));
         payment.setType(paymentDto.getType());
 
         paymentRepository.save(payment);

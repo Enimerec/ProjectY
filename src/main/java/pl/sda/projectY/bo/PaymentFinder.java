@@ -9,7 +9,9 @@ import pl.sda.projectY.repository.StudentRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * author:
@@ -48,8 +50,7 @@ public class PaymentFinder {
     public PaymentDto findById(int paymentId) {
         return getPaymentDto(paymentRepository.findByPaymentId(paymentId));
     }
-
-    public List<PaymentDto> findAllByUserIdOrderByDate(int student){
+    public List<PaymentDto> findAllByStudent_userIdOrderByDate(int student){
         List<PaymentDto> paymentDto = new ArrayList<>();
         paymentRepository.findAllByStudent_userIdOrderByDate(student).forEach(payment -> paymentDto.add(getPaymentDto(payment)));
         return paymentDto;
