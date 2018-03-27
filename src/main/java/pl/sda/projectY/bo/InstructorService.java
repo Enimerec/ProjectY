@@ -35,6 +35,7 @@ public class InstructorService {
     private Instructor getInstructor(InstructorDto instructorDto) {
         Instructor newInstructor = new Instructor();
 
+        newInstructor.setUserId(instructorDto.getUserId());
         newInstructor.setLogin(instructorDto.getLogin());
         newInstructor.setPassword(passwordEncoder.encode(instructorDto.getPassword()));
         newInstructor.setRole(Role.INSTRUCTOR);

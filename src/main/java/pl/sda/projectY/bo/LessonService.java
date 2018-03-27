@@ -35,6 +35,7 @@ public class LessonService {
 
     private Lesson getLesson(LessonDto newLesson) {
         Lesson lesson = new Lesson();
+        lesson.setLessonId(newLesson.getLessonId());
         lesson.setDate(newLesson.getDate());
         lesson.setStartHour(newLesson.getStartHour());
         lesson.setFinishHour(newLesson.getFinishHour());

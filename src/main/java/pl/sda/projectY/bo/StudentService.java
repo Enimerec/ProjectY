@@ -35,6 +35,7 @@ public class StudentService {
     private Student getStudent(StudentDto studentDto) {
         Student newStudent = new Student();
 
+        newStudent.setUserId(studentDto.getUserId());
         newStudent.setLogin(studentDto.getLogin());
         newStudent.setPassword(passwordEncoder.encode(studentDto.getPassword()));
         newStudent.setRole(Role.STUDENT);

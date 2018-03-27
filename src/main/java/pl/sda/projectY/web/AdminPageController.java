@@ -67,13 +67,13 @@ public class AdminPageController {
     public String  addNewAdmin(@ModelAttribute("newAdmin") AdminDto adminDto){
         
         adminService.addNewAdmin(adminDto);
-        return "redirect:../adminList";
+        return "redirect:/adminList";
     }
 
     @PostMapping(value = "/panelAdmin/addInstructor")
     public String  addNewInst(@ModelAttribute("newInstructor") InstructorDto instructorDto){
         instructorService.addNewInst(instructorDto);
-        return "redirect:../instructorList";
+        return "redirect:/instructorList";
     }
 
     @GetMapping(value = "/panelAdmin/addInstructor")
@@ -95,7 +95,7 @@ public class AdminPageController {
     @PostMapping(value = "/panelAdmin/addStudent")
     public String addNewStudent(@ModelAttribute("newStudent") StudentDto studentDto){
         studentService.addNewStudent(studentDto);
-        return "redirect:../studentList";
+        return "redirect:/studentList";
     }
 
     @GetMapping(value = "/panelAdmin/studentList")
@@ -359,7 +359,7 @@ public class AdminPageController {
     public String editPassword(@PathVariable (value = "userId")int userId,
                                @ModelAttribute (value = "user") UserDto user){
         userService.changePassword(userId,user);
-        return "redirect:/../panelAdmin/adminList";
+        return "redirect:../";
     }
 
 
