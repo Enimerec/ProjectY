@@ -138,6 +138,7 @@ public class AdminPageController {
                                      @ModelAttribute("student") AdminDto adminDto){
         AdminDto admin = adminFinder.findById(userId);
         adminDto.setPassword(admin.getPassword());
+        adminDto.setUserId(userId);
 
         adminService.deleteAdminById(userId);
         adminService.addNewAdmin(adminDto);
@@ -178,6 +179,7 @@ public class AdminPageController {
                                         @ModelAttribute("student") StudentDto studentDto){
         StudentDto student = studentFinder.findById(userId);
         studentDto.setPassword(student.getPassword());
+        studentDto.setUserId(userId);
 
         studentService.deleteStudentById(userId);
         studentService.addNewStudent(studentDto);
@@ -339,6 +341,7 @@ public class AdminPageController {
     public String editLessonDetails(@PathVariable (value = "lessonId") int lessonId,
                                      @ModelAttribute("lesson") LessonDto lessonDto){
 
+        lessonDto.setLessonId(lessonId);
         lessonService.deleteById(lessonId);
         lessonService.add(lessonDto);
         return "redirect:..panelAdmin/lessonList";
