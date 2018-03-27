@@ -37,6 +37,7 @@ public class AdminService {
     private Admin getAdmin(AdminDto adminDto) {
         Admin newAdmin = new Admin();
 
+        newAdmin.setUserId(adminDto.getUserId());
         newAdmin.setLogin(adminDto.getLogin());
         newAdmin.setPassword(passwordEncoder.encode(adminDto.getPassword()));
         newAdmin.setRole(Role.ADMIN);

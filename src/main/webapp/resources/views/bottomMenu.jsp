@@ -13,9 +13,6 @@
 </head>
 <body>
 <div  class="btn-group">
-    <a class="btn btn-dark btn-sm" href="javascript:history.back()" role="button">Powrót</a>
-</div>
-<div  class="btn-group">
     <sec:authorize access="hasRole('ADMIN')" >
     <a class="btn btn-dark btn-sm" href="${pageContext.servletContext.contextPath}/panelAdmin" role="button">Panel główny</a>
     </sec:authorize>

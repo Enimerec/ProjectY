@@ -67,13 +67,13 @@ public class AdminPageController {
     public String  addNewAdmin(@ModelAttribute("newAdmin") AdminDto adminDto){
         
         adminService.addNewAdmin(adminDto);
-        return "redirect:../adminList";
+        return "redirect:../panelAdmin/adminList";
     }
 
     @PostMapping(value = "/panelAdmin/addInstructor")
     public String  addNewInst(@ModelAttribute("newInstructor") InstructorDto instructorDto){
         instructorService.addNewInst(instructorDto);
-        return "redirect:../instructorList";
+        return "redirect:../panelAdmin/instructorList";
     }
 
     @GetMapping(value = "/panelAdmin/addInstructor")
@@ -95,7 +95,7 @@ public class AdminPageController {
     @PostMapping(value = "/panelAdmin/addStudent")
     public String addNewStudent(@ModelAttribute("newStudent") StudentDto studentDto){
         studentService.addNewStudent(studentDto);
-        return "redirect:../studentList";
+        return "redirect:../panelAdmin/studentList";
     }
 
     @GetMapping(value = "/panelAdmin/studentList")
@@ -263,7 +263,7 @@ public class AdminPageController {
     @PostMapping(value = "panelAdmin/addPayment")
     public String addPayment(@ModelAttribute("newPayment") PaymentDto paymentDto){
         paymentService.addNewPayment(paymentDto);
-        return "redirect:../paymentList";
+        return "redirect:../panelAdmin/paymentList";
     }
 
     @GetMapping(value = "/panelAdmin/paymentList/paymentE/{paymentId}")
@@ -304,7 +304,7 @@ public class AdminPageController {
     @PostMapping(value = "panelAdmin/addLesson")
     public String addNewLesson(@ModelAttribute("newLesson") LessonDto newLesson){
         lessonService.add(newLesson);
-        return "redirect:..panelAdmin/lessonList";
+        return "redirect:../panelAdmin/lessonList";
     }
 
     @GetMapping(value = "panelAdmin/lessonList")
@@ -359,7 +359,7 @@ public class AdminPageController {
     public String editPassword(@PathVariable (value = "userId")int userId,
                                @ModelAttribute (value = "user") UserDto user){
         userService.changePassword(userId,user);
-        return "redirect:/../panelAdmin/adminList";
+        return "redirect:../";
     }
 
 

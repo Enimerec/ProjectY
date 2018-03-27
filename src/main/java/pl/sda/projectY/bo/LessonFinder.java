@@ -16,7 +16,7 @@ import java.util.List;
  * Marczak
  **/
 @Service
-@Transactional
+@Transactional(readOnly = true)
 public class LessonFinder {
     private LessonRepository lessonRepository;
 

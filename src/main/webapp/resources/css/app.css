@@ -1,5 +1,19 @@
 .odstep{
     padding-left: 20px;
     padding-top: 20px;
+}
+thead tr {
+    background-color: grey;
+}
 
+tbody tr {
+    background-color: lightgray;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
 }
