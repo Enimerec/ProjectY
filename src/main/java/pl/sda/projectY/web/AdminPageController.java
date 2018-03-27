@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sda.projectY.bo.*;
 import pl.sda.projectY.dto.*;
-import pl.sda.projectY.entity.Instructor;
 import pl.sda.projectY.type.PaymentType;
 
 import java.util.ArrayList;
@@ -32,10 +31,11 @@ public class AdminPageController {
     private final PaymentService paymentService;
     private final LessonService lessonService;
     private final LessonFinder lessonFinder;
+    private final UserService userService;
 
     @Autowired
     public AdminPageController(AdminService adminService, InstructorService instructorService,
-                               StudentService studentService, StudentFinder studentFinder, AdminFinder adminFinder, InstructorFinder instructorFinder, PaymentFinder paymentFinder, PaymentService paymentService, LessonService lessonService, LessonFinder lessonFinder) {
+                               StudentService studentService, StudentFinder studentFinder, AdminFinder adminFinder, InstructorFinder instructorFinder, PaymentFinder paymentFinder, PaymentService paymentService, LessonService lessonService, LessonFinder lessonFinder, UserService userService) {
         this.adminService = adminService;
         this.instructorService = instructorService;
         this.studentService = studentService;
@@ -46,6 +46,7 @@ public class AdminPageController {
         this.paymentService = paymentService;
         this.lessonService = lessonService;
         this.lessonFinder = lessonFinder;
+        this.userService = userService;
     }
 
     @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
@@ -279,7 +280,7 @@ public class AdminPageController {
         return "redirect:../panelAdmin/instructorList/instructor/{userId}";
     }
 
-    @GetMapping(value = "/panelAdmin/paymentList/paymentD/${paymentId}en")
+    @GetMapping(value = "/panelAdmin/paymentList/paymentD/${paymentId}")
     public String deletePayment(@PathVariable (value = "paymentId")int paymentId){
         paymentService.deletePaymentById(paymentId);
         return "redirect:../panelAdmin/instructorList";
@@ -316,13 +317,13 @@ public class AdminPageController {
         return mav;
     }
 
-    @GetMapping(value = "/panelAdmin/lessonList/lessonE/${lessonId}")
+    @GetMapping(value = "/panelAdmin/lessonList/lessonE/{lessonId}")
     public String lessonDelete(@PathVariable (value = "lessonId") int lessonId){
         lessonService.deleteById(lessonId);
-        return "redirect:///panelAdmin/lessonList";
+        return "redirect:/../../panelAdmin/lessonList";
     }
 
-    @GetMapping(value = "/panelAdmin/adminList/lessonD/${lessonId}")
+    @GetMapping(value = "/panelAdmin/adminList/lessonD/{lessonId}")
     public ModelAndView editLessonPage(@PathVariable (value = "lessonId") int lessonId){
         LessonDto lessonDto = lessonFinder.findById(lessonId);
         ModelAndView mav = new ModelAndView("admin/editLesson");
@@ -330,6 +331,22 @@ public class AdminPageController {
         mav.addObject("stuOpt",getStudents());
         mav.addObject("insOpt",getInstructor());
         return mav;
+    }
+
+    @GetMapping(value = "/panelAdmin/changePassword/{userId}")
+    public ModelAndView editPasswordPage(@PathVariable (value = "userId")int userId){
+        ModelAndView mav = new ModelAndView("admin/editPassword");
+        UserDto userDto = new UserDto();
+        userDto.setUserId(userId);
+        mav.addObject("user",userDto);
+        return mav;
+    }
+
+    @PostMapping(value = "/panelAdmin/changePassword/{userId}")
+    public String editPassword(@PathVariable (value = "userId")int userId,
+                               @ModelAttribute (value = "user") UserDto user){
+        userService.changePassword(userId,user);
+        return "redirect:/../../panelAdmin/adminList";
     }
 
 

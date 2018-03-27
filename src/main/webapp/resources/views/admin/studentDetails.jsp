@@ -52,7 +52,7 @@
 </sec:authorize>
 
 <sec:authorize access="hasRole('ADMIN')" >
-<a href="${pageContext.servletContext.contextPath}/panelAdmin/studentList/changePassword/${student.userId}">Zmień hasło</a><br>
+<a href="${pageContext.servletContext.contextPath}/panelAdmin/changePassword/${student.userId}">Zmień hasło</a><br>
 <a href="${pageContext.servletContext.contextPath}/panelAdmin/studentList/addMainInstructor/${student.userId}">Dodaj głównego instruktora</a><br>
 <a href="${pageContext.servletContext.contextPath}/panelAdmin/studentList/studentE/${student.userId}">Edytuj</a><br>
 <a href="${pageContext.servletContext.contextPath}/panelAdmin/studentList/studentD/${student.userId}">Usuń</a><br>
