@@ -135,7 +135,7 @@ public class AdminPageController {
 
     @PostMapping(value = "/panelAdmin/adminList/adminE/{userId}")
     public String editAdminDetails(@PathVariable (value = "userId")int userId,
-                                     @ModelAttribute("student") AdminDto adminDto){
+                                     @ModelAttribute("admin") AdminDto adminDto){
         AdminDto admin = adminFinder.findById(userId);
         adminDto.setPassword(admin.getPassword());
         adminDto.setUserId(userId);
