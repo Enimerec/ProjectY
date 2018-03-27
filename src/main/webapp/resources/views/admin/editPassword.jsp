@@ -18,5 +18,7 @@
 
     <input type="submit" name="submit" value="Zatwierdź"/>
 </form:form>
+<br>
+<jsp:include page="../bottomMenu.jsp"/>
 </body>
 </html>
