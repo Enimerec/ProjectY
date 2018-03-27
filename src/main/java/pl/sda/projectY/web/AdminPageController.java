@@ -143,13 +143,13 @@ public class AdminPageController {
         adminService.deleteAdminById(userId);
         adminService.addNewAdmin(adminDto);
 
-        return "redirect:../../admin/{userId}";
+        return "redirect:../admin/{userId}";
     }
 
     @GetMapping(value = "/panelAdmin/adminList/adminD/{userId}")
     public String deleteAdmin(@PathVariable (value = "userId")int userId){
         adminService.deleteAdminById(userId);
-        return "redirect:../../";
+        return "redirect:../";
     }
 
     @GetMapping(value = "/panelAdmin/studentList/student/{userId}")
@@ -171,7 +171,7 @@ public class AdminPageController {
     @GetMapping(value = "/panelAdmin/studentList/studentD/{userId}")
     public String deleteStudent(@PathVariable (value = "userId")int userId){
         studentService.deleteStudentById(userId);
-        return "redirect:../../";
+        return "redirect:../";
     }
 
     @PostMapping(value = "/panelAdmin/studentList/studentE/{userId}")
@@ -184,7 +184,7 @@ public class AdminPageController {
         studentService.deleteStudentById(userId);
         studentService.addNewStudent(studentDto);
 
-        return "redirect:../../student/{userId}";
+        return "redirect:../student/{userId}";
     }
 
     @GetMapping(value = "/panelAdmin/instructorList/instructor/{userId}")
@@ -212,13 +212,13 @@ public class AdminPageController {
         instructorService.deleteInstructorByid(userId);
         instructorService.addNewInst(instructorDto);
 
-        return "redirect:../../instructor/{userId}";
+        return "redirect:../instructor/{userId}";
     }
 
     @GetMapping(value = "/panelAdmin/instructorList/instructorD/{userId}")
     public String deleteInstructor(@PathVariable (value = "userId")int userId){
         instructorService.deleteInstructorByid(userId);
-        return "redirect:../../";
+        return "redirect:../";
     }
 
     @GetMapping(value = "panelAdmin/paymentList")
@@ -281,13 +281,13 @@ public class AdminPageController {
         paymentDto.setPaymentId(paymentId);
         paymentService.deletePaymentById(paymentId);
         paymentService.addNewPayment(paymentDto);
-        return "redirect:../../payment/{paymentId}";
+        return "redirect:../payment/{paymentId}";
     }
 
     @GetMapping(value = "/panelAdmin/paymentList/paymentD/${paymentId}")
     public String deletePayment(@PathVariable (value = "paymentId")int paymentId){
         paymentService.deletePaymentById(paymentId);
-        return "redirect:../../";
+        return "redirect:../";
     }
 
     @GetMapping(value = "panelAdmin/addLesson")
@@ -324,7 +324,7 @@ public class AdminPageController {
     @GetMapping(value = "/panelAdmin/lessonList/lessonD/${lessonId}")
     public String lessonDelete(@PathVariable (value = "lessonId") int lessonId){
         lessonService.deleteById(lessonId);
-        return "redirect:../../";
+        return "redirect:../";
     }
 
     @GetMapping(value = "/panelAdmin/lessonList/lessonE/${lessonId}")
@@ -344,7 +344,7 @@ public class AdminPageController {
         lessonDto.setLessonId(lessonId);
         lessonService.deleteById(lessonId);
         lessonService.add(lessonDto);
-        return "redirect:../../lesson/{lessonId}";
+        return "redirect:../lesson/{lessonId}";
     }
     @GetMapping(value = "/panelAdmin/changePassword/{userId}")
     public ModelAndView editPasswordPage(@PathVariable (value = "userId")int userId){
@@ -359,7 +359,7 @@ public class AdminPageController {
     public String editPassword(@PathVariable (value = "userId")int userId,
                                @ModelAttribute (value = "user") UserDto user){
         userService.changePassword(userId,user);
-        return "redirect:/../../panelAdmin/adminList";
+        return "redirect:/../panelAdmin/adminList";
     }
 
 
