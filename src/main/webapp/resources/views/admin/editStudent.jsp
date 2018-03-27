@@ -12,11 +12,11 @@
     <title>Edit Student</title>
 </head>
 <body>
-<form:form action="" modelAttribute="student" method="POST">
+<form:form action="/panelAdmin/studentList/studentE/" modelAttribute="student" method="POST">
 
     <form:input type="hidden" path="userId"/><br>
     Login<form:input type="text" path="login"/><br>
-
+    Hasło: <form:input type="password" path="password"/>Podać tylko jeśli chcesz zmienić <br>
     Imię<form:input type="text" path="name"/><br>
     Nazwisko<form:input type="text" path="surname"/><br>
     Telefon<form:input type="text" path="telephone"/><br>
