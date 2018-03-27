@@ -8,7 +8,7 @@
     <link href="${pageContext.servletContext.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-
+<div class="odstep">
 Aplikacja do obslugi osk. <br>
 <form action='<spring:url value="/signin"/>' method="post">
     <table>
@@ -25,6 +25,8 @@ Aplikacja do obslugi osk. <br>
         </tr>
     </table>
 </form>
+
+</div>
 </body>
 </html>
 
