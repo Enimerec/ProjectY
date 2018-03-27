@@ -266,7 +266,7 @@ public class AdminPageController {
         return "redirect:../paymentList";
     }
 
-    @GetMapping(value = "/panelAdmin/paymentList/paymentE/${paymentId}")
+    @GetMapping(value = "/panelAdmin/paymentList/paymentE/{paymentId}")
     public ModelAndView paymentEditPage(@PathVariable (value = "paymentId") int paymentId) {
         ModelAndView mav = new ModelAndView("admin/editPayment");
         mav.addObject("payment", paymentFinder.findById(paymentId));
@@ -274,7 +274,7 @@ public class AdminPageController {
         return mav;
     }
 
-    @PostMapping(value = "panelAdmin/paymentList/paymentE/${paymentId}")
+    @PostMapping(value = "panelAdmin/paymentList/paymentE/{paymentId}")
     public String editPaymentDetails(@PathVariable (value = "paymentId")int paymentId,
                                         @ModelAttribute("payment") PaymentDto paymentDto){
 
@@ -284,7 +284,7 @@ public class AdminPageController {
         return "redirect:../payment/{paymentId}";
     }
 
-    @GetMapping(value = "/panelAdmin/paymentList/paymentD/${paymentId}")
+    @GetMapping(value = "/panelAdmin/paymentList/paymentD/{paymentId}")
     public String deletePayment(@PathVariable (value = "paymentId")int paymentId){
         paymentService.deletePaymentById(paymentId);
         return "redirect:../";
@@ -321,13 +321,13 @@ public class AdminPageController {
         return mav;
     }
 
-    @GetMapping(value = "/panelAdmin/lessonList/lessonD/${lessonId}")
+    @GetMapping(value = "/panelAdmin/lessonList/lessonD/{lessonId}")
     public String lessonDelete(@PathVariable (value = "lessonId") int lessonId){
         lessonService.deleteById(lessonId);
         return "redirect:../";
     }
 
-    @GetMapping(value = "/panelAdmin/lessonList/lessonE/${lessonId}")
+    @GetMapping(value = "/panelAdmin/lessonList/lessonE/{lessonId}")
     public ModelAndView editLessonPage(@PathVariable (value = "lessonId") int lessonId){
         LessonDto lessonDto = lessonFinder.findById(lessonId);
         ModelAndView mav = new ModelAndView("admin/editLesson");
@@ -337,7 +337,7 @@ public class AdminPageController {
         return mav;
     }
 
-    @PostMapping(value = "panelAdmin/lessonList/lessonE/${lessonId}")
+    @PostMapping(value = "panelAdmin/lessonList/lessonE/{lessonId}")
     public String editLessonDetails(@PathVariable (value = "lessonId") int lessonId,
                                      @ModelAttribute("lesson") LessonDto lessonDto){
 

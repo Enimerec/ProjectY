@@ -2,6 +2,7 @@ package pl.sda.projectY.bo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.sda.projectY.dto.LessonDto;
 import pl.sda.projectY.entity.Lesson;
 import pl.sda.projectY.repository.LessonRepository;
@@ -15,6 +16,7 @@ import java.util.List;
  * Marczak
  **/
 @Service
+@Transactional(readOnly = true)
 public class LessonFinder {
     private LessonRepository lessonRepository;
 
