@@ -25,5 +25,7 @@
 
     <input type="submit" name="submit" value="Zapisz"/>
 </form:form>
+<br>
+<jsp:include page="../bottomMenu.jsp"/>
 </body>
 </html>

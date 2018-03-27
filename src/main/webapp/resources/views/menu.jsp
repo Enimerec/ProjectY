@@ -49,7 +49,13 @@
 </div>
 </div>
 <div class="btn-group">
-    <a class="btn btn-danger" href="${pageContext.servletContext.contextPath}/panelAdmin" role="button">Powrót</a>
+    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Jazdy
+    </button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="${pageContext.servletContext.contextPath}/panelAdmin/lessonList">Lista jazd</a>
+        <a class="dropdown-item" href="${pageContext.servletContext.contextPath}/panelAdmin/addLesson">Dodaj jazde</a>
+    </div>
 </div>
 <div  class="btn-group">
     <a class="btn btn-dark" href="<c:url value="/logout" />" role="button">Logout</a>

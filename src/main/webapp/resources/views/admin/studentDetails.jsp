@@ -58,5 +58,7 @@
 <a href="${pageContext.servletContext.contextPath}/panelAdmin/studentList/studentD/${student.userId}">Usuń</a><br>
 </sec:authorize>
 
+    <br>
+    <jsp:include page="../bottomMenu.jsp"/>
 </body>
 </html>

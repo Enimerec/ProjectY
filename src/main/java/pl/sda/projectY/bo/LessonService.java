@@ -22,9 +22,10 @@ public class LessonService {
     private StudentRepository studentRepository;
 
     @Autowired
-    public LessonService(LessonRepository lessonRepository, InstructorRepository instructorRepository) {
+    public LessonService(LessonRepository lessonRepository, InstructorRepository instructorRepository, StudentRepository studentRepository) {
         this.lessonRepository = lessonRepository;
         this.instructorRepository = instructorRepository;
+        this.studentRepository = studentRepository;
     }
 
     public void add(LessonDto newLesson) {
@@ -37,8 +38,12 @@ public class LessonService {
         lesson.setDate(newLesson.getDate());
         lesson.setStartHour(newLesson.getStartHour());
         lesson.setFinishHour(newLesson.getFinishHour());
-        lesson.setInstructor(instructorRepository.getOne(newLesson.getInstructor()));
-        lesson.setStudent(studentRepository.getOne(newLesson.getStudent()));
+        if(newLesson.getInstructor()!=null) {
+            lesson.setInstructor(instructorRepository.getOne(newLesson.getInstructor()));
+        }
+        if(newLesson.getStudent()!=null) {
+            lesson.setStudent(studentRepository.getOne(newLesson.getStudent()));
+        }
         return lesson;
     }
 

@@ -27,6 +27,8 @@ E-Mail<form:input type="text" path="EMail"/><br>
 <input type="submit" name="submit" value="Zarejestruj"/>
 </form:form>
 
+<br>
+<jsp:include page="../bottomMenu.jsp"/>
 <script>
     $("#valid").validate({
         invalidHandler: function(event, validator) {

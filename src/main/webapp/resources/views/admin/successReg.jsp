@@ -13,6 +13,7 @@
 </head>
 <body>
 <h1>Rejestracja zakończona pomyślnie!</h1>
-
+<br>
+<jsp:include page="../bottomMenu.jsp"/>
 </body>
 </html>

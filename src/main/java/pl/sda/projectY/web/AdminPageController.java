@@ -142,13 +142,13 @@ public class AdminPageController {
         adminService.deleteAdminById(userId);
         adminService.addNewAdmin(adminDto);
 
-        return "redirect:../panelAdmin/adminList/admin/{userId}";
+        return "redirect:../admin/{userId}";
     }
 
     @GetMapping(value = "/panelAdmin/adminList/adminD/{userId}")
     public String deleteAdmin(@PathVariable (value = "userId")int userId){
         adminService.deleteAdminById(userId);
-        return "redirect:../panelAdmin/adminList";
+        return "redirect:../";
     }
 
     @GetMapping(value = "/panelAdmin/studentList/student/{userId}")
@@ -170,7 +170,7 @@ public class AdminPageController {
     @GetMapping(value = "/panelAdmin/studentList/studentD/{userId}")
     public String deleteStudent(@PathVariable (value = "userId")int userId){
         studentService.deleteStudentById(userId);
-        return "redirect:../panelAdmin/studentList";
+        return "redirect:../";
     }
 
     @PostMapping(value = "/panelAdmin/studentList/studentE/{userId}")
@@ -182,7 +182,7 @@ public class AdminPageController {
         studentService.deleteStudentById(userId);
         studentService.addNewStudent(studentDto);
 
-        return "redirect:../panelAdmin/studentList/student/{userId}";
+        return "redirect:../student/{userId}";
     }
 
     @GetMapping(value = "/panelAdmin/instructorList/instructor/{userId}")
@@ -209,13 +209,13 @@ public class AdminPageController {
         instructorService.deleteInstructorByid(userId);
         instructorService.addNewInst(instructorDto);
 
-        return "redirect:../panelAdmin/instructorList/instructor/{userId}";
+        return "redirect:../instructor/{userId}";
     }
 
     @GetMapping(value = "/panelAdmin/instructorList/instructorD/{userId}")
     public String deleteInstructor(@PathVariable (value = "userId")int userId){
         instructorService.deleteInstructorByid(userId);
-        return "redirect:../panelAdmin/instructorList";
+        return "redirect:../";
     }
 
     @GetMapping(value = "panelAdmin/paymentList")
@@ -232,7 +232,7 @@ public class AdminPageController {
         PaymentDto paymentDto = new PaymentDto();
         mav.addObject("newPayment",paymentDto);
         mav.addObject("aveOpt",getPaymentTypes());
-        mav.addObject("sList",getStudents());
+        mav.addObject("stuOpt",getStudents());
         return mav;
     }
 
@@ -277,13 +277,13 @@ public class AdminPageController {
 
         paymentService.deletePaymentById(paymentId);
         paymentService.addNewPayment(paymentDto);
-        return "redirect:../panelAdmin/instructorList/instructor/{userId}";
+        return "redirect:..panelAdmin/paymentList";
     }
 
     @GetMapping(value = "/panelAdmin/paymentList/paymentD/${paymentId}")
     public String deletePayment(@PathVariable (value = "paymentId")int paymentId){
         paymentService.deletePaymentById(paymentId);
-        return "redirect:../panelAdmin/instructorList";
+        return "redirect:..PanelAdmin/paymentList";
     }
 
     @GetMapping(value = "panelAdmin/addLesson")
@@ -317,13 +317,13 @@ public class AdminPageController {
         return mav;
     }
 
-    @GetMapping(value = "/panelAdmin/lessonList/lessonE/{lessonId}")
+    @GetMapping(value = "/panelAdmin/lessonList/lessonD/${lessonId}")
     public String lessonDelete(@PathVariable (value = "lessonId") int lessonId){
         lessonService.deleteById(lessonId);
-        return "redirect:/../../panelAdmin/lessonList";
+        return "redirect:../lessonList";
     }
 
-    @GetMapping(value = "/panelAdmin/adminList/lessonD/{lessonId}")
+    @GetMapping(value = "/panelAdmin/lessonList/lessonE/${lessonId}")
     public ModelAndView editLessonPage(@PathVariable (value = "lessonId") int lessonId){
         LessonDto lessonDto = lessonFinder.findById(lessonId);
         ModelAndView mav = new ModelAndView("admin/editLesson");
@@ -333,6 +333,14 @@ public class AdminPageController {
         return mav;
     }
 
+    @PostMapping(value = "panelAdmin/lessonList/lessonE/${lessonId}")
+    public String editLessonDetails(@PathVariable (value = "lessonId") int lessonId,
+                                     @ModelAttribute("lesson") LessonDto lessonDto){
+
+        lessonService.deleteById(lessonId);
+        lessonService.add(lessonDto);
+        return "redirect:..panelAdmin/lessonList";
+    }
     @GetMapping(value = "/panelAdmin/changePassword/{userId}")
     public ModelAndView editPasswordPage(@PathVariable (value = "userId")int userId){
         ModelAndView mav = new ModelAndView("admin/editPassword");

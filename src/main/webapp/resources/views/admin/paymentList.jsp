@@ -7,22 +7,26 @@
     <title>Student List</title>
 </head>
 <body>
+<h1>Lista wpłat</h1><br>
+<h2>--------------------------</h2>
 <ul>
     <c:forEach items="${payments}" var="payment">
         <li>
-
+                ${payment.student},
                 ${payment.amount},
                 ${payment.date},
                 ${payment.type},
 
         <sec:authorize access="hasRole('ADMIN')" >
-                 <a href="${pageContext.servletContext.contextPath}/panelAdmin/
-                 paymentList/paymentE/${payment.paymentId}">Edytuj</a><br>
-                 <a href="${pageContext.servletContext.contextPath}/panelAdmin/
-                 paymentList/paymentD/${payment.paymentId}">Usuń</a><br>
+                 <a href="${pageContext.servletContext.contextPath}/panelAdmin/paymentList/paymentE/${payment.paymentId}">Edytuj</a>,
+                 <a href="${pageContext.servletContext.contextPath}/panelAdmin/paymentList/paymentD/${payment.paymentId}">Usuń</a><br>
         </sec:authorize>
         </li>
     </c:forEach>
 </ul>
+<h2>--------------------------</h2>
+
+<br>
+<jsp:include page="../bottomMenu.jsp"/>
 </body>
 </html>

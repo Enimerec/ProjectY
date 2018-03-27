@@ -4,14 +4,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import pl.sda.projectY.entity.Payment;
 
 
+import java.sql.Date;
 import java.time.LocalDate;
-
 import java.util.List;
 
 
 public interface PaymentRepository extends JpaRepository<Payment,Integer> {
 
-    List<Payment> findAllOrderByDate(LocalDate date);
+    List<Payment> findAll();
 
     Payment findByPaymentId(int id);
 

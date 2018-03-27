@@ -37,5 +37,7 @@ Miasto<form:input type="text" path="city"/><br>
 <input type="submit" name="submit" value="Zarejestruj"/>
 
 </form:form>
+<br>
+<jsp:include page="../bottomMenu.jsp"/>
 </body>
 </html>
