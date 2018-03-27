@@ -25,7 +25,6 @@ public class PaymentService {
 
     public void addNewPayment(PaymentDto paymentDto) {
         Payment payment = getPayment(paymentDto);
-
         paymentRepository.save(payment);
     }
 
@@ -34,7 +33,7 @@ public class PaymentService {
         payment.setAmount(paymentDto.getAmount());
         payment.setDate(paymentDto.getDate());
         payment.setPaymentId(paymentDto.getPaymentId());
-        if(payment.getStudent()!=null) {
+        if(paymentDto.getStudent()!=null) {
             payment.setStudent(studentRepository.findOne(paymentDto.getStudent()));
         }
         payment.setType(paymentDto.getType());
@@ -51,7 +50,7 @@ public class PaymentService {
         payment.setAmount(paymentDto.getAmount());
         payment.setDate(paymentDto.getDate());
 
-        if(payment.getStudent()!=null) {
+        if(paymentDto.getStudent()!=null) {
             payment.setStudent(studentRepository.findOne(paymentDto.getStudent()));
         }
         payment.setType(paymentDto.getType());

@@ -45,14 +45,25 @@
             </li>
         </c:forEach>
     </ul>
-    <%--${student.lessonList}<br>--%>
+    <br>
 
+    Lista jazd:
+    <ul>
+        <c:forEach items="${student.lessonList}" var="lesson">
+            <li>
+                    ${lesson.date},
+                    ${lesson.startHour},
+                    ${lesson.finishHour},
+                    ${lesson.instructor},
+
+            </li>
+        </c:forEach>
+    </ul>
 <sec:authorize access="hasRole('STUDENT')" ><br>
 <a href="${pageContext.servletContext.contextPath}panelStudent/MyProfile/edit">Edytuj</a>
 </sec:authorize>
 
 <sec:authorize access="hasRole('ADMIN')">
-<a href="${pageContext.servletContext.contextPath}/panelAdmin/studentList/addMainInstructor/${student.userId}">Dodaj głównego instruktora</a><br>
 <a href="${pageContext.servletContext.contextPath}/panelAdmin/studentList/studentE/${student.userId}">Edytuj</a><br>
 <a href="${pageContext.servletContext.contextPath}/panelAdmin/studentList/studentD/${student.userId}">Usuń</a><br>
 </sec:authorize>

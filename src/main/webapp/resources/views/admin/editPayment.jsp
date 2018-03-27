@@ -17,12 +17,14 @@
     <form:input type="hidden" path="paymentId"/><br>
     Kwota: <form:input type="number" path="amount"/><br>
     Data: <form:input type="date" path="date"/><br>
-    Id studenta: <form:input type="number" path="student"/><br>
+    Id studenta: <form:select path="student">
+                      <form:options label="Wybierz" items="${stuOpt}" itemValue="userId" itemLabel="fullName"/>
+                 </form:select><br>
     Typ płatności: <form:select path="type">
-    <form:options items="${aveOpt}" itemValue="type" itemLabel="type"/>
-</form:select>
+                        <form:options items="${aveOpt}" itemValue="type" itemLabel="type"/>
+                   </form:select><br>
 
-    <input type="submit" name="submit" value="Dodaj"/>
+    <input type="submit" name="submit" value="Zatwierdz"/>
 
 </form:form>
 

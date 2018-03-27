@@ -12,7 +12,6 @@
     <title>Edit Admin Page</title>
 </head>
 <body>
-
     <form:form action="/panelAdmin/adminList/adminE/" modelAttribute="admin" method="POST">
         <form:input type="hidden" path="userId"/><br>
         Login: <form:input type="text" path="login"/><br>

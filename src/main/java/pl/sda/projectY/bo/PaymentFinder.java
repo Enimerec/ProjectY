@@ -2,6 +2,7 @@ package pl.sda.projectY.bo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.sda.projectY.dto.PaymentDto;
 import pl.sda.projectY.entity.Payment;
 import pl.sda.projectY.repository.PaymentRepository;
@@ -18,6 +19,7 @@ import java.util.List;
  **/
 
 @Service
+@Transactional(readOnly = true)
 public class PaymentFinder {
     private final PaymentRepository paymentRepository;
 
@@ -50,6 +52,7 @@ public class PaymentFinder {
     public PaymentDto findById(int paymentId) {
         return getPaymentDto(paymentRepository.findByPaymentId(paymentId));
     }
+
     public List<PaymentDto> findAllByStudent_userIdOrderByDate(int student){
         List<PaymentDto> paymentDto = new ArrayList<>();
         paymentRepository.findAllByStudent_UserIdOrderByDate(student).forEach(payment -> paymentDto.add(getPaymentDto(payment)));

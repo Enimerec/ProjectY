@@ -1,4 +1,5 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Mateusz
@@ -26,16 +27,38 @@ Miasto: ${instructor.city}<br>
 Kod pocztowy: ${instructor.postCode}<br>
 Ulica: ${instructor.street}<br>
 
-<%--Lista studentów: ${instructor.studentList}<br>
-Lista jazd: ${instructor.lessonList}<br>--%>
+Lista kursantów;
+<ul>
+    <c:forEach items="${mainInstructor.studentList}" var="student">
+        <li>
+                ${student.name},
+                ${student.surname},
+                ${student.regNum}
+
+        </li>
+    </c:forEach>
+</ul>
+<br>
+Lista jazd:
+<ul>
+    <c:forEach items="${mainInstructor.lessonList}" var="lesson">
+    <li>
+            ${lesson.date},
+            ${lesson.startHour},
+            ${lesson.finishHour},
+            ${lesson.student}
+
+    </li>
+    </c:forEach>
+</ul>
 
 <sec:authorize access="hasRole('INSTRUCTOR')" ><br>
     <a href="${pageContext.servletContext.contextPath}panelInstructor/MyProfile/edit">Edytuj</a>
 </sec:authorize>
 
 <sec:authorize access="hasRole('ADMIN')" >
-    <a href="${pageContext.servletContext.contextPath}/panelAdmin/instructorList/instructorE/${instructor.userId}">Edytuj</a><br>
-    <a href="${pageContext.servletContext.contextPath}/panelAdmin/instructorList/instructorD/${instructor.userId}">Usuń</a><br>
+    <a href="${pageContext.servletContext.contextPath}/panelAdmin/instructorList/instructorE/${mainInstructor.userId}">Edytuj</a><br>
+    <a href="${pageContext.servletContext.contextPath}/panelAdmin/instructorList/instructorD/${mainInstructor.userId}">Usuń</a><br>
 </sec:authorize>
 
 <br>

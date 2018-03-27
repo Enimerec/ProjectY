@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.sda.projectY.dto.StudentDto;
 import pl.sda.projectY.entity.Lesson;
 import pl.sda.projectY.entity.Payment;
@@ -24,6 +25,7 @@ import java.util.Optional;
  **/
 
 @Service
+@Transactional(readOnly = true)
 public class StudentFinder {
 
     private final StudentRepository studentRepository;
@@ -55,7 +57,7 @@ public class StudentFinder {
 
         newStudent.setUserId(student.getUserId());
         newStudent.setLogin(student.getLogin());
-        newStudent.setPassword(student.getPassword());
+        //newStudent.setPassword(student.getPassword());
         newStudent.setName(student.getName());
         newStudent.setSurname(student.getSurname());
         newStudent.setTelephone(student.getTelephone());
@@ -97,5 +99,11 @@ public class StudentFinder {
 
         String login = userDetails.get().getUsername();
         return findByLogin(login);
+    }
+
+    public List<StudentDto> findAllByMainInstructor_userIdOrderByName(int instructor) {
+        List<StudentDto> studentDto = new ArrayList<>();
+        studentRepository.findAllByMainInstructor_UserIdOrderByName(instructor).forEach(student -> studentDto.add(getStudentDto(student)));
+        return studentDto;
     }
 }

@@ -29,21 +29,22 @@ public class LessonService {
     }
 
     public void add(LessonDto newLesson) {
-        lessonRepository.save(getLesson(newLesson));
+        Lesson lesson = getLesson(newLesson);
+        lessonRepository.save(lesson);
 
     }
 
-    private Lesson getLesson(LessonDto newLesson) {
+    private Lesson getLesson(LessonDto lessonDto) {
         Lesson lesson = new Lesson();
-        lesson.setLessonId(newLesson.getLessonId());
-        lesson.setDate(newLesson.getDate());
-        lesson.setStartHour(newLesson.getStartHour());
-        lesson.setFinishHour(newLesson.getFinishHour());
-        if(newLesson.getInstructor()!=null) {
-            lesson.setInstructor(instructorRepository.getOne(newLesson.getInstructor()));
+        lesson.setLessonId(lessonDto.getLessonId());
+        lesson.setDate(lessonDto.getDate());
+        lesson.setStartHour(lessonDto.getStartHour());
+        lesson.setFinishHour(lessonDto.getFinishHour());
+        if(lessonDto.getInstructor()!=null) {
+            lesson.setInstructor(instructorRepository.getOne(lessonDto.getInstructor()));
         }
-        if(newLesson.getStudent()!=null) {
-            lesson.setStudent(studentRepository.getOne(newLesson.getStudent()));
+        if(lessonDto.getStudent()!=null) {
+            lesson.setStudent(studentRepository.getOne(lessonDto.getStudent()));
         }
         return lesson;
     }
@@ -51,5 +52,20 @@ public class LessonService {
 
     public void deleteById(int lessonId) {
         lessonRepository.delete(lessonId);
+    }
+
+    public void editLesson(LessonDto lessonDto) {
+        Lesson lesson = lessonRepository.findOne(lessonDto.getLessonId());
+        lesson.setDate(lessonDto.getDate());
+        lesson.setStartHour(lessonDto.getStartHour());
+        lesson.setFinishHour(lessonDto.getFinishHour());
+        if(lessonDto.getInstructor()!=null) {
+            lesson.setInstructor(instructorRepository.getOne(lessonDto.getInstructor()));
+        }
+        if(lessonDto.getStudent()!=null) {
+            lesson.setStudent(studentRepository.getOne(lessonDto.getStudent()));
+        }
+        lessonRepository.save(lesson);
+
     }
 }

@@ -16,23 +16,26 @@
 
 <form:form action="" modelAttribute="newStudent" method="POST">
 
-Login<form:input type="text" path="login"/><br>
-Hasło<form:input type="text" path="password"/><br>
+Login: <form:input type="text" path="login"/><br>
+Hasło: <form:input type="text" path="password"/><br>
 
-Imię<form:input type="text" path="name"/><br>
-Nazwisko<form:input type="text" path="surname"/><br>
-Telefon<form:input type="text" path="telephone"/><br>
-Pesel<form:input type="text" path="pesel"/><br>
+Imię: <form:input type="text" path="name"/><br>
+Nazwisko: <form:input type="text" path="surname"/><br>
+Telefon: <form:input type="text" path="telephone"/><br>
+Pesel: <form:input type="text" path="pesel"/><br>
 
-Numer ewidencyjny<form:input type="text" path="regNum"/><br>
-Numer PK<form:input type="text" path="pkNum"/><br>
-Numer dowodu<form:input type="text" path="idNumber"/><br>
+Numer ewidencyjny: <form:input type="text" path="regNum"/><br>
+Numer PK: <form:input type="text" path="pkNum"/><br>
+Numer dowodu: <form:input type="text" path="idNumber"/><br>
 
-Data rozpoczęcia kursu<form:input type="date" path="startDate" /><br>
+Data rozpoczęcia kursu: <form:input type="date" path="startDate" /><br>
+Główny instruktor: <form:select path="mainInstructor">
+                        <form:options label="Wybierz" items="${insOpt}" itemValue="userId" itemLabel="fullName"/>
+                    </form:select><br>
 
-Ulica<form:input type="text" path="street"/><br>
-Kod pocztowy<form:input type="text" path="postCode"/><br>
-Miasto<form:input type="text" path="city"/><br>
+Ulica: <form:input type="text" path="street"/><br>
+Kod pocztowy: <form:input type="text" path="postCode"/><br>
+Miasto: <form:input type="text" path="city"/><br>
 
 <input type="submit" name="submit" value="Zarejestruj"/>
 

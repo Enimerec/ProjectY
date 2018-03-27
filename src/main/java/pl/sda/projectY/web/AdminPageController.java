@@ -87,6 +87,7 @@ public class AdminPageController {
         ModelAndView mav = new ModelAndView("admin/addStudent");
         StudentDto newStudent = new StudentDto();
         mav.addObject("newStudent",newStudent);
+        mav.addObject("insOpt",getInstructor());
         return mav;
     }
 
@@ -148,6 +149,7 @@ public class AdminPageController {
         ModelAndView mav = new ModelAndView("admin/studentDetails");
         StudentDto studentDto = studentFinder.findById(userId);
         studentDto.setPaymentList(paymentFinder.findAllByStudent_userIdOrderByDate(userId));
+        studentDto.setLessonList(lessonFinder.findAllByStudent_userIdOrderByDate(userId));
         mav.addObject("student",studentDto);
         return mav;
     }
@@ -156,6 +158,7 @@ public class AdminPageController {
     public ModelAndView editStudentDetailsPage(@PathVariable (value = "userId")int userId){
         ModelAndView mav = new ModelAndView("admin/editStudent");
         mav.addObject("student",studentFinder.findById(userId));
+        mav.addObject("insOpt",getInstructor());
         return mav;
     }
 
@@ -174,7 +177,10 @@ public class AdminPageController {
     @GetMapping(value = "/panelAdmin/instructorList/instructor/{userId}")
     public ModelAndView instructorDetailsPage(@PathVariable (value = "userId") int userId) {
         ModelAndView mav = new ModelAndView("admin/instructorDetails");
-        mav.addObject("instructor", instructorFinder.findById(userId));
+        InstructorDto instructorDto = instructorFinder.findById(userId);
+        instructorDto.setLessonList(lessonFinder.findAllByInstructor_userIdOrderByDate(userId));
+        instructorDto.setStudentList(studentFinder.findAllByMainInstructor_userIdOrderByName(userId));
+        mav.addObject("mainInstructor", instructorDto);
         return mav;
     }
 
@@ -248,6 +254,7 @@ public class AdminPageController {
     public ModelAndView paymentEditPage(@PathVariable (value = "paymentId") int paymentId) {
         ModelAndView mav = new ModelAndView("admin/editPayment");
         mav.addObject("payment", paymentFinder.findById(paymentId));
+        mav.addObject("stuOpt",getStudents());
         mav.addObject("aveOpt",getPaymentTypes());
         return mav;
     }
@@ -255,9 +262,8 @@ public class AdminPageController {
     @PostMapping(value = "panelAdmin/paymentList/paymentE/")
     public String editPaymentDetails(@ModelAttribute("payment") PaymentDto paymentDto){
        paymentService.editPayment(paymentDto);
-        return "redirect:../payment/"+paymentDto.getPaymentId();
+        return "redirect../payment/"+paymentDto.getPaymentId();
     }
-
     @GetMapping(value = "/panelAdmin/paymentList/paymentD/{paymentId}")
     public String deletePayment(@PathVariable (value = "paymentId")int paymentId){
         paymentService.deletePaymentById(paymentId);
@@ -309,17 +315,11 @@ public class AdminPageController {
         mav.addObject("insOpt",getInstructor());
         return mav;
     }
-//TODO przerobis edycje lessonow
-//TODO dodac rozwijana liste studentow w edycji paymentu
 
-    @PostMapping(value = "panelAdmin/lessonList/lessonE/{lessonId}")
-    public String editLessonDetails(@PathVariable (value = "lessonId") int lessonId,
-                                     @ModelAttribute("lesson") LessonDto lessonDto){
-
-        lessonDto.setLessonId(lessonId);
-        lessonService.deleteById(lessonId);
-        lessonService.add(lessonDto);
-        return "redirect:../lesson/{lessonId}";
+    @PostMapping(value = "panelAdmin/lessonList/lessonE/")
+    public String editLessonDetails(@ModelAttribute("lesson") LessonDto lessonDto){
+        lessonService.editLesson(lessonDto);
+        return "redirect:../../lesson/"+lessonDto.getLessonId();
     }
 
    /* @GetMapping(value = "panelAdmin/calendar")

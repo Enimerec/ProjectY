@@ -28,6 +28,9 @@
 
     Data rozpoczęcia kursu<form:input type="text" path="startDate"/><br>
     Data zakończenia kursu<form:input type="text" path="endDate"/> <br>
+    Główny instruktor: <form:select path="mainInstructor">
+                            <form:options label="Wybierz" items="${insOpt}" itemValue="userId" itemLabel="fullName"/>
+                       </form:select><br>
 
     Ulica<form:input type="text" path="street"/><br>
     Kod pocztowy<form:input type="text" path="postCode"/><br>

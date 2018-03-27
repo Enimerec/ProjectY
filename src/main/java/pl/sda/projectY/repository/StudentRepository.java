@@ -15,4 +15,5 @@ public interface StudentRepository extends JpaRepository<Student,Integer>{
 
     Student findByLogin(String login);
 
+    List<Student> findAllByMainInstructor_UserIdOrderByName(Integer mainInstructor_userId);
 }

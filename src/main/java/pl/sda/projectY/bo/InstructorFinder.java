@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.sda.projectY.dto.InstructorDto;
 import pl.sda.projectY.dto.StudentDto;
 import pl.sda.projectY.entity.Instructor;
@@ -25,6 +26,7 @@ import java.util.Optional;
  **/
 
 @Service
+@Transactional(readOnly = true)
 public class InstructorFinder {
 
     private InstructorRepository instructorRepository;
@@ -54,7 +56,7 @@ public class InstructorFinder {
         instructorDto.setName(instructor.getName());
         instructorDto.setSurname(instructor.getSurname());
         instructorDto.setLogin(instructor.getLogin());
-        instructorDto.setPassword(instructor.getPassword());
+        //instructorDto.setPassword(instructor.getPassword());
         instructorDto.setCity(instructor.getCity());
         instructorDto.setEMail(instructor.getEMail());
         instructorDto.setInstNumber(instructor.getInstNumber());

@@ -14,7 +14,6 @@ import pl.sda.projectY.type.Role;
  * Marczak
  **/
 @Service
-
 public class InstructorService {
 
     private final PasswordEncoder passwordEncoder;
