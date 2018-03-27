@@ -134,7 +134,7 @@ public class AdminPageController {
     @PostMapping(value = "/panelAdmin/adminList/adminE/")
     public String editAdminDetails(@ModelAttribute("admin") AdminDto adminDto){
         adminService.editAdmin(adminDto);
-        return "redirect:../admin/{userId}";
+        return "redirect:../admin/"+adminDto.getUserId();
     }
 
     @GetMapping(value = "/panelAdmin/adminList/adminD/{userId}")
@@ -168,7 +168,7 @@ public class AdminPageController {
     @PostMapping(value = "/panelAdmin/studentList/studentE/")
     public String editStudentDetails(@ModelAttribute("student") StudentDto studentDto){
         studentService.editStudent(studentDto);
-        return "redirect:../student/{userId}";
+        return "redirect:../student/"+studentDto.getUserId();
     }
 
     @GetMapping(value = "/panelAdmin/instructorList/instructor/{userId}")
@@ -190,7 +190,7 @@ public class AdminPageController {
 
         instructorService.editInstructor(instructorDto);
 
-        return "redirect:../instructor/{userId}";
+        return "redirect:../instructor/"+instructorDto.getUserId();
     }
 
     @GetMapping(value = "/panelAdmin/instructorList/instructorD/{userId}")
@@ -255,7 +255,7 @@ public class AdminPageController {
     @PostMapping(value = "panelAdmin/paymentList/paymentE/")
     public String editPaymentDetails(@ModelAttribute("payment") PaymentDto paymentDto){
        paymentService.editPayment(paymentDto);
-        return "redirect:../payment/{paymentId}";
+        return "redirect:../payment/"+paymentDto.getPaymentId();
     }
 
     @GetMapping(value = "/panelAdmin/paymentList/paymentD/{paymentId}")

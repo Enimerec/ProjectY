@@ -54,6 +54,7 @@ public class AdminService {
     public void editAdmin(AdminDto adminDto) {
         Admin admin = adminRepository.findOne(adminDto.getUserId());
 
+        admin.setLogin(adminDto.getLogin());
         if(adminDto.getPassword() != null){
             admin.setPassword(adminDto.getPassword());
         }
