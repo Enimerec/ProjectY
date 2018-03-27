@@ -132,7 +132,7 @@ public class AdminPageController {
     }
 
     @PostMapping(value = "/panelAdmin/adminList/adminE/")
-    public String editAdminDetails(@ModelAttribute("student") AdminDto adminDto){
+    public String editAdminDetails(@ModelAttribute("admin") AdminDto adminDto){
         adminService.editAdmin(adminDto);
         return "redirect:../admin/{userId}";
     }
@@ -319,17 +319,6 @@ public class AdminPageController {
         lessonService.add(lessonDto);
         return "redirect:../lesson/{lessonId}";
     }
-    @GetMapping(value = "/panelAdmin/changePassword/{userId}")
-    public ModelAndView editPasswordPage(@PathVariable (value = "userId")int userId){
-        ModelAndView mav = new ModelAndView("admin/editPassword");
-        UserDto userDto = new UserDto();
-        userDto.setUserId(userId);
-        mav.addObject("user",userDto);
-        return mav;
-    }
-
-
-
 
    /* @GetMapping(value = "panelAdmin/calendar")
     public ModelAndView calendarPage(){
