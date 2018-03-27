@@ -24,6 +24,12 @@ public class PaymentService {
     }
 
     public void addNewPayment(PaymentDto paymentDto) {
+        Payment payment = getPayment(paymentDto);
+
+        paymentRepository.save(payment);
+    }
+
+    private Payment getPayment(PaymentDto paymentDto) {
         Payment payment  = new Payment();
         payment.setAmount(paymentDto.getAmount());
         payment.setDate(paymentDto.getDate());
@@ -32,8 +38,7 @@ public class PaymentService {
             payment.setStudent(studentRepository.findOne(paymentDto.getStudent()));
         }
         payment.setType(paymentDto.getType());
-
-        paymentRepository.save(payment);
+        return payment;
     }
 
     public void deletePaymentById(int paymentId) {
@@ -41,4 +46,16 @@ public class PaymentService {
     }
 
 
+    public void editPayment(PaymentDto paymentDto) {
+        Payment payment  = paymentRepository.findByPaymentId(paymentDto.getPaymentId());
+        payment.setAmount(paymentDto.getAmount());
+        payment.setDate(paymentDto.getDate());
+
+        if(payment.getStudent()!=null) {
+            payment.setStudent(studentRepository.findOne(paymentDto.getStudent()));
+        }
+        payment.setType(paymentDto.getType());
+
+        paymentRepository.save(payment);
+    }
 }

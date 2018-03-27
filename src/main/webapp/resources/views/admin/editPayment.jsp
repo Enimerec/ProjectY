@@ -14,6 +14,7 @@
 <body>
 <form:form action="" modelAttribute="payment" method="POST">
 
+    <form:input type="hidden" path="paymentId"/><br>
     Kwota: <form:input type="number" path="amount"/><br>
     Data: <form:input type="date" path="date"/><br>
     Id studenta: <form:input type="number" path="student"/><br>

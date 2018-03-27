@@ -31,11 +31,10 @@ public class AdminPageController {
     private final PaymentService paymentService;
     private final LessonService lessonService;
     private final LessonFinder lessonFinder;
-    private final UserService userService;
 
     @Autowired
     public AdminPageController(AdminService adminService, InstructorService instructorService,
-                               StudentService studentService, StudentFinder studentFinder, AdminFinder adminFinder, InstructorFinder instructorFinder, PaymentFinder paymentFinder, PaymentService paymentService, LessonService lessonService, LessonFinder lessonFinder, UserService userService) {
+                               StudentService studentService, StudentFinder studentFinder, AdminFinder adminFinder, InstructorFinder instructorFinder, PaymentFinder paymentFinder, PaymentService paymentService, LessonService lessonService, LessonFinder lessonFinder) {
         this.adminService = adminService;
         this.instructorService = instructorService;
         this.studentService = studentService;
@@ -46,7 +45,6 @@ public class AdminPageController {
         this.paymentService = paymentService;
         this.lessonService = lessonService;
         this.lessonFinder = lessonFinder;
-        this.userService = userService;
     }
 
     @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
@@ -133,16 +131,9 @@ public class AdminPageController {
         return mav;
     }
 
-    @PostMapping(value = "/panelAdmin/adminList/adminE/{userId}")
-    public String editAdminDetails(@PathVariable (value = "userId")int userId,
-                                     @ModelAttribute("admin") AdminDto adminDto){
-        AdminDto admin = adminFinder.findById(userId);
-        adminDto.setPassword(admin.getPassword());
-        adminDto.setUserId(userId);
-
-        adminService.deleteAdminById(userId);
-        adminService.addNewAdmin(adminDto);
-
+    @PostMapping(value = "/panelAdmin/adminList/adminE/")
+    public String editAdminDetails(@ModelAttribute("student") AdminDto adminDto){
+        adminService.editAdmin(adminDto);
         return "redirect:../admin/{userId}";
     }
 
@@ -161,7 +152,7 @@ public class AdminPageController {
         return mav;
     }
 
-    @GetMapping(value = "/panelAdmin/studentList/studentE/{userId}")
+    @GetMapping(value = "/panelAdmin/studentList/studentE/")
     public ModelAndView editStudentDetailsPage(@PathVariable (value = "userId")int userId){
         ModelAndView mav = new ModelAndView("admin/editStudent");
         mav.addObject("student",studentFinder.findById(userId));
@@ -175,15 +166,8 @@ public class AdminPageController {
     }
 
     @PostMapping(value = "/panelAdmin/studentList/studentE/{userId}")
-    public String editStudentDetails(@PathVariable (value = "userId")int userId,
-                                        @ModelAttribute("student") StudentDto studentDto){
-        StudentDto student = studentFinder.findById(userId);
-        studentDto.setPassword(student.getPassword());
-        studentDto.setUserId(userId);
-
-        studentService.deleteStudentById(userId);
-        studentService.addNewStudent(studentDto);
-
+    public String editStudentDetails(@ModelAttribute("student") StudentDto studentDto){
+        studentService.editStudent(studentDto);
         return "redirect:../student/{userId}";
     }
 
@@ -205,12 +189,7 @@ public class AdminPageController {
     public String editInstructorDetails(@PathVariable (value = "userId")int userId,
                                   @ModelAttribute("instructor") InstructorDto instructorDto){
 
-        InstructorDto instructor = instructorFinder.findById(userId);
-        instructorDto.setPassword(instructor.getPassword());
-        instructorDto.setUserId(userId);
-
-        instructorService.deleteInstructorByid(userId);
-        instructorService.addNewInst(instructorDto);
+        instructorService.editInstructor(instructorDto);
 
         return "redirect:../instructor/{userId}";
     }
@@ -275,12 +254,9 @@ public class AdminPageController {
     }
 
     @PostMapping(value = "panelAdmin/paymentList/paymentE/{paymentId}")
-    public String editPaymentDetails(@PathVariable (value = "paymentId")int paymentId,
-                                        @ModelAttribute("payment") PaymentDto paymentDto){
+    public String editPaymentDetails(@ModelAttribute("payment") PaymentDto paymentDto, @PathVariable("paymentId") String paymentId){
 
-        paymentDto.setPaymentId(paymentId);
-        paymentService.deletePaymentById(paymentId);
-        paymentService.addNewPayment(paymentDto);
+       paymentService.editPayment(paymentDto);
         return "redirect:../payment/{paymentId}";
     }
 
@@ -299,7 +275,6 @@ public class AdminPageController {
         mav.addObject("insOpt",getInstructor());
         return mav;
     }
-
 
     @PostMapping(value = "panelAdmin/addLesson")
     public String addNewLesson(@ModelAttribute("newLesson") LessonDto newLesson){
@@ -355,12 +330,6 @@ public class AdminPageController {
         return mav;
     }
 
-    @PostMapping(value = "/panelAdmin/changePassword/{userId}")
-    public String editPassword(@PathVariable (value = "userId")int userId,
-                               @ModelAttribute (value = "user") UserDto user){
-        userService.changePassword(userId,user);
-        return "redirect:../";
-    }
 
 
 

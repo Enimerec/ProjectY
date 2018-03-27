@@ -29,7 +29,6 @@ public class AdminService {
 
     public void addNewAdmin(AdminDto adminDto) {
         Admin newAdmin = getAdmin(adminDto);
-
         adminRepository.save(newAdmin);
 
     }
@@ -50,5 +49,19 @@ public class AdminService {
 
     public void deleteAdminById(int userId) {
         adminRepository.delete(userId);
+    }
+
+    public void editAdmin(AdminDto adminDto) {
+        Admin admin = adminRepository.findOne(adminDto.getUserId());
+
+        if(adminDto.getPassword() != null){
+            admin.setPassword(adminDto.getPassword());
+        }
+
+        admin.setTelephone(adminDto.getTelephone());
+        admin.setSurname(adminDto.getSurname());
+        admin.setName(adminDto.getName());
+        admin.setEMail(adminDto.getEMail());
+        adminRepository.save(admin);
     }
 }

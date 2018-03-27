@@ -13,6 +13,7 @@
 </head>
 <body>
 <form:form id="valid" action="" modelAttribute="lesson" method="POST" onsubmit="">
+    <form:input type="hidden" path="lessonId"/><br>
     Data<form:input type="date" path="date" /><br>
     Godzina rozpoczęcia: <form:input type="number" path="startHour"/><br>
     Godzina zakończenia: <form:input type="number" path="finishHour"/><br>

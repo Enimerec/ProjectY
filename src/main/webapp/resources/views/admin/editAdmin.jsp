@@ -13,8 +13,9 @@
 </head>
 <body>
 
-    <form:form action="" modelAttribute="admin" method="POST">
+    <form:form action="/panelAdmin/adminList/adminE/" modelAttribute="admin" method="POST">
         <form:input type="hidden" path="userId"/><br>
+
         Login<form:input type="text" path="login"/><br>
         Imię<form:input type="text" path="name"/><br>
         Nazwisko<form:input type="text" path="surname"/><br>

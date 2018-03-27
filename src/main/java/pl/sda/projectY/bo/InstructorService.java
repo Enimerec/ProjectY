@@ -54,4 +54,23 @@ public class InstructorService {
     public void deleteInstructorByid(int userId) {
         instructorRepository.delete(userId);
     }
+
+    public void editInstructor(InstructorDto instructorDto) {
+        Instructor instructor = instructorRepository.findOne(instructorDto.getUserId());
+        if(instructorDto.getPassword()!= null){
+            instructor.setPassword(instructorDto.getPassword());
+        }
+        instructor.setLogin(instructorDto.getLogin());
+        instructor.setCity(instructorDto.getCity());
+        instructor.setEMail(instructorDto.getEMail());
+        instructor.setInstNumber(instructorDto.getInstNumber());
+        instructor.setName(instructorDto.getName());
+        instructor.setPesel(instructorDto.getPesel());
+        instructor.setPostCode(instructorDto.getPostCode());
+        instructor.setStreet(instructorDto.getStreet());
+        instructor.setSurname(instructorDto.getSurname());
+        instructor.setTelephone(instructorDto.getTelephone());
+
+        instructorRepository.save(instructor);
+    }
 }
