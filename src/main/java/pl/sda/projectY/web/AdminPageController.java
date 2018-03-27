@@ -205,6 +205,7 @@ public class AdminPageController {
 
         InstructorDto instructor = instructorFinder.findById(userId);
         instructorDto.setPassword(instructor.getPassword());
+        instructorDto.setUserId(userId);
 
         instructorService.deleteInstructorByid(userId);
         instructorService.addNewInst(instructorDto);
@@ -275,6 +276,7 @@ public class AdminPageController {
     public String editPaymentDetails(@PathVariable (value = "paymentId")int paymentId,
                                         @ModelAttribute("payment") PaymentDto paymentDto){
 
+        paymentDto.setPaymentId(paymentId);
         paymentService.deletePaymentById(paymentId);
         paymentService.addNewPayment(paymentDto);
         return "redirect:..panelAdmin/paymentList";
