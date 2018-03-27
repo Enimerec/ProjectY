@@ -132,9 +132,9 @@ public class AdminPageController {
     }
 
     @PostMapping(value = "/panelAdmin/adminList/adminE/")
-    public String editAdminDetails(@ModelAttribute("student") AdminDto adminDto){
+    public String editAdminDetails(@ModelAttribute("admin") AdminDto adminDto){
         adminService.editAdmin(adminDto);
-        return "redirect:../admin/{userId}";
+        return "redirect:../admin/"+adminDto.getUserId();
     }
 
     @GetMapping(value = "/panelAdmin/adminList/adminD/{userId}")
@@ -311,6 +311,8 @@ public class AdminPageController {
         mav.addObject("insOpt",getInstructor());
         return mav;
     }
+//TODO przerobis edycje lessonow
+//TODO dodac rozwijana liste studentow w edycji paymentu
 
     @PostMapping(value = "panelAdmin/lessonList/lessonE/{lessonId}")
     public String editLessonDetails(@PathVariable (value = "lessonId") int lessonId,

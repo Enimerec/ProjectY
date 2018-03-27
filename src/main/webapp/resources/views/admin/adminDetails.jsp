@@ -13,7 +13,6 @@
 </head>
 <body>
     Login: ${admin.login}<br>
-    Hasło: ${admin.password}<br>(Podaj tylko jeśli chcesz je zmienić)
     Imię: ${admin.name}<br>
     Nazwisko: ${admin.surname}<br>
     Telefon: ${admin.telephone}<br>
