@@ -5,13 +5,11 @@ import org.springframework.stereotype.Service;
 import pl.sda.projectY.dto.PaymentDto;
 import pl.sda.projectY.entity.Payment;
 import pl.sda.projectY.repository.PaymentRepository;
-import pl.sda.projectY.repository.StudentRepository;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * author:
@@ -30,8 +28,8 @@ public class PaymentFinder {
 
     public List<PaymentDto> findAllOrderByDate(){
         List<PaymentDto> paymentDto = new ArrayList<>();
-        LocalDate data = LocalDate.now();
-        paymentRepository.findAllOrderByDate(data).forEach(payment ->
+        //Date data = Date.valueOf(LocalDate.now());
+        paymentRepository.findAll().forEach(payment ->
                 paymentDto.add(getPaymentDto(payment)));
         return paymentDto;
     }
@@ -41,7 +39,9 @@ public class PaymentFinder {
         paymentDto.setAmount(payment.getAmount());
         paymentDto.setDate(payment.getDate());
         paymentDto.setPaymentId(payment.getPaymentId());
-        paymentDto.setStudent(payment.getStudent().getUserId());
+        if(payment.getStudent()!=null) {
+            paymentDto.setStudent(payment.getStudent().getUserId());
+        }
         paymentDto.setType(payment.getType());
 
         return paymentDto;

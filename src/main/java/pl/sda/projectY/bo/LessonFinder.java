@@ -34,8 +34,12 @@ public class LessonFinder {
         lesson.setDate(newLesson.getDate());
         lesson.setStartHour(newLesson.getStartHour());
         lesson.setFinishHour(newLesson.getFinishHour());
-        lesson.setInstructor(newLesson.getInstructor().getUserId());
-        lesson.setStudent(newLesson.getStudent().getUserId());
+        if(newLesson.getInstructor()!=null) {
+            lesson.setInstructor(newLesson.getInstructor().getUserId());
+        }
+        if(newLesson.getStudent()!=null) {
+            lesson.setStudent(newLesson.getStudent().getUserId());
+        }
 
         return lesson;
 

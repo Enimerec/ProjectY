@@ -35,8 +35,11 @@ public class InstructorFinder {
     }
 
 
-    public List<Instructor> findAll() {
-        return instructorRepository.findAll();
+    public List<InstructorDto> findAll() {
+        List<InstructorDto>instructorDto = new ArrayList<>();
+        instructorRepository.findAll().forEach(instructor ->
+                instructorDto.add(getInstructorDto(instructor)));
+        return instructorDto;
     }
 
     public InstructorDto findById(int userId) {

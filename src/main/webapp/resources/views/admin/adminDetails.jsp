@@ -21,5 +21,8 @@
     <a href="${pageContext.servletContext.contextPath}/panelAdmin/adminList/changePassword/${admin.userId}">Zmień hasło</a><br>
     <a href="${pageContext.servletContext.contextPath}/panelAdmin/adminList/adminE/${admin.userId}">Edytuj</a><br>
     <a href="${pageContext.servletContext.contextPath}/panelAdmin/adminList/adminD/${admin.userId}">Usuń</a><br>
+
+    <br>
+    <jsp:include page="../bottomMenu.jsp"/>
 </body>
 </html>

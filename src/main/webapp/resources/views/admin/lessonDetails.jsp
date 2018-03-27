@@ -21,5 +21,7 @@ Id instruktora: ${lesson.instructor}
 <a href="${pageContext.servletContext.contextPath}/panelAdmin/lessonList/lessonE/${lesson.lessonId}">Edytuj</a><br>
 <a href="${pageContext.servletContext.contextPath}/panelAdmin/adminList/lessonD/${lesson.lessonId}">Usuń</a><br>
 
+<br>
+<jsp:include page="../bottomMenu.jsp"/>
 </body>
 </html>

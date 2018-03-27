@@ -21,5 +21,8 @@
         </li>
     </c:forEach>
 </ul>
+
+<br>
+<jsp:include page="../bottomMenu.jsp"/>
 </body>
 </html>

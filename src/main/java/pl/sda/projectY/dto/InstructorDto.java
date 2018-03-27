@@ -32,6 +32,12 @@ public class InstructorDto extends UserDto{
     private String postCode;
     private String city;
 
+    private String fullName;
+
+    public String getFullName() {
+        return name +" " + surname;
+    }
+
     private List<LessonDto> lessonList;
     private List<StudentDto> studentList;
 

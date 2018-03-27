@@ -39,5 +39,7 @@ Lista jazd: ${instructor.lessonList}<br>--%>
     <a href="${pageContext.servletContext.contextPath}/panelAdmin/instructorList/instructorD/${instructor.userId}">Usuń</a><br>
 </sec:authorize>
 
+<br>
+<jsp:include page="../bottomMenu.jsp"/>
 </body>
 </html>
