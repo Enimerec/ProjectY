@@ -29,7 +29,7 @@ public class PaymentFinder {
     public List<PaymentDto> findAllOrderByDate(){
         List<PaymentDto> paymentDto = new ArrayList<>();
         //Date data = Date.valueOf(LocalDate.now());
-        paymentRepository.findAll().forEach(payment ->
+        paymentRepository.findAllByOrderByDateDesc().forEach(payment ->
                 paymentDto.add(getPaymentDto(payment)));
         return paymentDto;
     }
@@ -52,7 +52,7 @@ public class PaymentFinder {
     }
     public List<PaymentDto> findAllByStudent_userIdOrderByDate(int student){
         List<PaymentDto> paymentDto = new ArrayList<>();
-        paymentRepository.findAllByStudent_userIdOrderByDate(student).forEach(payment -> paymentDto.add(getPaymentDto(payment)));
+        paymentRepository.findAllByStudent_UserIdOrderByDate(student).forEach(payment -> paymentDto.add(getPaymentDto(payment)));
         return paymentDto;
     }
 

@@ -15,8 +15,10 @@ import java.util.List;
 public interface PaymentRepository extends JpaRepository<Payment,Integer> {
 
     List<Payment> findAll();
+    List<Payment>findAllByOrderByDateDesc();
 
     Payment findByPaymentId(int id);
 
-    List<Payment> findAllByStudent_userIdOrderByDate(int student);
+    List<Payment> findAllByStudent_UserIdOrderByDate(Integer student_userId);
+
 }
