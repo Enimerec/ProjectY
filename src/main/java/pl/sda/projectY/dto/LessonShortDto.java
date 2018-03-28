@@ -20,7 +20,8 @@ public class LessonShortDto {
     private Integer lessonId;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
-
+    private Integer startHour;
+    private Integer finishHour;
     private InstructorDto instructor;
     private StudentDto student;
 }

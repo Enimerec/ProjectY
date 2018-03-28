@@ -150,8 +150,9 @@ public class AdminPageController {
         ModelAndView mav = new ModelAndView("admin/studentDetails");
         StudentDto studentDto = studentFinder.findById(userId);
         studentDto.setPaymentList(paymentFinder.findAllByStudent_userIdOrderByDate(userId));
-        studentDto.setLessonList(lessonFinder.findAllByStudent_userIdOrderByDate(userId));
+        List<LessonShortDto>lessonShortDtos = lessonFinder.findAllByStudent_userIdOrderByDateShort(userId);
         InstructorDto instructor = instructorFinder.findById(studentDto.getMainInstructor());
+        mav.addObject("lessons",lessonShortDtos);
         mav.addObject("student",studentDto);
         mav.addObject("instructor",instructor);
         return mav;

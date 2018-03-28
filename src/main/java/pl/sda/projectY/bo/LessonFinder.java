@@ -51,19 +51,17 @@ public class LessonFinder {
 
         return lessonDto;
 
-
-
     }
 
     public LessonDto findById(int lessonId) {
         return getLessonDto(lessonRepository.findOne(lessonId));
     }
 
-    public List<LessonDto> findAllByStudent_userIdOrderByDate(int student){
+    /*public List<LessonDto> findAllByStudent_userIdOrderByDate(int student){
         List<LessonDto> lessonDto = new ArrayList<>();
         lessonRepository.findAllByStudent_UserIdOrderByDate(student).forEach(lesson -> lessonDto.add(getLessonDto(lesson)));
         return lessonDto;
-    }
+    }*/
 
     public List<LessonDto> findAllByInstructor_userIdOrderByDate(int instructor) {
         List<LessonDto> lessonDto = new ArrayList<>();
@@ -80,10 +78,19 @@ public class LessonFinder {
 
     private LessonShortDto getLessonShortDto(Lesson lesson) {
         LessonShortDto lessonShortDto = new LessonShortDto();
+        lessonShortDto.setStartHour(lesson.getStartHour());
+        lessonShortDto.setFinishHour(lesson.getFinishHour());
         lessonShortDto.setLessonId(lesson.getLessonId());
         lessonShortDto.setDate(lesson.getDate());
         lessonShortDto.setInstructor(instructorFinder.findById(lesson.getInstructor().getUserId()));
         lessonShortDto.setStudent(studentFinder.findById(lesson.getStudent().getUserId()));
         return lessonShortDto;
+    }
+
+    public List<LessonShortDto> findAllByStudent_userIdOrderByDateShort(int userId) {
+        List<LessonShortDto> lessonDto = new ArrayList<>();
+        lessonRepository.findAllByStudent_UserIdOrderByDate(userId).forEach(lesson ->
+                lessonDto.add(getLessonShortDto(lesson)));
+        return lessonDto;
     }
 }
