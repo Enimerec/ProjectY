@@ -12,7 +12,7 @@
     <title>Edit Lesson Page</title>
 </head>
 <body>
-<form:form action="panelAdmin/lessonList/lessonE/" modelAttribute="lesson" method="POST">
+<form:form action="/panelAdmin/lessonList/lessonE/" modelAttribute="lesson" method="POST">
     <form:input type="hidden" path="lessonId"/><br>
     Data<form:input type="date" path="date" /><br>
     Godzina rozpoczęcia: <form:input type="number" path="startHour"/><br>

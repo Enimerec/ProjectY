@@ -14,18 +14,18 @@
 </head>
 <body>
 
-Login: ${instructor.login}<br>
-Imię: ${instructor.name}<br>
-Nazwisko: ${instructor.surname}<br>
-Telefon: ${instructor.telephone}<br>
-E-Mail: ${instructor.EMail}
+Login: ${mainInstructor.login}<br>
+Imię: ${mainInstructor.name}<br>
+Nazwisko: ${mainInstructor.surname}<br>
+Telefon: ${mainInstructor.telephone}<br>
+E-Mail: ${mainInstructor.EMail}
 
-Pesel: ${instructor.pesel}<br>
-Numer ewidencyjny: ${instructor.instNumber}<br>
+Pesel: ${mainInstructor.pesel}<br>
+Numer ewidencyjny: ${mainInstructor.instNumber}<br>
 
-Miasto: ${instructor.city}<br>
-Kod pocztowy: ${instructor.postCode}<br>
-Ulica: ${instructor.street}<br>
+Miasto: ${mainInstructor.city}<br>
+Kod pocztowy: ${mainInstructor.postCode}<br>
+Ulica: ${mainInstructor.street}<br>
 
 Lista kursantów;
 <ul>

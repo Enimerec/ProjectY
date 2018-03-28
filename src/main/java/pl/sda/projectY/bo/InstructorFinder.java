@@ -56,7 +56,7 @@ public class InstructorFinder {
         instructorDto.setName(instructor.getName());
         instructorDto.setSurname(instructor.getSurname());
         instructorDto.setLogin(instructor.getLogin());
-        //instructorDto.setPassword(instructor.getPassword());
+        //instructorDto.setPassword(mainInstructor.getPassword());
         instructorDto.setCity(instructor.getCity());
         instructorDto.setEMail(instructor.getEMail());
         instructorDto.setInstNumber(instructor.getInstNumber());
@@ -64,8 +64,8 @@ public class InstructorFinder {
         instructorDto.setPostCode(instructor.getPostCode());
         instructorDto.setStreet(instructor.getStreet());
 
-        /*List<Student> studentList = new ArrayList<>(instructor.getStudentList());
-        List<Lesson> lessonsList = new ArrayList<>(instructor.getLessonList());
+        /*List<Student> studentList = new ArrayList<>(mainInstructor.getStudentList());
+        List<Lesson> lessonsList = new ArrayList<>(mainInstructor.getLessonList());
 
         instructorDto.setLessonList(lessonsList);
         instructorDto.setStudentList(studentList);*/

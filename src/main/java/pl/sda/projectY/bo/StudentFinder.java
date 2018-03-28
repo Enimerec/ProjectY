@@ -48,10 +48,6 @@ public class StudentFinder {
 
     }
 
-    public Student findStudentByID(int id){
-        return studentRepository.findOne(id);
-    }
-
     private StudentDto getStudentDto(Student student) {
         StudentDto newStudent = new StudentDto();
 
