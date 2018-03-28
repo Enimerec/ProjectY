@@ -13,6 +13,8 @@
     <title>Student List</title>
 </head>
 <body>
+
+<div class="odstep">
 <h1>Lista kursantów:</h1>
 <br>
 <table>
@@ -29,6 +31,7 @@
 </table>
 <br>
 <jsp:include page="../bottomMenu.jsp"/>
+    </div>
 </body>
 </html>
 

@@ -43,7 +43,7 @@ public class StudentFinder {
     }
 
     public List<StudentShortDto>findAllShort(){
-        List<Student>studentList = studentRepository.findAll();
+        List<Student>studentList = studentRepository.findAllByOrderByRegNumDesc();
         List<StudentShortDto> studentDtoList = new ArrayList<>();
         studentList.forEach(student -> studentDtoList.add(getStudentShortDto(student)));
         return studentDtoList;
@@ -116,7 +116,7 @@ public class StudentFinder {
 
     public List<StudentDto> findAllByMainInstructor_userIdOrderByName(int instructor) {
         List<StudentDto> studentDto = new ArrayList<>();
-        studentRepository.findAllByMainInstructor_UserIdOrderByName(instructor).forEach(student -> studentDto.add(getStudentDto(student)));
+        studentRepository.findAllByMainInstructor_UserIdOrderByRegNumDesc(instructor).forEach(student -> studentDto.add(getStudentDto(student)));
         return studentDto;
     }
 }

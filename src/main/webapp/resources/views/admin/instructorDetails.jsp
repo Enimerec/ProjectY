@@ -18,7 +18,7 @@ Login: ${mainInstructor.login}<br>
 Imię: ${mainInstructor.name}<br>
 Nazwisko: ${mainInstructor.surname}<br>
 Telefon: ${mainInstructor.telephone}<br>
-E-Mail: ${mainInstructor.EMail}
+E-Mail: ${mainInstructor.EMail}<br>
 
 Pesel: ${mainInstructor.pesel}<br>
 Numer ewidencyjny: ${mainInstructor.instNumber}<br>
@@ -26,7 +26,7 @@ Numer ewidencyjny: ${mainInstructor.instNumber}<br>
 Miasto: ${mainInstructor.city}<br>
 Kod pocztowy: ${mainInstructor.postCode}<br>
 Ulica: ${mainInstructor.street}<br>
-
+<br>
 Lista kursantów;
 <ul>
     <c:forEach items="${mainInstructor.studentList}" var="student">
