@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.sda.projectY.dto.PaymentDto;
+import pl.sda.projectY.dto.PaymentShortDto;
 import pl.sda.projectY.entity.Payment;
 import pl.sda.projectY.repository.PaymentRepository;
 
@@ -28,12 +29,22 @@ public class PaymentFinder {
         this.studentFinder = studentFinder;
     }
 
-    public List<PaymentDto> findAllOrderByDate(){
-        List<PaymentDto> paymentDto = new ArrayList<>();
+    public List<PaymentShortDto> findAllOrderByDate(){
+        List<PaymentShortDto> paymentDto = new ArrayList<>();
         //Date data = Date.valueOf(LocalDate.now());
         paymentRepository.findAllByOrderByDateDesc().forEach(payment ->
-                paymentDto.add(getPaymentDto(payment)));
+                paymentDto.add(getPaymentShortDto(payment)));
         return paymentDto;
+    }
+
+    private PaymentShortDto getPaymentShortDto(Payment payment) {
+        PaymentShortDto paymentShortDto = new PaymentShortDto();
+        paymentShortDto.setPaymentId(payment.getPaymentId());
+        paymentShortDto.setAmount(payment.getAmount());
+        paymentShortDto.setDate(payment.getDate());
+        paymentShortDto.setAmount(payment.getAmount());
+        paymentShortDto.setStudent(studentFinder.findById(payment.getStudent().getUserId()));
+        return paymentShortDto;
     }
 
     private PaymentDto getPaymentDto(Payment payment){

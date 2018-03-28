@@ -34,7 +34,7 @@ public class PaymentService {
         payment.setDate(paymentDto.getDate());
         payment.setPaymentId(paymentDto.getPaymentId());
         if(paymentDto.getStudent()!=null) {
-            payment.setStudent(studentRepository.findOne(paymentDto.getStudent()));
+            payment.setStudent(studentRepository.findOne(paymentDto.getStudent().getUserId()));
         }
         payment.setType(paymentDto.getType());
         return payment;
@@ -51,7 +51,7 @@ public class PaymentService {
         payment.setDate(paymentDto.getDate());
 
         if(paymentDto.getStudent()!=null) {
-            payment.setStudent(studentRepository.findOne(paymentDto.getStudent()));
+            payment.setStudent(studentRepository.findOne(paymentDto.getStudent().getUserId()));
         }
         payment.setType(paymentDto.getType());
 

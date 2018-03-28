@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.sda.projectY.dto.LessonDto;
+import pl.sda.projectY.dto.LessonShortDto;
 import pl.sda.projectY.entity.Lesson;
 import pl.sda.projectY.repository.LessonRepository;
 
@@ -19,21 +20,21 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class LessonFinder {
     private LessonRepository lessonRepository;
-    private StudentFinder studentFinder;
     private InstructorFinder instructorFinder;
+    private StudentFinder studentFinder;
 
     @Autowired
-    public LessonFinder(LessonRepository lessonRepository, StudentFinder studentFinder, InstructorFinder instructorFinder) {
+    public LessonFinder(LessonRepository lessonRepository, InstructorFinder instructorFinder, StudentFinder studentFinder) {
         this.lessonRepository = lessonRepository;
-        this.studentFinder = studentFinder;
         this.instructorFinder = instructorFinder;
+        this.studentFinder = studentFinder;
     }
 
-    public List<LessonDto> findAll() {
+    /*public List<LessonDto> findAll() {
         List<LessonDto> lessonDto = new ArrayList<>();
         lessonRepository.findAll().forEach(lesson -> lessonDto.add(getLessonDto(lesson)));
         return lessonDto;
-    }
+    }*/
 
     private LessonDto getLessonDto(Lesson lesson) {
         LessonDto lessonDto = new LessonDto();
@@ -42,10 +43,10 @@ public class LessonFinder {
         lessonDto.setStartHour(lesson.getStartHour());
         lessonDto.setFinishHour(lesson.getFinishHour());
         if(lesson.getInstructor()!=null) {
-            lessonDto.setInstructor(instructorFinder.getInstructorShortDto(lesson.getInstructor()));
+            lessonDto.setInstructor(lesson.getInstructor().getUserId());
         }
         if(lesson.getStudent()!=null) {
-            lessonDto.setStudent(studentFinder.getStudentShortDto(lesson.getStudent()));
+            lessonDto.setStudent(lesson.getStudent().getUserId());
         }
 
         return lessonDto;
@@ -68,5 +69,21 @@ public class LessonFinder {
         List<LessonDto> lessonDto = new ArrayList<>();
         lessonRepository.findAllByInstructor_UserIdOrderByDate(instructor).forEach(lesson -> lessonDto.add(getLessonDto(lesson)));
         return lessonDto;
+    }
+
+    public List<LessonShortDto> findAllShort() {
+        List<LessonShortDto> lessonDto = new ArrayList<>();
+        lessonRepository.findAll().forEach(lesson -> lessonDto.add(getLessonShortDto(lesson)));
+        return lessonDto;
+
+    }
+
+    private LessonShortDto getLessonShortDto(Lesson lesson) {
+        LessonShortDto lessonShortDto = new LessonShortDto();
+        lessonShortDto.setLessonId(lesson.getLessonId());
+        lessonShortDto.setDate(lesson.getDate());
+        lessonShortDto.setInstructor(instructorFinder.findById(lesson.getInstructor().getUserId()));
+        lessonShortDto.setStudent(studentFinder.findById(lesson.getStudent().getUserId()));
+        return lessonShortDto;
     }
 }

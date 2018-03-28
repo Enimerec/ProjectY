@@ -1,5 +1,6 @@
 package pl.sda.projectY.web;
 
+import jdk.nashorn.internal.objects.annotations.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -210,7 +211,7 @@ public class AdminPageController {
     @GetMapping(value = "panelAdmin/paymentList")
     public ModelAndView paymentListPage(){
         ModelAndView mav = new ModelAndView("admin/paymentList");
-        List<PaymentDto> paymentSet = paymentFinder.findAllOrderByDate();
+        List<PaymentShortDto> paymentSet = paymentFinder.findAllOrderByDate();
         mav.addObject("payments",paymentSet);
         return mav;
     }
@@ -291,7 +292,7 @@ public class AdminPageController {
     @GetMapping(value = "panelAdmin/lessonList")
     public ModelAndView lessonListPage(){
         ModelAndView mav = new ModelAndView("admin/lessonList");
-        mav.addObject("lessons",lessonFinder.findAll());
+        mav.addObject("lessons",lessonFinder.findAllShort());
         return mav;
     }
 
@@ -299,8 +300,8 @@ public class AdminPageController {
     public ModelAndView lessonDetailsPage(@PathVariable (value = "lessonId")int lessonId){
         ModelAndView mav = new ModelAndView("admin/lessonDetails");
         LessonDto lesson = lessonFinder.findById(lessonId);
-        StudentDto student = studentFinder.findById(lesson.getStudent().getUserId());
-        InstructorDto instructor = instructorFinder.findById(lesson.getInstructor().getUserId());
+        StudentDto student = studentFinder.findById(lesson.getStudent());
+        InstructorDto instructor = instructorFinder.findById(lesson.getInstructor());
         mav.addObject("instructor",instructor);
         mav.addObject("student",student);
         mav.addObject("lesson",lesson);
