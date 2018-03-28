@@ -31,9 +31,7 @@ Lista kursantów;
 <ul>
     <c:forEach items="${mainInstructor.studentList}" var="student">
         <li>
-                ${student.name},
-                ${student.surname},
-                ${student.regNum}
+                ${student.fullName}
 
         </li>
     </c:forEach>

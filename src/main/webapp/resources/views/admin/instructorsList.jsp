@@ -15,7 +15,7 @@
 <ul>
     <c:forEach items="${instructors}" var="instructor">
         <li>
-                ${instructor.name},
+                ${instructor.name}
                 ${instructor.surname},
                 ${instructor.instNumber},
             <a href="${pageContext.servletContext.contextPath}/panelAdmin/instructorList/instructor/${instructor.userId}">Szczegóły</a>

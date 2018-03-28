@@ -262,7 +262,7 @@ public class AdminPageController {
     @PostMapping(value = "panelAdmin/paymentList/paymentE/")
     public String editPaymentDetails(@ModelAttribute("payment") PaymentDto paymentDto){
        paymentService.editPayment(paymentDto);
-        return "redirect:../payment/"+paymentDto.getPaymentId();
+        return "redirect:../";
     }
     @GetMapping(value = "/panelAdmin/paymentList/paymentD/{paymentId}")
     public String deletePayment(@PathVariable (value = "paymentId")int paymentId){
