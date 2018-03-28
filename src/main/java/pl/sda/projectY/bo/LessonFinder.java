@@ -73,7 +73,6 @@ public class LessonFinder {
         List<LessonShortDto> lessonDto = new ArrayList<>();
         lessonRepository.findAll().forEach(lesson -> lessonDto.add(getLessonShortDto(lesson)));
         return lessonDto;
-
     }
 
     private LessonShortDto getLessonShortDto(Lesson lesson) {
