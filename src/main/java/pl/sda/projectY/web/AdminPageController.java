@@ -100,7 +100,7 @@ public class AdminPageController {
     @GetMapping(value = "/panelAdmin/studentList")
     public ModelAndView showAllStudents(){
         ModelAndView mav = new ModelAndView("admin/studentsList");
-        mav.addObject("students",studentFinder.findAll());
+        mav.addObject("students",studentFinder.findAllShort());
         return mav;
     }
 
@@ -150,7 +150,9 @@ public class AdminPageController {
         StudentDto studentDto = studentFinder.findById(userId);
         studentDto.setPaymentList(paymentFinder.findAllByStudent_userIdOrderByDate(userId));
         studentDto.setLessonList(lessonFinder.findAllByStudent_userIdOrderByDate(userId));
+        InstructorDto instructor = instructorFinder.findById(studentDto.getMainInstructor());
         mav.addObject("student",studentDto);
+        mav.addObject("instructor",instructor);
         return mav;
     }
 
@@ -262,7 +264,7 @@ public class AdminPageController {
     @PostMapping(value = "panelAdmin/paymentList/paymentE/")
     public String editPaymentDetails(@ModelAttribute("payment") PaymentDto paymentDto){
        paymentService.editPayment(paymentDto);
-        return "redirect:../payment/"+paymentDto.getPaymentId();
+        return "redirect:../";
     }
     @GetMapping(value = "/panelAdmin/paymentList/paymentD/{paymentId}")
     public String deletePayment(@PathVariable (value = "paymentId")int paymentId){
@@ -296,7 +298,13 @@ public class AdminPageController {
     @GetMapping(value = "/panelAdmin/lessonList/lesson/{lessonId}")
     public ModelAndView lessonDetailsPage(@PathVariable (value = "lessonId")int lessonId){
         ModelAndView mav = new ModelAndView("admin/lessonDetails");
-        mav.addObject("lesson",lessonFinder.findById(lessonId));
+        LessonDto lesson = lessonFinder.findById(lessonId);
+        StudentDto student = studentFinder.findById(lesson.getStudent());
+        InstructorDto instructor = instructorFinder.findById(lesson.getInstructor());
+        mav.addObject("instructor",instructor);
+        mav.addObject("student",student);
+        mav.addObject("lesson",lesson);
+
         return mav;
     }
 

@@ -15,8 +15,8 @@
 Data: ${lesson.date}<br>
 Godzina rozpoczęcia: ${lesson.startHour}<br>
 Godzina zakończenie: ${lesson.finishHour}<br>
-Id studenta: ${lesson.student}<br>
-Id instruktora: ${lesson.instructor}<br>
+Student: ${student.fullName}<br>
+Instruktor: ${instructor.fullName}<br>
 
 <a href="${pageContext.servletContext.contextPath}/panelAdmin/lessonList/lessonE/${lesson.lessonId}">Edytuj</a><br>
 <a href="${pageContext.servletContext.contextPath}/panelAdmin/lessonList/lessonD/${lesson.lessonId}">Usuń</a><br>

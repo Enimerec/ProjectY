@@ -5,12 +5,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.sda.projectY.dto.StudentDto;
-import pl.sda.projectY.entity.Lesson;
-import pl.sda.projectY.entity.Payment;
+import pl.sda.projectY.dto.StudentShortDto;
 import pl.sda.projectY.entity.Student;
 import pl.sda.projectY.repository.StudentRepository;
 
@@ -29,10 +27,12 @@ import java.util.Optional;
 public class StudentFinder {
 
     private final StudentRepository studentRepository;
+    private final InstructorFinder instructorFinder;
 
     @Autowired
-    public StudentFinder(StudentRepository studentRepository) {
+    public StudentFinder(StudentRepository studentRepository, InstructorFinder instructorFinder) {
         this.studentRepository = studentRepository;
+        this.instructorFinder = instructorFinder;
     }
 
     public List<StudentDto> findAll() {
@@ -40,6 +40,22 @@ public class StudentFinder {
         List<StudentDto> studentDtoList = new ArrayList<>();
         studentList.forEach(student -> studentDtoList.add(getStudentDto(student)));
         return studentDtoList;
+    }
+
+    public List<StudentShortDto>findAllShort(){
+        List<Student>studentList = studentRepository.findAll();
+        List<StudentShortDto> studentDtoList = new ArrayList<>();
+        studentList.forEach(student -> studentDtoList.add(getStudentShortDto(student)));
+        return studentDtoList;
+    }
+
+    private StudentShortDto getStudentShortDto(Student student) {
+        StudentShortDto studentShortDto = new StudentShortDto();
+        studentShortDto.setUserId(student.getUserId());
+        studentShortDto.setFullName(student.getName()+" "+student.getSurname());
+        studentShortDto.setRegNum(student.getRegNum());
+        studentShortDto.setMainInstructor(instructorFinder.findById(student.getMainInstructor().getUserId()));
+        return studentShortDto;
     }
 
     public StudentDto findById(int id) {

@@ -33,7 +33,7 @@
     Kod pocztowy: ${student.postCode}<br>
     Ulica: ${student.street}<br>
 
-    Główny instruktor: ${student.mainInstructor}<br>
+    Główny instruktor: ${instructor.fullName} <br>
     <br>
     Lista platności:
     <ul>
