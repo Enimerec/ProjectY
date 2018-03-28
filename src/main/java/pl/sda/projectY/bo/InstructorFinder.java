@@ -64,6 +64,7 @@ public class InstructorFinder {
         instructorDto.setPesel(instructor.getPesel());
         instructorDto.setPostCode(instructor.getPostCode());
         instructorDto.setStreet(instructor.getStreet());
+        instructorDto.setTelephone(instructor.getTelephone());
 
         /*List<Student> studentList = new ArrayList<>(mainInstructor.getStudentList());
         List<Lesson> lessonsList = new ArrayList<>(mainInstructor.getLessonList());

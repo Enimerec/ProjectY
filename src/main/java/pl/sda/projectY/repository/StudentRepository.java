@@ -11,9 +11,9 @@ import java.util.List;
 @Transactional
 public interface StudentRepository extends JpaRepository<Student,Integer>{
 
-    List<Student> findAll();
+    List<Student> findAllByOrderByRegNumDesc();
 
     Student findByLogin(String login);
 
-    List<Student> findAllByMainInstructor_UserIdOrderByName(Integer mainInstructor_userId);
+    List<Student> findAllByMainInstructor_UserIdOrderByRegNumDesc(Integer mainInstructor_userId);
 }
