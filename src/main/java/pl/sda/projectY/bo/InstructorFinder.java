@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.sda.projectY.dto.InstructorDto;
+import pl.sda.projectY.dto.InstructorShortDto;
 import pl.sda.projectY.dto.StudentDto;
 import pl.sda.projectY.entity.Instructor;
 import pl.sda.projectY.entity.Lesson;
@@ -87,5 +88,13 @@ public class InstructorFinder {
     private InstructorDto findByLogin(String login) {
         Instructor instructor = instructorRepository.findByLogin(login);
         return getInstructorDto(instructor);
+    }
+
+    InstructorShortDto getInstructorShortDto(Instructor instructor) {
+        InstructorShortDto instructorShortDto = new InstructorShortDto();
+        instructorShortDto.setFullName(instructor.getName()+" "+instructor.getSurname());
+        instructorShortDto.setInstNumber(instructor.getInstNumber());
+        instructorShortDto.setUserId(instructor.getUserId());
+        return instructorShortDto;
     }
 }

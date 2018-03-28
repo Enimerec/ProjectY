@@ -48,8 +48,7 @@ public class StudentFinder {
         studentList.forEach(student -> studentDtoList.add(getStudentShortDto(student)));
         return studentDtoList;
     }
-
-    private StudentShortDto getStudentShortDto(Student student) {
+    StudentShortDto getStudentShortDto(Student student) {
         StudentShortDto studentShortDto = new StudentShortDto();
         studentShortDto.setUserId(student.getUserId());
         studentShortDto.setFullName(student.getName()+" "+student.getSurname());

@@ -13,12 +13,8 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class StudentShortDto {
-
+public class InstructorShortDto {
     private Integer userId;
     private String fullName;
-    private InstructorDto mainInstructor;
-    private String regNum;
-
-
+    private String instNumber;
 }

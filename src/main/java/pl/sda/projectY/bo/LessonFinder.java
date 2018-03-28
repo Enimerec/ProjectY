@@ -19,10 +19,14 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class LessonFinder {
     private LessonRepository lessonRepository;
+    private StudentFinder studentFinder;
+    private InstructorFinder instructorFinder;
 
     @Autowired
-    public LessonFinder(LessonRepository lessonRepository) {
+    public LessonFinder(LessonRepository lessonRepository, StudentFinder studentFinder, InstructorFinder instructorFinder) {
         this.lessonRepository = lessonRepository;
+        this.studentFinder = studentFinder;
+        this.instructorFinder = instructorFinder;
     }
 
     public List<LessonDto> findAll() {
@@ -38,10 +42,10 @@ public class LessonFinder {
         lessonDto.setStartHour(lesson.getStartHour());
         lessonDto.setFinishHour(lesson.getFinishHour());
         if(lesson.getInstructor()!=null) {
-            lessonDto.setInstructor(lesson.getInstructor().getUserId());
+            lessonDto.setInstructor(instructorFinder.getInstructorShortDto(lesson.getInstructor()));
         }
         if(lesson.getStudent()!=null) {
-            lessonDto.setStudent(lesson.getStudent().getUserId());
+            lessonDto.setStudent(studentFinder.getStudentShortDto(lesson.getStudent()));
         }
 
         return lessonDto;

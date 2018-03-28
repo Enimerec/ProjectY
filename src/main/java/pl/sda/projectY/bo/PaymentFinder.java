@@ -7,8 +7,6 @@ import pl.sda.projectY.dto.PaymentDto;
 import pl.sda.projectY.entity.Payment;
 import pl.sda.projectY.repository.PaymentRepository;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +20,12 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class PaymentFinder {
     private final PaymentRepository paymentRepository;
+    private final StudentFinder studentFinder;
 
     @Autowired
-    public PaymentFinder(PaymentRepository paymentRepository) {
+    public PaymentFinder(PaymentRepository paymentRepository, StudentFinder studentFinder) {
         this.paymentRepository = paymentRepository;
+        this.studentFinder = studentFinder;
     }
 
     public List<PaymentDto> findAllOrderByDate(){
@@ -42,7 +42,7 @@ public class PaymentFinder {
         paymentDto.setDate(payment.getDate());
         paymentDto.setPaymentId(payment.getPaymentId());
         if(payment.getStudent()!=null) {
-            paymentDto.setStudent(payment.getStudent().getUserId());
+            paymentDto.setStudent(studentFinder.getStudentShortDto(payment.getStudent()));
         }
         paymentDto.setType(payment.getType());
 

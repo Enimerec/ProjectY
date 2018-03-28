@@ -22,7 +22,7 @@ public class LessonDto {
     private Integer startHour;
     private Integer finishHour;
 
-    private Integer instructor;
-    private Integer student;
+    private InstructorShortDto instructor;
+    private StudentShortDto student;
 
 }

@@ -16,8 +16,8 @@
     <c:forEach items="${lessons}" var="lesson">
         <li>
                 Data: ${lesson.date},
-                Student: ${lesson.student},
-                Instruktor: ${lesson.instructor},
+                Student: ${lesson.student.fullName},
+                Instruktor: ${lesson.instructor.fullName},
             <a href="${pageContext.servletContext.contextPath}/panelAdmin/lessonList/lesson/${lesson.lessonId}">Szczegóły</a>
         </li>
     </c:forEach>

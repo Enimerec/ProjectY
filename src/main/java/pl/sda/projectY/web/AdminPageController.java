@@ -299,8 +299,8 @@ public class AdminPageController {
     public ModelAndView lessonDetailsPage(@PathVariable (value = "lessonId")int lessonId){
         ModelAndView mav = new ModelAndView("admin/lessonDetails");
         LessonDto lesson = lessonFinder.findById(lessonId);
-        StudentDto student = studentFinder.findById(lesson.getStudent());
-        InstructorDto instructor = instructorFinder.findById(lesson.getInstructor());
+        StudentDto student = studentFinder.findById(lesson.getStudent().getUserId());
+        InstructorDto instructor = instructorFinder.findById(lesson.getInstructor().getUserId());
         mav.addObject("instructor",instructor);
         mav.addObject("student",student);
         mav.addObject("lesson",lesson);
