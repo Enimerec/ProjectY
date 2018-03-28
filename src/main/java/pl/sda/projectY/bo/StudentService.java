@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.sda.projectY.dto.StudentDto;
+import pl.sda.projectY.entity.Admin;
 import pl.sda.projectY.entity.Student;
 import pl.sda.projectY.repository.InstructorRepository;
 import pl.sda.projectY.repository.StudentRepository;
@@ -62,5 +63,29 @@ public class StudentService {
 
     public void deleteStudentById(int userId) {
         studentRepository.delete(userId);
+    }
+
+    public void editStudent(StudentDto studentDto) {
+        Student student = studentRepository.findOne(studentDto.getUserId());
+        student.setLogin(studentDto.getLogin());;
+
+        student.setName(studentDto.getName());
+        student.setSurname(studentDto.getSurname());
+        student.setTelephone(studentDto.getTelephone());
+
+        student.setCity(studentDto.getCity());
+        student.setStreet(studentDto.getStreet());
+        student.setPostCode(studentDto.getPostCode());
+
+        student.setIdNumber(studentDto.getIdNumber());
+        student.setPesel(studentDto.getPesel());
+        student.setPkNum(studentDto.getPkNum());
+        student.setRegNum(studentDto.getRegNum());
+
+        if(studentDto.getMainInstructor()!=null) {
+            student.setMainInstructor(instructorRepository.findOne(studentDto.getMainInstructor()));
+        }
+        student.setStartDate(studentDto.getStartDate());
+        studentRepository.save(student);
     }
 }

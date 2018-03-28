@@ -24,16 +24,20 @@ public class PaymentService {
     }
 
     public void addNewPayment(PaymentDto paymentDto) {
+        Payment payment = getPayment(paymentDto);
+        paymentRepository.save(payment);
+    }
+
+    private Payment getPayment(PaymentDto paymentDto) {
         Payment payment  = new Payment();
         payment.setAmount(paymentDto.getAmount());
         payment.setDate(paymentDto.getDate());
         payment.setPaymentId(paymentDto.getPaymentId());
-        if(payment.getStudent()!=null) {
-            payment.setStudent(studentRepository.findOne(paymentDto.getStudent()));
+        if(paymentDto.getStudent()!=null) {
+            payment.setStudent(studentRepository.findOne(paymentDto.getStudent().getUserId()));
         }
         payment.setType(paymentDto.getType());
-
-        paymentRepository.save(payment);
+        return payment;
     }
 
     public void deletePaymentById(int paymentId) {
@@ -41,4 +45,16 @@ public class PaymentService {
     }
 
 
+    public void editPayment(PaymentDto paymentDto) {
+        Payment payment  = paymentRepository.findByPaymentId(paymentDto.getPaymentId());
+        payment.setAmount(paymentDto.getAmount());
+        payment.setDate(paymentDto.getDate());
+
+        if(paymentDto.getStudent()!=null) {
+            payment.setStudent(studentRepository.findOne(paymentDto.getStudent().getUserId()));
+        }
+        payment.setType(paymentDto.getType());
+
+        paymentRepository.save(payment);
+    }
 }

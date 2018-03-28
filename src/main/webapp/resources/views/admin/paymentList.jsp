@@ -12,7 +12,7 @@
 <ul>
     <c:forEach items="${payments}" var="payment">
         <li>
-                ${payment.student},
+                ${payment.student.fullName},
                 ${payment.amount},
                 ${payment.date},
                 ${payment.type},

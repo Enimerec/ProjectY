@@ -2,24 +2,26 @@ package pl.sda.projectY.dto;
 
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
-import pl.sda.projectY.entity.Student;
-import pl.sda.projectY.type.PaymentType;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
+/**
+ * author:
+ * Mateusz
+ * Marczak
+ **/
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PaymentDto {
+public class LessonShortDto {
 
-    private Integer paymentId;
+    private Integer lessonId;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
-    private BigDecimal amount;
-    private PaymentType type;
-
-    private StudentShortDto student;
+    private Integer startHour;
+    private Integer finishHour;
+    private InstructorDto instructor;
+    private StudentDto student;
 }

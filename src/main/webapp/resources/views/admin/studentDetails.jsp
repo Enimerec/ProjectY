@@ -33,7 +33,7 @@
     Kod pocztowy: ${student.postCode}<br>
     Ulica: ${student.street}<br>
 
-    Główny instruktor: ${student.mainInstructor}<br>
+    Główny instruktor: ${instructor.fullName} <br>
     <br>
     Lista platności:
     <ul>
@@ -45,15 +45,24 @@
             </li>
         </c:forEach>
     </ul>
-    <%--${student.lessonList}<br>--%>
+    <br>
 
+    Lista jazd:
+    <ul>
+        <c:forEach items="${lessons}" var="lesson">
+            <li>
+                    ${lesson.date},
+                    ${lesson.instructor.fullName},
+                    ${lesson.startHour},
+                    ${lesson.finishHour},
+            </li>
+        </c:forEach>
+    </ul>
 <sec:authorize access="hasRole('STUDENT')" ><br>
 <a href="${pageContext.servletContext.contextPath}panelStudent/MyProfile/edit">Edytuj</a>
 </sec:authorize>
 
-<sec:authorize access="hasRole('ADMIN')" >
-<a href="${pageContext.servletContext.contextPath}/panelAdmin/changePassword/${student.userId}">Zmień hasło</a><br>
-<a href="${pageContext.servletContext.contextPath}/panelAdmin/studentList/addMainInstructor/${student.userId}">Dodaj głównego instruktora</a><br>
+<sec:authorize access="hasRole('ADMIN')">
 <a href="${pageContext.servletContext.contextPath}/panelAdmin/studentList/studentE/${student.userId}">Edytuj</a><br>
 <a href="${pageContext.servletContext.contextPath}/panelAdmin/studentList/studentD/${student.userId}">Usuń</a><br>
 </sec:authorize>

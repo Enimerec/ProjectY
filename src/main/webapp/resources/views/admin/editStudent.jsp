@@ -12,11 +12,11 @@
     <title>Edit Student</title>
 </head>
 <body>
-<form:form action="" modelAttribute="student" method="POST">
+<form:form action="/panelAdmin/studentList/studentE/" modelAttribute="student" method="POST">
 
     <form:input type="hidden" path="userId"/><br>
     Login<form:input type="text" path="login"/><br>
-
+    Hasło: <form:input type="password" path="password"/>Podać tylko jeśli chcesz zmienić <br>
     Imię<form:input type="text" path="name"/><br>
     Nazwisko<form:input type="text" path="surname"/><br>
     Telefon<form:input type="text" path="telephone"/><br>
@@ -28,6 +28,9 @@
 
     Data rozpoczęcia kursu<form:input type="text" path="startDate"/><br>
     Data zakończenia kursu<form:input type="text" path="endDate"/> <br>
+    Główny instruktor: <form:select path="mainInstructor">
+                            <form:options label="Wybierz" items="${insOpt}" itemValue="userId" itemLabel="fullName"/>
+                       </form:select><br>
 
     Ulica<form:input type="text" path="street"/><br>
     Kod pocztowy<form:input type="text" path="postCode"/><br>

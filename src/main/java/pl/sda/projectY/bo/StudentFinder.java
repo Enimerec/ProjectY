@@ -5,11 +5,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.sda.projectY.dto.StudentDto;
-import pl.sda.projectY.entity.Lesson;
-import pl.sda.projectY.entity.Payment;
+import pl.sda.projectY.dto.StudentShortDto;
 import pl.sda.projectY.entity.Student;
 import pl.sda.projectY.repository.StudentRepository;
 
@@ -24,13 +23,16 @@ import java.util.Optional;
  **/
 
 @Service
+@Transactional(readOnly = true)
 public class StudentFinder {
 
     private final StudentRepository studentRepository;
+    private final InstructorFinder instructorFinder;
 
     @Autowired
-    public StudentFinder(StudentRepository studentRepository) {
+    public StudentFinder(StudentRepository studentRepository, InstructorFinder instructorFinder) {
         this.studentRepository = studentRepository;
+        this.instructorFinder = instructorFinder;
     }
 
     public List<StudentDto> findAll() {
@@ -40,22 +42,34 @@ public class StudentFinder {
         return studentDtoList;
     }
 
+    public List<StudentShortDto>findAllShort(){
+        List<Student>studentList = studentRepository.findAllByOrderByRegNumDesc();
+        List<StudentShortDto> studentDtoList = new ArrayList<>();
+        studentList.forEach(student -> studentDtoList.add(getStudentShortDto(student)));
+        return studentDtoList;
+    }
+    StudentShortDto getStudentShortDto(Student student) {
+        StudentShortDto studentShortDto = new StudentShortDto();
+        studentShortDto.setUserId(student.getUserId());
+        studentShortDto.setFullName(student.getName()+" "+student.getSurname());
+        studentShortDto.setRegNum(student.getRegNum());
+        studentShortDto.setMainInstructor(instructorFinder.findById(student.getMainInstructor().getUserId()));
+        return studentShortDto;
+    }
+
     public StudentDto findById(int id) {
         Student student =  studentRepository.findOne(id);
         return getStudentDto(student);
 
     }
 
-    public Student findStudentByID(int id){
-        return studentRepository.findOne(id);
-    }
 
     private StudentDto getStudentDto(Student student) {
         StudentDto newStudent = new StudentDto();
 
         newStudent.setUserId(student.getUserId());
         newStudent.setLogin(student.getLogin());
-        newStudent.setPassword(student.getPassword());
+        //newStudent.setPassword(student.getPassword());
         newStudent.setName(student.getName());
         newStudent.setSurname(student.getSurname());
         newStudent.setTelephone(student.getTelephone());
@@ -97,5 +111,11 @@ public class StudentFinder {
 
         String login = userDetails.get().getUsername();
         return findByLogin(login);
+    }
+
+    public List<StudentDto> findAllByMainInstructor_userIdOrderByName(int instructor) {
+        List<StudentDto> studentDto = new ArrayList<>();
+        studentRepository.findAllByMainInstructor_UserIdOrderByRegNumDesc(instructor).forEach(student -> studentDto.add(getStudentDto(student)));
+        return studentDto;
     }
 }

@@ -9,23 +9,29 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link href="${pageContext.servletContext.contextPath}/resources/css/app.css" rel="stylesheet">
     <title>Student List</title>
 </head>
 <body>
-<ul>
+
+<div class="odstep">
+<h1>Lista kursantów:</h1>
+<br>
+<table>
+    <tr>
+        <td>Nr Rej.</td><td>Nazwa</td><td>Instruktor główny</td><td></td>
+    </tr>
     <c:forEach items="${students}" var="student">
-        <li>
-                ${student.name},
-                ${student.surname},
-                ${student.mainInstructor},
-                ${student.regNum},
-            <a href="${pageContext.servletContext.contextPath}/panelAdmin/studentList/student/${student.userId}">
-                Szczegóły</a>
-        </li>
+        <tr>
+            <td>${student.regNum}</td><td>${student.fullName}</td><td>${student.mainInstructor.fullName}</td>
+            <td><a href="${pageContext.servletContext.contextPath}/panelAdmin/studentList/student/${student.userId}">
+                Szczegóły</a></td>
+        </tr>
     </c:forEach>
-</ul>
+</table>
 <br>
 <jsp:include page="../bottomMenu.jsp"/>
+    </div>
 </body>
 </html>
 

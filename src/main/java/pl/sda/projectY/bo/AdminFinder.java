@@ -2,6 +2,7 @@ package pl.sda.projectY.bo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.sda.projectY.dto.AdminDto;
 import pl.sda.projectY.entity.Admin;
 import pl.sda.projectY.repository.AdminRepository;
@@ -15,6 +16,7 @@ import java.util.List;
  * Marczak
  **/
 @Service
+@Transactional(readOnly = true)
 public class AdminFinder {
 
     private AdminRepository adminRepository;
@@ -38,7 +40,7 @@ public class AdminFinder {
     private AdminDto getAdminDto(Admin admin) {
         AdminDto adminDto = new AdminDto();
         adminDto.setLogin(admin.getLogin());
-        adminDto.setPassword(admin.getPassword());
+        //adminDto.setPassword(admin.getPassword());
         adminDto.setEMail(admin.getEMail());
         adminDto.setName(admin.getName());
         adminDto.setSurname(admin.getSurname());

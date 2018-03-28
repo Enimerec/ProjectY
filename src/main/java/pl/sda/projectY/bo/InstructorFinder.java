@@ -6,7 +6,9 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.sda.projectY.dto.InstructorDto;
+import pl.sda.projectY.dto.InstructorShortDto;
 import pl.sda.projectY.dto.StudentDto;
 import pl.sda.projectY.entity.Instructor;
 import pl.sda.projectY.entity.Lesson;
@@ -25,6 +27,7 @@ import java.util.Optional;
  **/
 
 @Service
+@Transactional(readOnly = true)
 public class InstructorFinder {
 
     private InstructorRepository instructorRepository;
@@ -54,16 +57,17 @@ public class InstructorFinder {
         instructorDto.setName(instructor.getName());
         instructorDto.setSurname(instructor.getSurname());
         instructorDto.setLogin(instructor.getLogin());
-        instructorDto.setPassword(instructor.getPassword());
+        //instructorDto.setPassword(mainInstructor.getPassword());
         instructorDto.setCity(instructor.getCity());
         instructorDto.setEMail(instructor.getEMail());
         instructorDto.setInstNumber(instructor.getInstNumber());
         instructorDto.setPesel(instructor.getPesel());
         instructorDto.setPostCode(instructor.getPostCode());
         instructorDto.setStreet(instructor.getStreet());
+        instructorDto.setTelephone(instructor.getTelephone());
 
-        /*List<Student> studentList = new ArrayList<>(instructor.getStudentList());
-        List<Lesson> lessonsList = new ArrayList<>(instructor.getLessonList());
+        /*List<Student> studentList = new ArrayList<>(mainInstructor.getStudentList());
+        List<Lesson> lessonsList = new ArrayList<>(mainInstructor.getLessonList());
 
         instructorDto.setLessonList(lessonsList);
         instructorDto.setStudentList(studentList);*/
@@ -85,5 +89,13 @@ public class InstructorFinder {
     private InstructorDto findByLogin(String login) {
         Instructor instructor = instructorRepository.findByLogin(login);
         return getInstructorDto(instructor);
+    }
+
+    InstructorShortDto getInstructorShortDto(Instructor instructor) {
+        InstructorShortDto instructorShortDto = new InstructorShortDto();
+        instructorShortDto.setFullName(instructor.getName()+" "+instructor.getSurname());
+        instructorShortDto.setInstNumber(instructor.getInstNumber());
+        instructorShortDto.setUserId(instructor.getUserId());
+        return instructorShortDto;
     }
 }

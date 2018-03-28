@@ -47,6 +47,6 @@ E-Mail<form:input type="text" path="EMail"/><br>
     });
 
 </script>
-<script src="${pageContext.servletContext.contextPath}/resources/js/jquery-1.10.2.js"></script>
+<script src="/resources/js/jquery-1.10.2.js"></script>
 </body>
 </html>

@@ -18,7 +18,6 @@
     Telefon: ${admin.telephone}<br>
     E-Mail: ${admin.EMail}<br>
 
-    <a href="${pageContext.servletContext.contextPath}/panelAdmin/changePassword/${admin.userId}">Zmień hasło</a><br>
     <a href="${pageContext.servletContext.contextPath}/panelAdmin/adminList/adminE/${admin.userId}">Edytuj</a><br>
     <a href="${pageContext.servletContext.contextPath}/panelAdmin/adminList/adminD/${admin.userId}">Usuń</a><br>
 
