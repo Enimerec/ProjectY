@@ -262,7 +262,7 @@ public class AdminPageController {
     @PostMapping(value = "panelAdmin/paymentList/paymentE/")
     public String editPaymentDetails(@ModelAttribute("payment") PaymentDto paymentDto){
        paymentService.editPayment(paymentDto);
-        return "redirect../payment/"+paymentDto.getPaymentId();
+        return "redirect:../payment/"+paymentDto.getPaymentId();
     }
     @GetMapping(value = "/panelAdmin/paymentList/paymentD/{paymentId}")
     public String deletePayment(@PathVariable (value = "paymentId")int paymentId){
@@ -319,7 +319,7 @@ public class AdminPageController {
     @PostMapping(value = "panelAdmin/lessonList/lessonE/")
     public String editLessonDetails(@ModelAttribute("lesson") LessonDto lessonDto){
         lessonService.editLesson(lessonDto);
-        return "redirect:../../lesson/"+lessonDto.getLessonId();
+        return "redirect:../lesson/"+lessonDto.getLessonId();
     }
 
    /* @GetMapping(value = "panelAdmin/calendar")

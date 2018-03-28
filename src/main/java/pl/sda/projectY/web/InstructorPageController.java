@@ -1,16 +1,12 @@
 package pl.sda.projectY.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sda.projectY.bo.InstructorFinder;
 import pl.sda.projectY.bo.InstructorService;
-import pl.sda.projectY.bo.StudentFinder;
 import pl.sda.projectY.dto.InstructorDto;
-import pl.sda.projectY.dto.StudentDto;
-import pl.sda.projectY.entity.Instructor;
 
 /**
  * author:
@@ -32,7 +28,7 @@ public class InstructorPageController {
     @GetMapping(value = "/panelInstructor/MyProfile")
     public ModelAndView myProfilePage(){
         ModelAndView mav = new ModelAndView("admin/instructorDetails");
-        mav.addObject("instructor",instructorFinder.getUserDetails());
+        mav.addObject("mainInstructor",instructorFinder.getUserDetails());
         return mav;
     }
 

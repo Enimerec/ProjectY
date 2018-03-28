@@ -12,7 +12,7 @@
     <title>Payment Edit Page</title>
 </head>
 <body>
-<form:form action="panelAdmin/paymentList/paymentE/" modelAttribute="payment" method="POST">
+<form:form action="/panelAdmin/paymentList/paymentE/" modelAttribute="payment" method="POST">
 
     <form:input type="hidden" path="paymentId"/><br>
     Kwota: <form:input type="number" path="amount"/><br>
