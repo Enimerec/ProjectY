@@ -61,11 +61,11 @@ public class LessonFinder {
         return lessonDto;
     }*/
 
-    public List<LessonDto> findAllByInstructor_userIdOrderByDate(int instructor) {
+    /*public List<LessonDto> findAllByInstructor_userIdOrderByDate(int instructor) {
         List<LessonDto> lessonDto = new ArrayList<>();
         lessonRepository.findAllByInstructor_UserIdOrderByDate(instructor).forEach(lesson -> lessonDto.add(getLessonDto(lesson)));
         return lessonDto;
-    }
+    }*/
 
     public List<LessonShortDto> findAllShort() {
         List<LessonShortDto> lessonDto = new ArrayList<>();
@@ -88,6 +88,13 @@ public class LessonFinder {
         List<LessonShortDto> lessonDto = new ArrayList<>();
         lessonRepository.findAllByStudent_UserIdOrderByDate(userId).forEach(lesson ->
                 lessonDto.add(getLessonShortDto(lesson)));
+        return lessonDto;
+    }
+
+    public List<LessonShortDto> findAllByInstructor_userIdOrderByDateShort(int userId) {
+        List<LessonShortDto> lessonDto = new ArrayList<>();
+        lessonRepository.findAllByInstructor_UserIdOrderByDate(userId).
+                forEach(lesson -> lessonDto.add(getLessonShortDto(lesson)));
         return lessonDto;
     }
 }

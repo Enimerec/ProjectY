@@ -182,8 +182,9 @@ public class AdminPageController {
     public ModelAndView instructorDetailsPage(@PathVariable (value = "userId") int userId) {
         ModelAndView mav = new ModelAndView("admin/instructorDetails");
         InstructorDto instructorDto = instructorFinder.findById(userId);
-        instructorDto.setLessonList(lessonFinder.findAllByInstructor_userIdOrderByDate(userId));
         instructorDto.setStudentList(studentFinder.findAllByMainInstructor_userIdOrderByName(userId));
+        List<LessonShortDto>lessonShortDtos = lessonFinder.findAllByInstructor_userIdOrderByDateShort(userId);
+        mav.addObject("lesson",lessonShortDtos);
         mav.addObject("mainInstructor", instructorDto);
         return mav;
     }

@@ -39,13 +39,12 @@ Lista kursantów;
 <br>
 Lista jazd:
 <ul>
-    <c:forEach items="${mainInstructor.lessonList}" var="lesson">
+    <c:forEach items="${lesson}" var="lesson">
     <li>
             ${lesson.date},
             ${lesson.startHour},
             ${lesson.finishHour},
-            ${lesson.student}
-
+            ${lesson.student.fullName}
     </li>
     </c:forEach>
 </ul>
