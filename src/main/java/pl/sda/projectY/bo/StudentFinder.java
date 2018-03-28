@@ -48,6 +48,7 @@ public class StudentFinder {
 
     }
 
+
     private StudentDto getStudentDto(Student student) {
         StudentDto newStudent = new StudentDto();
 
