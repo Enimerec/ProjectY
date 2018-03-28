@@ -48,9 +48,7 @@ public class LessonFinder {
         if(lesson.getStudent()!=null) {
             lessonDto.setStudent(lesson.getStudent().getUserId());
         }
-
         return lessonDto;
-
     }
 
     public LessonDto findById(int lessonId) {
